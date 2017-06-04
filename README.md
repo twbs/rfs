@@ -1,2 +1,40 @@
-# rfs
-RFS scss mixin
+# RFS
+
+## About
+RFS stands for Responsive Font-Size, easy to remember, easy to use. It’s a desktop-first approach which automatically calculates the correct font-size for every screen width. Desktop-first approach means you just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a SCSS-mixin which generates the responsive css for you.
+
+## The main advantages of using RFS
+- Font-sizes will rescale for every screen width
+- Super easy to use, no need to define mappings for each font-size
+- Font-sizes of all text-elements will always remain in relation with each other
+- Rem-based font-sizes will allow the user to change his default font-size in his browser. People with bad vision can therefore set their font-size bigger to increase readability.
+
+## What does this algorithm do?
+The algorithm splits the calculation of the font-size in 2:
+
+- 1 Static font-size for bigger screens
+- 1 adaptive font-size which decreases when the screen-width of your browser decreases. This font-size is calculated in a media-query with css’ calc-function.
+There are some configuration variables which can influence the font-size decreasing.
+
+## The code
+This input (SCSS):
+```scss
+.title {
+  @include rfs(60);
+}
+```
+
+Will generate this (CSS):
+```css
+.title {
+  font-size: 3.75rem;
+}
+
+@media (max-width: 75rem) {
+  .title {
+    font-size: calc(1.35rem + 3.2vw); 
+  }
+}
+```
+## Live demo
+http://codepen.io/MartijnCuppens/pen/ZBjdMy
