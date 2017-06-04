@@ -1,0 +1,71 @@
+///////////////////
+// Configuration //
+///////////////////
+
+// Minimum fontsize.
+$rfs_min_fs: 12;
+
+// Breakpoint at where font-size starts decreasing if screen-width is smaller.
+$rfs_breakpoint: 1200;
+
+// Factor of decrease.
+$rfs_factor: 5;
+
+// Use REM.
+$rfs_use_rem: true;
+
+
+///////////
+// Mixin //
+///////////
+
+// Make font size responsive.
+@mixin rfs($fs) {
+  @if type-of($fs) != 'number' or not unitless($fs) {
+    @error "#{$fs} is not a number.";
+  }
+
+  // Set default parameters
+  // Minimum fontsize.
+  $rfs_min_fs: 12 !default;
+
+  // Breakpoint at where font-size starts decreasing if screenwidth is smaller.
+  $rfs_breakpoint: 1200 !default;
+
+  // Factor of decrease.
+  $rfs_factor: 5 !default;
+
+  // Use rem or px
+  $rfs_use_rem: true !default;
+
+  // 1 rem = $rfs_rem_value px
+  $rfs_rem_value: 16 !default;
+
+  // Default font-size.
+  @if $rfs_use_rem {
+    font-size: #{$fs / $rfs_rem_value}rem;
+  } @else {
+    font-size: #{$fs}px;
+  }
+
+  // Only add media query if font-size is bigger as the minimum font-size.
+  @if $fs > $rfs_min_fs {
+
+    // Calculate minimum font-size for given font-size.
+    $fs_min: $rfs_min_fs + ($fs - $rfs_min_fs) / $rfs_factor;
+
+    // Calculate diffrence between given font-size and minimum font-size for given font-size.
+    $fs_diff: $fs - $fs_min;
+
+    // The media-query
+    @if $rfs_use_rem {
+      @media (max-width: #{$rfs_breakpoint / $rfs_rem_value}rem) {
+        font-size: calc(#{$fs_min / $rfs_rem_value}rem + #{$fs_diff * 100 / $rfs_breakpoint}vw);
+      }
+    } @else {
+      @media (max-width: #{$rfs_breakpoint}px) {
+        font-size: calc(#{$fs_min}px + #{$fs_diff * 100 / $rfs_breakpoint}vw);
+      }
+    }
+  }
+}
