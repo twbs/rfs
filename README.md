@@ -1,4 +1,6 @@
-# RFS
+# RFS [![npm][npm-image]][npm-url]
+[npm-image]: https://img.shields.io/npm/v/rfs.svg
+[npm-url]: https://npmjs.org/package/rfs
 
 ## About
 RFS stands for Responsive Font-Size, easy to remember, easy to use. It’s a desktop-first approach which automatically calculates the correct font-size for every screen width. Desktop-first approach means you just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a SCSS-mixin which generates the responsive css for you.
