@@ -32,7 +32,7 @@ Will generate this (CSS):
   font-size: 3.75rem;
 }
 
-@media (max-width: 75rem) {
+@media (max-width: 1200px) {
   .title {
     font-size: calc(1.35rem + 3.2vw); 
   }
@@ -40,3 +40,6 @@ Will generate this (CSS):
 ```
 ## Live demo
 http://codepen.io/MartijnCuppens/pen/ZBjdMy
+
+## Bootstrap demo
+https://www.intracto.com/bootstrap-with-rfs
