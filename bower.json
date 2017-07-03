@@ -1,0 +1,23 @@
+{
+  "name": "rfs",
+  "description": "A scss-mixin for responsive font-sizes.",
+  "main": "scss/rfs.scss",
+  "authors": [
+    "Martijn Cuppens <martijn.cuppens@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "scss",
+    "responsive",
+    "font-size",
+    "typography"
+  ],
+  "homepage": "https://github.com/MartijnCuppens/rfs",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
