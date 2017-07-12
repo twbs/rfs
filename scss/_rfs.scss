@@ -4,25 +4,31 @@
 //
 // See https://github.com/MartijnCuppens/rfs.
 
+
+// Configuration.
+
+// Minimum fontsize.
+$rfs_minimum_font_size: 12 !default;
+$rfs_minimum_font_size_unit: rem !default;
+
+// Breakpoint at where font-size starts decreasing if screen width is smaller.
+$rfs_breakpoint: 1200 !default;
+$rfs_breakpoint_unit: px !default;
+
+// Factor of decrease.
+$rfs_factor: 5 !default;
+
+// 1 rem = $rfs_rem_value px.
+$rfs_rem_value: 16 !default;
+
+
+// Responsive font-size mixin.
+
 @mixin rfs($fs) {
   // If $fs is not a number (like inherit) or $fs has a unit (like 1.5em) or $ is 0, just print the value.
   @if type-of($fs) != 'number' or not unitless($fs) or $fs == 0 {
     font-size: #{$fs};
   } @else {
-
-    // Minimum fontsize.
-    $rfs_minimum_font_size: 12 !default;
-    $rfs_minimum_font_size_unit: rem !default;
-
-    // Breakpoint at where font-size starts decreasing if screen width is smaller.
-    $rfs_breakpoint: 1200 !default;
-    $rfs_breakpoint_unit: px !default;
-
-    // Factor of decrease.
-    $rfs_factor: 5 !default;
-
-    // 1 rem = $rfs_rem_value px.
-    $rfs_rem_value: 16 !default;
 
     // Default font-size.
     @if $rfs_minimum_font_size_unit == rem {
@@ -52,7 +58,7 @@
       // Calculate difference between given font-size and minimum font-size for given font-size.
       $fs_diff: $fs - $fs_min;
 
-      // RFS breakpoint formatting
+      // RFS breakpoint formatting.
       @if $rfs_breakpoint_unit == em or $rfs_breakpoint_unit == rem{
         $mq_max_width: #{$rfs_breakpoint / $rfs_rem_value}#{$rfs_breakpoint_unit};
       } @else if $rfs_breakpoint_unit == px {
@@ -61,8 +67,8 @@
         @error "`#{$rfs_breakpoint_unit}` is not a valid unit for $rfs_breakpoint_unit. Use `px`, `em` or `rem`.";
       }
 
-      // Minimum font-size formatting
-      // No need to check if the unit is valid, because we did that before
+      // Minimum font-size formatting.
+      // No need to check if the unit is valid, because we did that before.
       @if $rfs_minimum_font_size_unit == rem {
         $min_width: #{$fs_min / $rfs_rem_value}rem;
       } @else {
