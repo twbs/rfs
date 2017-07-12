@@ -43,3 +43,6 @@ http://codepen.io/MartijnCuppens/pen/ZBjdMy
 
 ## Bootstrap demo
 https://www.intracto.com/bootstrap-with-rfs
+
+## RFS explained in detail
+https://blog.intracto.com/rfs-automated-scss-responsive-font-sizing
