@@ -3,7 +3,9 @@
 [npm-url]: https://npmjs.org/package/rfs
 RFS stands for Responsive Font-Size, easy to remember, easy to use. This approach **automatically calculates the correct font-size** for every screen width. You just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a **SCSS-mixin** which generates the responsive css for you.
 
-# ![RFS](http://i.imgur.com/gJH6m6g.gif)
+<p align="center">
+<img src="http://i.imgur.com/gJH6m6g.gif" alt="RFS Demo">
+</p>
 
 ## Instalation
 You can use RFS in your project by installing it using a package manager (recommended):
