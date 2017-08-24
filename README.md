@@ -55,17 +55,10 @@ Will generate this (CSS):
 ```
 
 ## Advantages
-- Font sizes will *rescale for every screen width*, this prevents long words from being chopped off the screen
-- *Super easy* to use, no need to define complex configurations for each font-size
+- Font sizes will **rescale for every screen width**, this prevents long words from being chopped off the screen
+- **Super easy** to use, no need to define complex configurations for each font-size
 - Font sizes of all text elements will always remain in relation with each other
 - Rem-based font sizes will allow the user to change his default font size in his browser. People with limited vision can therefore increase their font size to increase readability.
-
-## How does it work?
-RFS splits the calculation of the font-size in two:
-
-- 1 Static font-size for bigger screens
-- 1 adaptive font size which decreases along with the screen width of your browser. This font size is calculated in a media query with css’s calc-function.
-There are some configuration variables which can influence the font-size decreasing.
 
 ## Configuration
 ![RFS visualisation](http://i.imgur.com/KpcsXUk.png)
@@ -75,14 +68,14 @@ There are configuration variables which influence the calculation of the font si
 **$rfs-minimum-font-size:** (in `px`)  
 Font sizes which are calculated by RFS will never be lower than this size.
 However, you can still pass a smaller font size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `rfs(17)` will trigger dynamic rescaling, with `rfs(10)` it will just stay `10px` all the time.  
-Default value: `12`
+*Default value: `12`*
 
 **$rfs-minimum-font-size-unit:** (string)  
 The font size will be rendered in this unit. Possible units are `px` and `rem`. This setting doesn't influence `$rfs-minimum-font-size`, which will always be configured in `px`.  
-Default value: `rem`
+*Default value: `rem`*
 
 **$rfs-breakpoint:** (in `px`)  
-This where dynamic rescaling begins. Above this breakpoint, the font size will be equal to the font size you passed to the mixin.  
+This is the point where dynamic rescaling begins. Above this breakpoint, the font size will be equal to the font size you passed to the mixin.  
 *Default value: `1200`*
 
 **$rfs-breakpoint-unit:** (string)  
@@ -96,7 +89,7 @@ Let’s take an example from the graph above: The font size `rfs(47)` at a scree
 Calculate the difference between the font-size (47) and `$rfs-minimum-font-size` (12)  
 `47 - 12 = 35`  
 
-Divide this number by the $rfs-factor (5)  
+Divide this number by the `$rfs-factor` (5)  
 `35 / 5 = 7`   
 
 Add this number to $rfs-minimum-font-size (12)  
