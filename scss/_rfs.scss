@@ -100,7 +100,7 @@ $rfs-rem-value: 16 !default;
 
       // Render the calculated font-size.
       @media (max-width: #{$mq-max-width}) {
-        font-size: calc(#{$min-width} + #{$variable-width})#{$rfs-suffix};
+        font-size: calc(#{$min-width} + #{$variable-width}) #{$rfs-suffix};
       }
     }
   }
