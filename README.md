@@ -1,6 +1,9 @@
 # RFS [![npm][npm-image]][npm-url]
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
+RFS stands for Responsive Font-Size, easy to remember, easy to use. This approach **automatically calculates the correct font-size** for every screen width. You just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a **SCSS-mixin** which generates the responsive css for you.
+
+# ![RFS](http://i.imgur.com/gJH6m6g.gif)
 
 ## Instalation
 You can use RFS in your project by installing it using a package manager (recommended):
@@ -29,9 +32,6 @@ You can download the RFS SCSS-file and save it in your `scss/` directory. This
 method is not recommended because you lose the ability to easily and quickly
 manage and update RFS as a dependency.
 
-
-## About
-RFS stands for Responsive Font-Size, easy to remember, easy to use. This approach **automatically calculates the correct font-size** for every screen width. You just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a **SCSS-mixin** which generates the responsive css for you.
 
 ## The main advantages of using RFS
 - Font-sizes will rescale for every screen width, this prevents long words from being chopped off the screen
