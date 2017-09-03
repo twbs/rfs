@@ -37,19 +37,19 @@ manage and update RFS as a dependency.
 This input (SCSS):
 ```scss
 .title {
-  @include rfs(60);
+  @include rfs(62);
 }
 ```
 
 Will generate this (CSS):
 ```css
 .title {
-  font-size: 3.75rem;
+  font-size: 62px;
 }
 
 @media (max-width: 1200px) {
   .title {
-    font-size: calc(1.35rem + 3.2vw); 
+    font-size: calc(23.6px + 3.2vw);
   }
 }
 ```
@@ -63,23 +63,23 @@ Will generate this (CSS):
 ## Configuration
 ![RFS visualisation](http://i.imgur.com/KpcsXUk.png)
 
-There are configuration variables which influence the calculation of the font size. All variables must be set unitless in the configuration:
+There are configuration variables which influence the calculation of the font size. If no unit is used, `px`-units will be assumed as unit. In the graph above, `$rfs-minimum-font-size` is set to `12`, `$rfs-breakpoint` is set to `1200`, and `$rfs-factor` is set to `5`.
 
-**$rfs-minimum-font-size:** (in `px`)  
+**$rfs-minimum-font-size:** (in `px` or `rem`)  
 Font sizes which are calculated by RFS will never be lower than this size.
 However, you can still pass a smaller font size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `rfs(17)` will trigger dynamic rescaling, with `rfs(10)` it will just stay `10px` all the time.  
-*Default value: `12`*
+*Default value: `14px`*
 
 **$rfs-minimum-font-size-unit:** (string)  
-The font size will be rendered in this unit. Possible units are `px` and `rem`. This setting doesn't influence `$rfs-minimum-font-size`, which will always be configured in `px`.  
-*Default value: `rem`*
+The font size will be rendered in this unit. Possible units are `px` and `rem`.   
+*Default value: `px`*
 
-**$rfs-breakpoint:** (in `px`)  
-This is the point where dynamic rescaling begins. Above this breakpoint, the font size will be equal to the font size you passed to the mixin.  
-*Default value: `1200`*
+**$rfs-breakpoint:** (in `px`, `em` or `rem`)  
+This is the point where dynamic rescaling begins. Above this breakpoint, the font size will be equal to the font size you passed to the mixin.    
+*Default value: `1200px`*
 
 **$rfs-breakpoint-unit:** (string)  
-The width of `$rfs-breakpoint` will be rendered in this unit. Possible units are `px`, `em` and `rem`. This setting doesn't influence `$rfs-breakpoint`, which will always be configured in `px`.  
+The width of `$rfs-breakpoint` will be rendered in this unit. Possible units are `px`, `em` and `rem`.  
 *Default value: `px`*
 
 **$rfs-factor:** (number)  
