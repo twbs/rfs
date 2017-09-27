@@ -61,13 +61,14 @@ Will generate this (CSS):
 - Rem-based font sizes will allow the user to change his default font size in his browser. People with limited vision can therefore increase their font size to increase readability.
 
 ## Configuration
-![RFS visualisation](http://i.imgur.com/KpcsXUk.png)
 
-There are configuration variables which influence the calculation of the font size. If no unit is used, `px`-units will be assumed as unit. In the graph above, `$rfs-minimum-font-size` is set to `12`, `$rfs-breakpoint` is set to `1200`, and `$rfs-factor` is set to `5`.
+![RFS visualisation](https://i.imgur.com/9t4gAzE.png)
+
+There are configuration variables which influence the calculation of the font size. If no unit is used, `px`-units will be assumed as unit. In the graph above, `$rfs-minimum-font-size` is set to `14`, `$rfs-breakpoint` is set to `1200`, and `$rfs-factor` is set to `5`, this is the default configuration.
 
 **$rfs-minimum-font-size:** (in `px` or `rem`)  
 Font sizes which are calculated by RFS will never be lower than this size.
-However, you can still pass a smaller font size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `rfs(17)` will trigger dynamic rescaling, with `rfs(10)` it will just stay `10px` all the time.  
+However, you can still pass a smaller font size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `rfs(19)` will trigger dynamic rescaling, with `rfs(10)` it will just stay `10px` all the time.  
 *Default value: `14px`*
 
 **$rfs-minimum-font-size-unit:** (string)  
@@ -84,16 +85,16 @@ The width of `$rfs-breakpoint` will be rendered in this unit. Possible units are
 
 **$rfs-factor:** (number)  
 This is the more complex part. If the font sizes would all resize to the same value when the screen width would be 0, there wouldn’t be a lot of difference between the font sizes on small screens. To prevent this, we brought the `$rfs-factor` to life.  
-Let’s take an example from the graph above: The font size `rfs(47)` at a screen of `0px` is `19px` and not `16px` because of this factor. This minimum font size is calculated like this:
+Let’s take an example from the graph above: The font size `rfs(49)` at a screen of `0px` is `21px` and not `16px` because of this factor. This minimum font size is calculated like this:
 
-Calculate the difference between the font-size (47) and `$rfs-minimum-font-size` (12)  
-`47 - 12 = 35`  
+Calculate the difference between the font-size (47) and `$rfs-minimum-font-size` (14)  
+`49 - 14 = 35`  
 
 Divide this number by the `$rfs-factor` (5)  
 `35 / 5 = 7`   
 
-Add this number to $rfs-minimum-font-size (12)  
-`7 + 12 = 19`  
+Add this number to $rfs-minimum-font-size (14)  
+`7 + 14 = 21`  
 
 The higher `$rfs-factor`, the less difference there is between font sizes on small screens. The lower `$rfs-factor`, the less influence RFS has, which results in bigger font sizes for small screens. If `$rfs-factor` is set to 1, there wouldn’t be any difference at all. 1 is the lowest possible value.  
 *Default value: `5`*
