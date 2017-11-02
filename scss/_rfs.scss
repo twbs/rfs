@@ -21,6 +21,10 @@ $rfs-minimum-font-size-unit: px !default;
 $rfs-breakpoint: 1200px !default;
 $rfs-breakpoint-unit: px !default;
 
+// Use mobile first rendering, enabling this will cause legacy browsers
+// which doesn't support vw-units to incorrectly render the font-size.
+$rfs-mobile-first: false !default;
+
 // Factor of decrease.
 $rfs-factor: 5 !default;
 
@@ -50,10 +54,14 @@ $rfs-rem-value: 16 !default;
     $rfs-suffix: " !important";
   }
 
-  // If $fs is not a number (like inherit) or $fs has a unit (like 1.5em) or $ is 0, just print the value.
+  // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value.
   @if type-of($fs) != "number" or (not unitless($fs) and unit($fs) != "px" and unit($fs) != "rem") or $fs == 0 {
     font-size: #{$fs}#{$rfs-suffix};
   } @else {
+
+    // Variables for storing static and fluid rescaling.
+    $rfs-static: null;
+    $rfs-fluid: null;
 
     // Remove px-unit from $fs for calculations.
     @if (unit($fs) == "px") {
@@ -62,42 +70,28 @@ $rfs-rem-value: 16 !default;
       $fs: $fs / ($fs * 0 + (1 / $rfs-rem-value));
     }
 
-
-    // Default font-size.
+    // Set default font-size.
     @if $rfs-minimum-font-size-unit == rem {
-      font-size: #{$fs / $rfs-rem-value}rem#{$rfs-suffix};
+      $rfs-static: #{$fs / $rfs-rem-value}rem#{$rfs-suffix};
     } @else if $rfs-minimum-font-size-unit == px {
-      font-size: #{$fs}px#{$rfs-suffix};
+      $rfs-static: #{$fs}px#{$rfs-suffix};
     } @else {
       @error "`#{$rfs-minimum-font-size-unit}` is not a valid unit for $rfs-minimum-font-size-unit. Use `px` or `rem`.";
     }
 
-    @if $rfs-factor < 1 {
+    @if type-of($rfs-factor) != "number" or $rfs-factor < 1 {
       @error "`#{$rfs-factor}` is not a valid  $rfs-factor, it must be greater or equal to 1.";
     }
 
     // Only add media query if font-size is bigger as the minimum font-size.
     // If $rfs-factor == 1, no rescaling will take place.
     @if $fs > $rfs-minimum-font-size and $rfs-factor != 1 {
-
-      // These variables must be defined outside of the if-else-construction.
-      // see https://stackoverflow.com/questions/15371332/sass-ignores-variables-defined-in-if-statement.
-      $mq-max-width: null;
       $min-width: null;
 
       // Calculate minimum font-size for given font-size.
       $fs-min: $rfs-minimum-font-size + ($fs - $rfs-minimum-font-size) / $rfs-factor;
       // Calculate difference between given font-size and minimum font-size for given font-size.
       $fs-diff: $fs - $fs-min;
-
-      // RFS breakpoint formatting.
-      @if $rfs-breakpoint-unit == em or $rfs-breakpoint-unit == rem {
-        $mq-max-width: #{$rfs-breakpoint / $rfs-rem-value}#{$rfs-breakpoint-unit};
-      } @else if $rfs-breakpoint-unit == px {
-        $mq-max-width: #{$rfs-breakpoint}px;
-      } @else {
-        @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
-      }
 
       // Minimum font-size formatting.
       // No need to check if the unit is valid, because we did that before.
@@ -110,9 +104,38 @@ $rfs-rem-value: 16 !default;
       // Calculate the variable width between 0 and $rfs-breakpoint.
       $variable-width: #{$fs-diff * 100 / $rfs-breakpoint}vw;
 
-      // Render the calculated font-size.
-      @media (max-width: #{$mq-max-width}) {
-        font-size: calc(#{$min-width} + #{$variable-width}) #{$rfs-suffix};
+      // Set the calculated font-size.
+      $rfs-fluid: calc(#{$min-width} + #{$variable-width}) #{$rfs-suffix};
+    }
+
+    // Rendering.
+    @if ($rfs-fluid == null) {
+      // Only render static font-size if no fluid font-size is available.
+      font-size: $rfs-static;
+    } @else {
+      $mq-width: null;
+
+      // RFS breakpoint formatting.
+      @if $rfs-breakpoint-unit == em or $rfs-breakpoint-unit == rem {
+        $mq-width: #{$rfs-breakpoint / $rfs-rem-value}#{$rfs-breakpoint-unit};
+      } @else if $rfs-breakpoint-unit == px {
+        $mq-width: #{$rfs-breakpoint}px;
+      } @else {
+        @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
+      }
+
+      @if ($rfs-mobile-first) {
+        font-size: $rfs-fluid;
+
+        @media (min-width: #{$mq-width}) {
+          font-size: $rfs-static;
+        }
+      } @else {
+        font-size: $rfs-static;
+
+        @media (max-width: #{$mq-width}) {
+          font-size: $rfs-fluid;
+        }
       }
     }
   }
