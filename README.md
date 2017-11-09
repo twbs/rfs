@@ -99,6 +99,15 @@ Add this number to $rfs-minimum-font-size (14)
 The higher `$rfs-factor`, the less difference there is between font sizes on small screens. The lower `$rfs-factor`, the less influence RFS has, which results in bigger font sizes for small screens. If `$rfs-factor` is set to 1, there wouldn’t be any difference at all. 1 is the lowest possible value.  
 *Default value: `5`*
 
+**$rfs-mobile-first** (Boolean)  
+Use mobile first rendering, enabling this can cause legacy browsers which doesn't support vw-units to incorrectly render the font-size.  
+*Default value: `false`*
+
+**$rfs-two-dimensional** (Boolean)  
+Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font-size from changing if the device toggles between portrait and landscape mode.  
+*Default value: `false`*
+
+
 ##  Demos
 - [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
 - [RFS in bootstrap demo](http://martijncuppens.github.io/rfs)

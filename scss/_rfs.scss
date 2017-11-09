@@ -21,7 +21,7 @@ $rfs-minimum-font-size-unit: px !default;
 $rfs-breakpoint: 1200px !default;
 $rfs-breakpoint-unit: px !default;
 
-// Use mobile first rendering, enabling this will cause legacy browsers
+// Use mobile first rendering, enabling this can cause legacy browsers
 // which doesn't support vw-units to incorrectly render the font-size.
 $rfs-mobile-first: false !default;
 
