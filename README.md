@@ -95,6 +95,10 @@ This value determines the strength of font size resizing. The higher `$rfs-facto
 Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
 *Default value: `false`*
 
+## Do's and don'ts
+- Remember to set rfs on your font-size of your `html` or `body`, otherwise some text may not dynamically rescale
+- Always set your line-heights relative (in `em` or unitless)
+- More tips and tricks with examples can be found [on this article](https://medium.com/@martijn.cuppens/magic-font-resizing-with-rfs-b5d781296dd6)
 
 ##  Demos
 - [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
