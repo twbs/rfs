@@ -21,10 +21,6 @@ $rfs-minimum-font-size-unit: px !default;
 $rfs-breakpoint: 1200px !default;
 $rfs-breakpoint-unit: px !default;
 
-// Use mobile first rendering, enabling this can cause legacy browsers
-// which doesn't support vw-units to incorrectly render the font-size.
-$rfs-mobile-first: false !default;
-
 // Resize font-size based on screen height and width.
 $rfs-two-dimensional: false !default;
 
@@ -135,29 +131,15 @@ $rfs-rem-value: 16 !default;
         @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
       }
 
-      @if $rfs-mobile-first {
-        font-size: $rfs-fluid;
+      font-size: $rfs-static;
 
-        @if $rfs-two-dimensional {
-          @media (min-width: #{$mq-value}) and (min-height: #{$mq-value}) {
-            font-size: $rfs-static;
-          }
-        } @else {
-          @media (min-width: #{$mq-value}) {
-            font-size: $rfs-static;
-          }
+      @if $rfs-two-dimensional {
+        @media (max-width: #{$mq-value}), (max-height: #{$mq-value}) {
+          font-size: $rfs-fluid;
         }
       } @else {
-        font-size: $rfs-static;
-
-        @if $rfs-two-dimensional {
-          @media (max-width: #{$mq-value}), (max-height: #{$mq-value}) {
-            font-size: $rfs-fluid;
-          }
-        } @else {
-          @media (max-width: #{$mq-value}) {
-            font-size: $rfs-fluid;
-          }
+        @media (max-width: #{$mq-value}) {
+          font-size: $rfs-fluid;
         }
       }
     }

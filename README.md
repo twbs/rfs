@@ -1,7 +1,7 @@
 # RFS [![npm][npm-image]][npm-url]
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
-RFS stands for Responsive Font-Size, easy to remember, easy to use. This approach **automatically calculates the correct font-size** for every screen width. You just have got to define your font-size for big screens and the font-size will automatically decrease for smaller screens. RFS is a **SCSS-mixin** which generates the responsive css for you.
+RFS stands for Responsive Font-Size and is an easy to use **SCSS-mixin** which **automatically calculates the appropriate font-size** based on the dimensions of the monitor or device.
 
 ![RFS](http://i.imgur.com/gJH6m6g.gif)
 
@@ -53,6 +53,9 @@ Will generate this (CSS):
   }
 }
 ```
+In this case a value without unit was passed to RFS (`62`), which is interpreted as `62px`. It's also possible to pass
+font-sizes in rem-units.
+
 
 ## Advantages
 - Font sizes will **rescale for every screen width**, this prevents long words from being chopped off the screen
@@ -64,7 +67,7 @@ Will generate this (CSS):
 
 ![RFS visualisation](https://i.imgur.com/9t4gAzE.png)
 
-There are configuration variables which influence the calculation of the font size. If no unit is used, `px`-units will be assumed as unit. In the graph above, `$rfs-minimum-font-size` is set to `14`, `$rfs-breakpoint` is set to `1200`, and `$rfs-factor` is set to `5`, this is the default configuration.
+There are configuration variables which influence the calculation of the font size. In the graph above, `$rfs-minimum-font-size` is set to `14px`, `$rfs-breakpoint` is set to `1200px`, and `$rfs-factor` is set to `5`, this is the default configuration.
 
 **$rfs-minimum-font-size:** (in `px` or `rem`)  
 Font sizes which are calculated by RFS will never be lower than this size.
@@ -84,7 +87,7 @@ The width of `$rfs-breakpoint` will be rendered in this unit. Possible units are
 *Default value: `px`*
 
 **$rfs-factor:** (number)  
-This is the more complex part. If the font sizes would all resize to the same value when the screen width would be 0, there wouldn’t be a lot of difference between the font sizes on small screens. To prevent this, we brought the `$rfs-factor` to life.  
+This value determines the strength of font size resizing. If the font sizes would all resize to the same value when the screen width would be 0, there wouldn’t be a lot of difference between the font sizes on small screens. To prevent this, we brought the `$rfs-factor` to life.  
 Let’s take an example from the graph above: The font size `rfs(49)` at a screen of `0px` is `21px` and not `16px` because of this factor. This minimum font size is calculated like this:
 
 Calculate the difference between the font-size (47) and `$rfs-minimum-font-size` (14)  
@@ -99,12 +102,8 @@ Add this number to $rfs-minimum-font-size (14)
 The higher `$rfs-factor`, the less difference there is between font sizes on small screens. The lower `$rfs-factor`, the less influence RFS has, which results in bigger font sizes for small screens. If `$rfs-factor` is set to 1, there wouldn’t be any difference at all. 1 is the lowest possible value.  
 *Default value: `5`*
 
-**$rfs-mobile-first** (Boolean)  
-Use mobile first rendering, enabling this can cause legacy browsers which doesn't support vw-units to incorrectly render the font-size.  
-*Default value: `false`*
-
 **$rfs-two-dimensional** (Boolean)  
-Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font-size from changing if the device toggles between portrait and landscape mode.  
+Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
 *Default value: `false`*
 
 
