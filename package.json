@@ -2,7 +2,7 @@
   "name": "rfs",
   "version": "4.4.0",
   "description": "A scss-mixin for responsive font-sizes.",
-  "main": "scss/rfs.scss",
+  "main": "scss/_rfs.scss",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
