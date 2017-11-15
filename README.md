@@ -1,15 +1,15 @@
 # RFS [![npm][npm-image]][npm-url]
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
-RFS stands for Responsive Font-Size and is an easy to use **SCSS-mixin** which **automatically calculates the 
-appropriate font-size** based on the dimensions of the monitor or device.
+RFS stands for Responsive Font Size and is an easy to use **SCSS-mixin** which **automatically calculates the 
+appropriate font size** based on the dimensions of the monitor or device.
 
 
 ## Advantages
 - Font sizes will **rescale for every screen width**, this prevents long words from being chopped off the screen on 
 mobile devices.
-- The minimum font size will prevent the font-size from becoming too small so readability can be assured.
-- **Super easy** to use, no need to define complex configurations for each font-size.
+- The minimum font size will prevent the font size from becoming too small so readability can be assured.
+- **Super easy** to use, no need to define complex configurations for each font size.
 - Font sizes of all text elements will always remain in relation with each other.
 
 
@@ -63,7 +63,7 @@ Will generate this (CSS):
 }
 ```
 In this case a value without unit was passed to the mixin (`62`), which is interpreted as `62px`. It's also possible to 
-pass font-sizes in rem-units. Since v5.0.0 `font-size()` is added as an alias for `rfs()`.
+pass font sizes in rem-units. Since v5.0.0 `font-size()` is added as an alias for `rfs()`.
 
 
 ## Configuration
@@ -104,7 +104,7 @@ Enabling the two dimensional media queries will determine the font size based on
 *Default value: `false`*
 
 ## Best practices
-- Remember to set RFS on your font-size of your `html` or `body`, otherwise some text may not dynamically rescale. Note
+- Remember to set RFS on your font size of your `html` or `body`, otherwise some text may not dynamically rescale. Note
 that setting RFS on `html` will influence the value of `rem`.
 - Always set your line-heights relative (in `em` or unitless).
 - More tips and tricks with examples can be found
