@@ -68,7 +68,7 @@ pass font sizes in rem-units. Since v5.0.0 `font-size()` is added as an alias fo
 
 ## Configuration
 
-![RFS visualisation](https://i.imgur.com/9t4gAzE.png)
+![RFS visualisation](https://i.imgur.com/ImJ17Im.png)
 
 There are configuration variables which influence the calculation of the font size. In the graph above the default 
 configuration is used.
