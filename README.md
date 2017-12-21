@@ -1,14 +1,18 @@
-# RFS [![npm][npm-image]][npm-url]
+# RFS mixin[![npm][npm-image]][npm-url]
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
-RFS stands for Responsive Font Size and is an easy to use **SCSS-mixin** which **automatically calculates the 
-appropriate font size** based on the dimensions of the monitor or device.
+> This package lets you use the `responsive-font-size` mixin which **automatically calculates the appropriate font 
+size** based on the dimensions of the monitor or device.
 
+## What is RFS?
+RFS (abbreviation for responsive font size) is the name of the algorithm behind the mixin. It's also used by 
+[PostCSS RFS](https://github.com/MartijnCuppens/postcss-rfs).
 
 ## Advantages
 - Font sizes will **rescale for every screen width**, this prevents long words from being chopped off the screen on 
 mobile devices.
-- The minimum font size will prevent the font size from becoming too small so readability can be assured.
+- The minimum font size (configuration variable) will prevent the font size from becoming too small so readability can 
+be assured.
 - **Super easy** to use, no need to define complex configurations for each font size.
 - Font sizes of all text elements will always remain in relation with each other.
 
@@ -46,7 +50,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 This input (SCSS):
 ```scss
 .title {
-  @include font-size(62);
+  @include responsive-font-size(62);
 }
 ```
 
@@ -63,7 +67,8 @@ Will generate this (CSS):
 }
 ```
 In this case a value without unit was passed to the mixin (`62`), which is interpreted as `62px`. It's also possible to 
-pass font sizes in rem-units. Since v5.0.0 `font-size()` is added as an alias for `rfs()`.
+pass font sizes in rem-units. You can also use `rfs()` instead of `responsive-font-size()` which is a bit 
+shorter to type.
 
 
 ## Configuration
@@ -75,11 +80,11 @@ configuration is used.
 
 **$rfs-minimum-font-size:** (in `px` or `rem`)  
 Font sizes which are calculated by RFS will never be lower than this size. However, you can still pass a smaller font 
-size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `font-size(19)` will 
-trigger dynamic rescaling, with `font-size(10)` it will just stay `10px` all the time.  
+size to RFS, but then RFS won't dynamically scale this font size. For example (see graph above): `responsive-font-size(19)` will 
+trigger dynamic rescaling, with `responsive-font-size(10)` it will just stay `10px` all the time.  
 *Default value: `14px`*
 
-**$rfs-minimum-font-size-unit:** (string)  
+**$rfs-font-size-unit:** (string)  
 The font size will be rendered in this unit. Possible units are `px` and `rem`.   
 *Default value: `px`*
 

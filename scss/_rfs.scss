@@ -1,7 +1,4 @@
-// The font-size mixin uses RFS to rescale font sizes.
-@mixin font-size($fs, $important: false) {
-  @include rfs($fs, $important);
-}
+// stylelint-disable declaration-property-value-blacklist
 
 // RFS mixin.
 //
@@ -9,18 +6,11 @@
 //
 // See https://github.com/MartijnCuppens/rfs.
 
-// Disable RFS by setting $enable-responsive-font-sizes to false.
-$enable-responsive-font-sizes: true !default;
-@if $enable-responsive-font-sizes == false {
-  // If $rfs-factor is set to 1, fluid font-resizing is disabled.
-  $rfs-factor: 1;
-}
-
 // Configuration.
 
 // Minimum fontsize.
 $rfs-minimum-font-size: 14px !default;
-$rfs-minimum-font-size-unit: px !default;
+$rfs-font-size-unit: px !default;
 
 // Breakpoint at where font-size starts decreasing if screen width is smaller.
 $rfs-breakpoint: 1200px !default;
@@ -34,6 +24,13 @@ $rfs-factor: 5 !default;
 
 // 1 rem = $rfs-rem-value px.
 $rfs-rem-value: 16 !default;
+
+// Disable RFS by setting $enable-responsive-font-sizes to false.
+$enable-responsive-font-sizes: true !default;
+@if $enable-responsive-font-sizes == false {
+  // If $rfs-factor is set to 1, fluid font-resizing is disabled.
+  $rfs-factor: 1;
+}
 
 // Remove px-unit from $rfs-minimum-font-size for calculations.
 @if unit($rfs-minimum-font-size) == "px" {
@@ -75,12 +72,12 @@ $rfs-rem-value: 16 !default;
     }
 
     // Set default font-size.
-    @if $rfs-minimum-font-size-unit == rem {
+    @if $rfs-font-size-unit == rem {
       $rfs-static: #{$fs / $rfs-rem-value}rem#{$rfs-suffix};
-    } @else if $rfs-minimum-font-size-unit == px {
+    } @else if $rfs-font-size-unit == px {
       $rfs-static: #{$fs}px#{$rfs-suffix};
     } @else {
-      @error "`#{$rfs-minimum-font-size-unit}` is not a valid unit for $rfs-minimum-font-size-unit. Use `px` or `rem`.";
+      @error "`#{$rfs-font-size-unit}` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`.";
     }
 
     @if type-of($rfs-factor) != "number" or $rfs-factor < 1 {
@@ -100,7 +97,7 @@ $rfs-rem-value: 16 !default;
 
       // Minimum font-size formatting.
       // No need to check if the unit is valid, because we did that before.
-      @if $rfs-minimum-font-size-unit == rem {
+      @if $rfs-font-size-unit == rem {
         $min-width: #{$fs-min / $rfs-rem-value}rem;
       } @else {
         $min-width: #{$fs-min}px;
@@ -150,3 +147,9 @@ $rfs-rem-value: 16 !default;
     }
   }
 }
+
+// The responsive-font-size mixin uses RFS to rescale font sizes.
+@mixin responsive-font-size($fs, $important: false) {
+  @include rfs($fs, $important);
+}
+
