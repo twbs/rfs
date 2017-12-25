@@ -108,6 +108,12 @@ Enabling the two dimensional media queries will determine the font size based on
 `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
 *Default value: `false`*
 
+## Known issues
+Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this:
+```css
+_::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
+```
+
 ## Best practices
 - Remember to set RFS on your font size of your `html` or `body`, otherwise some text may not dynamically rescale. Note
 that setting RFS on `html` will influence the value of `rem`.
