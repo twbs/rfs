@@ -9,8 +9,8 @@
 // Configuration.
 
 // Minimum fontsize.
-$rfs-minimum-font-size: 14px !default;
-$rfs-font-size-unit: px !default;
+$rfs-minimum-font-size: 1rem !default;
+$rfs-font-size-unit: rem !default;
 
 // Breakpoint at where font-size starts decreasing if screen width is smaller.
 $rfs-breakpoint: 1200px !default;
@@ -20,7 +20,10 @@ $rfs-breakpoint-unit: px !default;
 $rfs-two-dimensional: false !default;
 
 // Factor of decrease.
-$rfs-factor: 5 !default;
+$rfs-factor: 10 !default;
+
+// Generate disable classes
+$rfs-generate-disable-classes: true !default;
 
 // 1 rem = $rfs-rem-value px.
 $rfs-rem-value: 16 !default;
@@ -135,6 +138,15 @@ $enable-responsive-font-sizes: true !default;
 
       font-size: $rfs-static;
 
+      @if $rfs-generate-disable-classes {
+        // Adding an extra class increases specificity,
+        // which prevents the media query to override the font size
+        .disable-responsive-font-size &,
+        &.disable-responsive-font-size {
+          font-size: $rfs-static;
+        }
+      }
+
       @if $rfs-two-dimensional {
         @media (max-width: #{$mq-value}), (max-height: #{$mq-value}) {
           font-size: $rfs-fluid;
@@ -152,4 +164,3 @@ $enable-responsive-font-sizes: true !default;
 @mixin responsive-font-size($fs, $important: false) {
   @include rfs($fs, $important);
 }
-

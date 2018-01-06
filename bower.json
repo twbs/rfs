@@ -7,8 +7,10 @@
   ],
   "license": "MIT",
   "keywords": [
+    "rfs",
     "scss",
     "responsive",
+    "responsive-font-size",
     "font-size",
     "typography"
   ],
