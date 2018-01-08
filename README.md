@@ -60,7 +60,9 @@ This input (SCSS):
 
 Will generate this (CSS):
 ```css
-.title {
+.title,
+.disable-responsive-font-size .title,
+.title.disable-responsive-font-size  {
   font-size: 4rem;
 }
 
@@ -124,7 +126,9 @@ By setting a second parameter to true, `!important` is added after the font-size
 
 CSS:
 ```css
-.label {
+.label,
+.disable-responsive-font-size .label,
+.label.disable-responsive-font-size {
   font-size: 2.5rem !important;
 }
 
@@ -135,8 +139,15 @@ CSS:
 }
 ```
 
+## But this generates a lot of css?
+True. But with gzip or other compression enabled, the difference in file size is barely noticeable due the high amount
+of repetitive strings. If you really want to minimize the amount of generated css, setting 
+`$rfs-generate-disable-classes` to `false` can make a difference (and lowers the global specificity). 
+
 ## Known issues
-Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this (dirty fix):
+Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or
+width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this 
+line will solve this (dirty fix):
 ```css
 _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 ```

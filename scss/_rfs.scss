@@ -136,15 +136,17 @@ $enable-responsive-font-sizes: true !default;
         @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
       }
 
-      font-size: $rfs-static;
-
       @if $rfs-generate-disable-classes {
         // Adding an extra class increases specificity,
         // which prevents the media query to override the font size
+        &,
         .disable-responsive-font-size &,
         &.disable-responsive-font-size {
           font-size: $rfs-static;
         }
+      }
+      @else {
+        font-size: $rfs-static;
       }
 
       @if $rfs-two-dimensional {
