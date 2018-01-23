@@ -6,10 +6,10 @@ size** based on the dimensions of the monitor or device.
 
 ## What is RFS?
 RFS (abbreviation for responsive font size) is the name of the algorithm behind the mixin. It's also used by 
-[PostCSS RFS](https://github.com/MartijnCuppens/postcss-rfs).
+[PostCSS RFS](https://github.com/MartijnCuppens/postcss-rfs) and [Less RFS](https://github.com/MartijnCuppens/less-rfs).
 
 ## Advantages
-- Font sizes will **rescale for every screen width**, this prevents long words from being chopped off the screen on 
+- Font sizes will **rescale for every screen or device**, this prevents long words from being chopped off the screen on 
 mobile devices.
 - The minimum font size (configuration variable) will prevent the font size from becoming too small so readability can 
 be assured.
@@ -19,7 +19,7 @@ be assured.
 
 ![RFS](http://i.imgur.com/gJH6m6g.gif)
 
-## Instalation
+## Installation
 You can use RFS in your project by installing it using a package manager (recommended):
 
 **npm:**
