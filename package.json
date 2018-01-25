@@ -1,6 +1,6 @@
 {
   "name": "rfs",
-  "version": "7.0.3",
+  "version": "7.0.4",
   "description": "A scss-mixin for responsive font-sizes.",
   "main": "scss/_rfs.scss",
   "scripts": {
