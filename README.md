@@ -152,6 +152,13 @@ line will solve this (dirty fix):
 _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 ```
 
+## Sass syntax
+`.sass` file available in `sass/_rfs.sass`. Mixin can be used like this:
+```sass
+.title
+  +responsive-font-size(36)
+```
+
 ## Best practices
 - Remember to set RFS on your font size of your `html` or `body`, otherwise some text may not dynamically rescale (if 
 `$rfs-minimum-font-size` is decreased). Note that setting RFS on `html` can influence the value of `rem`.
