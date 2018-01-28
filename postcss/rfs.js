@@ -1,3 +1,9 @@
+// PostCSS RFS plugin
+//
+// Automated font-resizing
+//
+// See https://github.com/MartijnCuppens/rfs
+
 'use strict';
 
 const postcss = require('postcss');
@@ -52,28 +58,28 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
       }
 
       rule.walkDecls(function (decl) {
-        // Skip if property is not in propList.
+        // Skip if property is not in propList
         if (opts.propList.indexOf(decl.prop) === -1) {
           return;
         }
 
-        // Set property to font-size.
+        // Set property to font-size
         decl.prop = 'font-size';
 
-        // Skip if value is not in px or rem.
+        // Skip if value is not in px or rem
         if (!new RegExp(/(\d*\.?\d+)(px|rem)/g).test(decl.value)) {
           return;
         }
 
-        // Get the float value of the value.
+        // Get the float value of the value
         let value = parseFloat(decl.value);
 
-        // Multiply by remValue if value is in rem.
+        // Multiply by remValue if value is in rem
         if (decl.value.indexOf('rem') > -1) {
           value *= opts.remValue;
         }
 
-        // Render value in desired unit.
+        // Render value in desired unit
         if (opts.fontSizeUnit === 'px') {
           decl.value = toFixed(value, opts.unitPrecision) + 'px';
         }
@@ -84,24 +90,24 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
           console.error('fontSizeUnit option is not valid, it must be `px` or `rem`.');
         }
 
-        // Only add media query if needed.
+        // Only add media query if needed
         if (opts.minimumFontSize >= value || opts.factor === 1) {
           return;
         }
 
-        // Calculate font-size and font-size difference.
+        // Calculate font-size and font-size difference
         let baseFontSize = opts.minimumFontSize + (value - opts.minimumFontSize) / opts.factor;
         const fontSizeDiff = value - baseFontSize;
 
-        // Divide by remValue if needed.
+        // Divide by remValue if needed
         if (opts.fontSizeUnit === 'rem') {
           baseFontSize /= opts.remValue;
         }
 
-        // Save selector for later.
+        // Save selector for later
         const rule_selector = rule.selector;
 
-        // Disable classes.
+        // Disable classes
         if (opts.generateDisableClasses) {
           const selectors = rule.selector.split(',');
           let ruleSelector = '';

@@ -1,37 +1,37 @@
 // stylelint-disable declaration-property-value-blacklist
 
-// RFS mixin.
+// Less RFS mixin
 //
-// Automated font-resizing.
+// Automated font-resizing
 //
-// See https://github.com/MartijnCuppens/rfs.
+// See https://github.com/MartijnCuppens/rfs
 
-// Configuration.
+// Configuration
 
-// Minimum font size.
+// Minimum font size
 @rfs-minimum-font-size: 1rem;
 @rfs-font-size-unit: rem;
 
-// Breakpoint at where font-size starts decreasing if screen width is smaller.
+// Breakpoint at where font-size starts decreasing if screen width is smaller
 @rfs-breakpoint: 1200px;
 @rfs-breakpoint-unit: px;
 
-// Resize font-size based on screen height and width.
+// Resize font-size based on screen height and width
 @rfs-two-dimensional: false;
 
-// Factor of decrease.
+// Factor of decrease
 @rfs-factor: 5;
 
 // Generate disable classes
 @rfs-generate-disable-classes: true;
 
-// 1 rem = @rfs-rem-value px.
+// 1 rem = @rfs-rem-value px
 @rfs-rem-value: 16;
 
-// Disable RFS by setting @enable-responsive-font-sizes to false.
+// Disable RFS by setting @enable-responsive-font-sizes to false
 @enable-responsive-font-sizes: true;
 
-// Responsive font-size mixin.
+// Responsive font-size mixin
 .rfs(@fs, @important: false) {
 
   & when (not(@important)) {
@@ -158,18 +158,18 @@
 
 ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-min, @breakpoint) {
   & when (@rfs-two-dimensional) {
-    // Calculate minimum font-size for given font-size.
+    // Calculate minimum font-size for given font-size
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and minimum font-size for given font-size.
+    // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vmin);
 
     ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
   }
 
   & when (not(@rfs-two-dimensional)) {
-    // Calculate minimum font-size for given font-size.
+    // Calculate minimum font-size for given font-size
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and minimum font-size for given font-size.
+    // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vw);
 
     ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
@@ -198,7 +198,7 @@
   }
 }
 
-// The responsive-font-size mixin uses RFS to rescale font sizes.
+// The responsive-font-size mixin uses RFS to rescale font sizes
 .responsive-font-size(@fs, @important: false) {
   .rfs(@fs, @important);
 }

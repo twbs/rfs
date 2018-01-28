@@ -1,73 +1,73 @@
 // stylelint-disable declaration-property-value-blacklist
 
-// RFS mixin.
+// Stylus RFS mixin
 //
-// Automated font-resizing.
+// Automated font-resizing
 //
-// See https://github.com/MartijnCuppens/rfs.
+// See https://github.com/MartijnCuppens/rfs
 
-// Configuration.
+// Configuration
 
-// Minimum fontsize.
+// Minimum font size
 $rfs-minimum-font-size = 1rem
 $rfs-font-size-unit = rem
 
-// Breakpoint at where font-size starts decreasing if screen width is smaller.
+// Breakpoint at where font-size starts decreasing if screen width is smaller
 $rfs-breakpoint = 1200px
 $rfs-breakpoint-unit = px
 
-// Resize font-size based on screen height and width.
+// Resize font-size based on screen height and width
 $rfs-two-dimensional = false
 
-// Factor of decrease.
+// Factor of decrease
 $rfs-factor = 5
 
 // Generate disable classes
 $rfs-generate-disable-classes = true
 
-// 1 rem = $rfs-rem-value px.
+// 1 rem = $rfs-rem-value px
 $rfs-rem-value = 16
 
-// Disable RFS by setting $enable-responsive-font-sizes to false.
+// Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes = true
 
 if $enable-responsive-font-sizes == false
-  // If $rfs-factor is set to 1, fluid font-resizing is disabled.
+  // If $rfs-factor is set to 1, fluid font-resizing is disabled
   $rfs-factor = 1
 
-// Remove px-unit from $rfs-minimum-font-size for calculations.
+// Remove px-unit from $rfs-minimum-font-size for calculations
 if unit($rfs-minimum-font-size) == "px"
-  $rfs-minimum-font-size = unit($rfs-minimum-font-size, '')
+  $rfs-minimum-font-size = unit($rfs-minimum-font-size, "")
 else if unit($rfs-minimum-font-size) == "rem"
-  $rfs-minimum-font-size = unit($rfs-minimum-font-size * $rfs-rem-value, '')
+  $rfs-minimum-font-size = unit($rfs-minimum-font-size * $rfs-rem-value, "")
 
-// Remove unit from $rfs-breakpoint for calculations.
+// Remove unit from $rfs-breakpoint for calculations
 if unit($rfs-breakpoint) == "px"
-  $rfs-breakpoint = unit($rfs-breakpoint, '')
+  $rfs-breakpoint = unit($rfs-breakpoint, "")
 else if unit($rfs-breakpoint) == "rem" or unit($rfs-breakpoint) == "em"
-  $rfs-breakpoint = unit($rfs-breakpoint / $rfs-rem-value, '')
+  $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
-// Responsive font-size mixin.
+// Responsive font-size mixin
 rfs($fs, $important = false)
   $rfs-suffix = "%s" % ()
 
-  // Add !important suffix if needed.
+  // Add !important suffix if needed
   if $important
     $rfs-suffix = !important
 
-  // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value.
+  // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
   if type-of($fs) != "unit" or !unitless($fs) and unit($fs) != "px" and unit($fs) != "rem" or $fs == 0
     font-size: "%s%s" % ($fs  $rfs-suffix)
   else
-    // Variables for storing static and fluid rescaling.
+    // Variables for storing static and fluid rescaling
     $rfs-static = null
     $rfs-fluid = null
 
-    // Remove px-unit from $fs for calculations.
+    // Remove px-unit from $fs for calculations
     if unit($fs) == px
-      $fs = unit($fs, '')
+      $fs = unit($fs, "")
     else if unit($fs) == rem
-      $fs = unit($fs / $rfs-rem-value, '')
+      $fs = unit($fs / $rfs-rem-value, "")
 
     // Set default font-size.
     if $rfs-font-size-unit == rem
@@ -75,56 +75,56 @@ rfs($fs, $important = false)
     else if $rfs-font-size-unit == px
       $rfs-static = "%s%s" % (unit($fs, px)  $rfs-suffix)
     else
-      @error "`$rfs-font-size-unit` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`."
+      error("`$rfs-font-size-unit` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`.")
 
     if type-of($rfs-factor) != "unit" or $rfs-factor < 1
-      @error "`$rfs-factor` is not a valid  $rfs-factor, it must be greater or equal to 1."
+      error("`$rfs-factor` is not a valid  $rfs-factor, it must be greater or equal to 1.")
 
-    // Only add media query if font-size is bigger as the minimum font-size.
-    // If $rfs-factor == 1, no rescaling will take place.
+    // Only add media query if font-size is bigger as the minimum font-size
+    // If $rfs-factor == 1, no rescaling will take place
     if $fs > $rfs-minimum-font-size and $rfs-factor != 1
       $min-width = null
       $variable-unit = null
 
-      // Calculate minimum font-size for given font-size.
+      // Calculate minimum font-size for given font-size
       $fs-min = $rfs-minimum-font-size + ($fs - $rfs-minimum-font-size) / $rfs-factor
 
-      // Calculate difference between given font-size and minimum font-size for given font-size.
+      // Calculate difference between given font-size and minimum font-size for given font-size
       $fs-diff = $fs - $fs-min
 
-      // Minimum font-size formatting.
-      // No need to check if the unit is valid, because we did that before.
+      // Minimum font-size formatting
+      // No need to check if the unit is valid, because we did that before
       if $rfs-font-size-unit == rem
         $min-width = unit($fs-min / $rfs-rem-value, rem)
       else
         $min-width = unit($fs-min, px)
 
-      // If two-dimensional, use smallest of screen width and height.
+      // If two-dimensional, use smallest of screen width and height
       if $rfs-two-dimensional
         $variable-unit = vmin
       else
         $variable-unit = vw
 
-      // Calculate the variable width between 0 and $rfs-breakpoint.
+      // Calculate the variable width between 0 and $rfs-breakpoint
       $variable-width = "%s%s" % ($fs-diff * 100 / $rfs-breakpoint $variable-unit)
 
-      // Set the calculated font-size.
+      // Set the calculated font-size
       $rfs-fluid = "calc(%s + %s)%s" % ($min-width $variable-width $rfs-suffix)
 
-    // Rendering.
+    // Rendering
     if $rfs-fluid == null
-      // Only render static font-size if no fluid font-size is available.
+      // Only render static font-size if no fluid font-size is available
       font-size: $rfs-static
     else
       $mq-value = null
 
-      // RFS breakpoint formatting.
+      // RFS breakpoint formatting
       if $rfs-breakpoint-unit == em or $rfs-breakpoint-unit == rem
         $mq-value = unit($rfs-breakpoint / $rfs-rem-value, $rfs-breakpoint-unit)
       else if $rfs-breakpoint-unit == px
         $mq-value = unit($rfs-breakpoint, px)
       else
-        @error "`$rfs-breakpoint-unit` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`."
+        error("`$rfs-breakpoint-unit` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.")
 
       if $rfs-generate-disable-classes
         // Adding an extra class increases specificity,
@@ -143,9 +143,6 @@ rfs($fs, $important = false)
         @media (max-width: $mq-value)
           font-size: $rfs-fluid
 
-// The responsive-font-size mixin uses RFS to rescale font sizes.
+// The responsive-font-size mixin uses RFS to rescale font sizes
 responsive-font-size($fs, $important = false)
   rfs($fs, $important)
-
-.title
-  responsive-font-size(40)
