@@ -43,17 +43,39 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 This input:
+### SCSS
 ```scss
 .title {
-  @include responsive-font-size(4rem);
-  // OR:
-  // @include responsive-font-size(64px);
-  // OR:
-  // @include responsive-font-size(64);
+  @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
 
-Will generate this (CSS):
+### Sass
+```sass
+.title
+  +responsive-font-size(4rem); // OR +responsive-font-size(64px); OR +rfs(64);
+```
+
+### PostCSS
+```postcss
+.title {
+  responsive-font-size: 4rem; // OR responsive-font-size: 64px; OR rfs: 64;
+}
+```
+
+### Less
+```less
+.title
+  +responsive-font-size(4rem); // OR +responsive-font-size(64px); OR +rfs(64);
+```
+
+### Stylus
+```stylus
+.title {
+  @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
+}
+```
+### Generated css
 ```css
 .title,
 .disable-responsive-font-size .title,
@@ -67,7 +89,6 @@ Will generate this (CSS):
   }
 }
 ```
-The `rfs()` can also be used alias instead of `responsive-font-size()`.
 
 
 ## Configuration
@@ -134,7 +155,7 @@ Enabling the two dimensional media queries will determine the font size based on
 *Default value: `false`*
 
 
-### Two dimensional <sub><sup>(boolean)</sup></sub> ###
+### Generate disable classes <sub><sup>(boolean)</sup></sub> ###
 > **SCSS, Sass & Stylus:** `$rfs-generate-disable-classes`  
 > **Less:** `@rfs-generate-disable-classes`  
 > **PostCSS:** `generateDisableClasses`  
@@ -172,7 +193,7 @@ CSS:
 ## But this generates a lot of css?
 True. But with gzip or other compression enabled, the difference in file size is barely noticeable due the high amount
 of repetitive strings. If you really want to minimize the amount of generated css, setting
-`$rfs-generate-disable-classes` to `false` can make a difference (and lowers the global specificity).
+the _generate disable classes_ option to `false` can make a difference.
 
 ## Known issues
 Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or
