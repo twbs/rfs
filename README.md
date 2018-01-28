@@ -74,7 +74,7 @@ The `rfs()` can also be used alias instead of `responsive-font-size()`.
 
 ![RFS visualisation](https://i.imgur.com/9YciUbb.png)
 
-### Minimum font size: <sub><sup>(in `px` or `rem`)</sup></sub> ###  
+### Minimum font size <sub><sup>(unit in `px` or `rem`)</sup></sub> ###
 > **SCSS, Sass & Stylus:** `$rfs-minimum-font-size`  
 > **Less:** `@rfs-minimum-font-size`  
 > **PostCSS:** `minimumFontSize`  
@@ -84,35 +84,66 @@ size to RFS, but then RFS won't dynamically scale this font size. For example: `
 dynamic rescaling, with `responsive-font-size(10)` it will just stay `10px` all the time.  
 *Default value: `1rem`*
 
-**$rfs-font-size-unit:** (string)  
-The font size will be rendered in this unit. Possible units are `px` and `rem`.  
+
+### Font size unit <sub><sup>(`px` or `rem`)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-font-size-unit`  
+> **Less:** `@rfs-font-size-unit`  
+> **PostCSS:** `fontSizeUnit`  
+
+The font size will be rendered in this unit.  
 *Default value: `rem`*
 
-**$rfs-breakpoint:** (in `px`, `em` or `rem`)  
-Above this breakpoint, the font size will be equal to the font size you passed to the mixin; below the breakpoint, the
+
+### Breakpoint <sub><sup>(in `px`, `em` or `rem`)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-breakpoint`  
+> **Less:** `@rfs-breakpoint`  
+> **PostCSS:** `breakpoint`  
+
+Above this breakpoint, the font size will be equal to the font size you passed to RFS; below the breakpoint, the
 font size will dynamically scale.  
 *Default value: `1200px`*
 
-**$rfs-breakpoint-unit:** (string)  
-The width of `$rfs-breakpoint` will be rendered in this unit. Possible units are `px`, `em` and `rem`.  
+
+### Breakpoint unit <sub><sup>(`px`, `em` or `rem`)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-breakpoint-unit`  
+> **Less:** `@rfs-breakpoint-unit`  
+> **PostCSS:** `breakpointUnit`  
+
+The width of the breakpoint will be rendered in this unit.  
 *Default value: `px`*
 
-**$rfs-factor:** (number)  
-This value determines the strength of font size resizing. The higher `$rfs-factor`, the less difference there is between
-font sizes on small screens. The lower `$rfs-factor`, the less influence RFS has, which results in bigger font sizes for
-small screens. `$rfs-factor` must me greater than 1, setting it to 1 will disable dynamic rescaling.  
+
+### Factor <sub><sup>(number)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-factor`  
+> **Less:** `@rfs-factor`  
+> **PostCSS:** `factor`  
+
+This value determines the strength of font size resizing. The higher the factor, the less difference there is between
+font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for
+small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.  
 *Default value: `5`*
 
-**$rfs-two-dimensional** (Boolean)  
+
+### Two dimensional <sub><sup>(boolean)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-two-dimensional`  
+> **Less:** `@rfs-two-dimensional`  
+> **PostCSS:** `twoDimensional`  
+
 Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with
 `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
 *Default value: `false`*
 
-**$rfs-generate-disable-classes** (Boolean)  
+
+### Two dimensional <sub><sup>(boolean)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-generate-disable-classes`  
+> **Less:** `@rfs-generate-disable-classes`  
+> **PostCSS:** `generateDisableClasses`  
+
 When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to
 disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to
 `false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
 *Default value: `true`*
+
 
 ## !important
 By setting a second parameter to true, `!important` is added after the font-size value.
