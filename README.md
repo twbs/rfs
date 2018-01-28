@@ -75,9 +75,9 @@ The `rfs()` can also be used alias instead of `responsive-font-size()`.
 ![RFS visualisation](https://i.imgur.com/9YciUbb.png)
 
 **Minimum font size:** (in `px` or `rem`)  
-*SCSS, Sass & Stylus: $rfs-minimum-font-size*  
-*Less: @rfs-minimum-font-size*  
-*PostCSS: minimumFontSize*  
+> SCSS, Sass & Stylus: $rfs-minimum-font-size
+> Less: @rfs-minimum-font-size
+> PostCSS: minimumFontSize
 Font sizes which are calculated by RFS will never be lower than this size. However, you can still pass a smaller font
 size to RFS, but then RFS won't dynamically scale this font size. For example: `responsive-font-size(19)` will trigger
 dynamic rescaling, with `responsive-font-size(10)` it will just stay `10px` all the time.  
