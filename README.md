@@ -42,7 +42,6 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 
 ## Usage
-This input:
 ### SCSS
 ```scss
 .title {
@@ -53,7 +52,7 @@ This input:
 ### Sass
 ```sass
 .title
-  +responsive-font-size(4rem); // OR +responsive-font-size(64px); OR +rfs(64);
+  +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
 ```
 
 ### PostCSS
@@ -65,15 +64,15 @@ This input:
 
 ### Less
 ```less
-.title
-  +responsive-font-size(4rem); // OR +responsive-font-size(64px); OR +rfs(64);
+.title {
+  .responsive-font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
+}  
 ```
 
 ### Stylus
 ```stylus
-.title {
-  @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
-}
+.title
+  responsive-font-size(4rem) // OR responsive-font-size(64px) OR rfs(64)
 ```
 ### Generated css
 ```css
@@ -89,8 +88,6 @@ This input:
   }
 }
 ```
-
-
 ## Configuration
 
 ![RFS visualisation](https://i.imgur.com/9YciUbb.png)
@@ -161,13 +158,12 @@ Enabling the two dimensional media queries will determine the font size based on
 > **PostCSS:** `generateDisableClasses`  
 
 When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to
-disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to
-`false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
+disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to `false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
 *Default value: `true`*
 
 
 ## !important
-By setting a second parameter to true, `!important` is added after the font-size value.
+By setting a second parameter to true, `!important` is added after the font-size value. (Example is in `scss`)
 
 ```scss
 .label {
@@ -191,31 +187,19 @@ CSS:
 ```
 
 ## But this generates a lot of css?
-True. But with gzip or other compression enabled, the difference in file size is barely noticeable due the high amount
-of repetitive strings. If you really want to minimize the amount of generated css, setting
-the _generate disable classes_ option to `false` can make a difference.
+True. But with gzip or other compression enabled, the difference in file size is barely noticeable due the high amount of repetitive strings. If you really want to minimize the amount of generated css, setting the _generate disable classes_ option to `false` can make a difference.
 
 ## Known issues
-Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or
-width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this
-line will solve this (dirty fix):
+Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this (dirty fix):
 ```css
 _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 ```
 
 ## Best practices
-- Remember to set RFS on your font size of your `html` or `body`, otherwise some text may not dynamically rescale (if
-`$rfs-minimum-font-size` is decreased). Note that setting RFS on `html` can influence the value of `rem`.
+- Remember to set RFS on your font size of your `html` or `body` (espessially if the minimum font size is lowered), otherwise some text may not dynamically rescale. Note that setting RFS on `html` can influence the value of `rem`.
 - Always set your line-heights relative (in `em` or unitless).
 - More tips and tricks with examples can be found
 [on this article](https://medium.com/@martijn.cuppens/magic-font-resizing-with-rfs-b5d781296dd6).
-
-## Sass syntax
-`.sass` file available in `sass/_rfs.sass`. Mixin can be used like this:
-```sass
-.title
-+responsive-font-size($fs, $important)
-```
 
 ##  Demos
 - [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
