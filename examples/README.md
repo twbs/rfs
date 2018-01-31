@@ -1,10 +1,23 @@
 # Examples
-Setup
+Setup 
 ```shell
 npm install
 # OR
 yarn
 ```
+
+## Less
+### node
+```shell
+cd examples/less/node
+node ./index.js
+```
+### Gulp
+```shell
+cd examples/less/gulp
+gulp build
+```
+
 
 ## PostCSS
 ### node
@@ -19,14 +32,41 @@ gulp build
 ```
 
 
-## SCSS
-### Sass
+## Sass
+### node
 ```shell
-cd examples/scss/sass
-sass TODO
+cd examples/sass/node
+node ./index.js
+```
+### Gulp
+```shell
+cd examples/sass/gulp
+gulp build
+```
+
+
+## SCSS
+### node
+```shell
+cd examples/scss/node
+node ./index.js
 ```
 ### Gulp
 ```shell
 cd examples/scss/gulp
 gulp build
 ```
+
+
+## Stylus
+### node
+```shell
+cd examples/stylus/node
+node ./index.js
+```
+### Gulp
+```shell
+cd examples/stylus/gulp
+gulp build
+```
+
