@@ -1,25 +1,51 @@
 {
   "name": "rfs",
   "version": "7.0.4",
-  "description": "A scss-mixin for responsive font-sizes.",
-  "main": "scss/_rfs.scss",
+  "main": "postcss/rfs.js",
+  "description": "Powerfull & easy-to-use responsive font sizing system.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "codepen": "browserify postcss/codepen.js | babel --presets=env | uglifyjs --compress --mangle > postcss/codepen.bundle.js",
+    "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../scss/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
+    "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/scss/node/index.js && node examples/stylus/node/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MartijnCuppens/rfs.git"
   },
   "keywords": [
-    "scss",
+    "rfs",
     "responsive",
     "font-size",
-    "typography"
+    "typography",
+    "scss",
+    "sass",
+    "less",
+    "stylus",
+    "postcss"
   ],
   "author": "Martijn Cuppens <martijn.cuppens@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MartijnCuppens/rfs/issues"
   },
-  "homepage": "https://github.com/MartijnCuppens/rfs#readme"
+  "homepage": "https://github.com/MartijnCuppens/rfs#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browserify": "^14.5.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.4.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-stylus": "^2.7.0",
+    "less": "^2.7.3",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.14",
+    "postcss-nested": "^3.0.0",
+    "stylelint": "^8.4.0",
+    "stylelint-scss": "^2.2.0",
+    "stylus": "^0.54.5",
+    "uglify-js": "^3.2.2"
+  }
 }

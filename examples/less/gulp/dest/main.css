@@ -1,0 +1,66 @@
+/* responsive-font-size property with `px` unit */
+.selector-1 {
+  background-color: red;
+  width: 300px;
+}
+.selector-1,
+.disable-responsive-font-size .selector-1,
+.selector-1.disable-responsive-font-size {
+  font-size: 2rem ;
+}
+@media (max-width: 1200px) {
+  .selector-1 {
+    font-size: calc(1.2rem + 1.06666667vw) ;
+  }
+}
+/* responsive-font-size property with `rem` unit */
+.selector-2,
+.disable-responsive-font-size .selector-2,
+.selector-2.disable-responsive-font-size {
+  font-size: 2rem ;
+}
+@media (max-width: 1200px) {
+  .selector-2 {
+    font-size: calc(1.2rem + 1.06666667vw) ;
+  }
+}
+/* responsive-font-size property with !important */
+.selector-3,
+.disable-responsive-font-size .selector-3,
+.selector-3.disable-responsive-font-size {
+  font-size: 2rem  !important;
+}
+@media (max-width: 1200px) {
+  .selector-3 {
+    font-size: calc(1.2rem + 1.06666667vw)  !important;
+  }
+}
+/* rfs shorthand */
+.selector-4,
+.disable-responsive-font-size .selector-4,
+.selector-4.disable-responsive-font-size {
+  font-size: 2rem ;
+}
+@media (max-width: 1200px) {
+  .selector-4 {
+    font-size: calc(1.2rem + 1.06666667vw) ;
+  }
+}
+/* not supported unit */
+/* special value */
+.selector-6 {
+  font-size: inherit ;
+}
+/* responsive-font-size property inside @support-query */
+@supports (display: flex) {
+  .selector-7,
+  .disable-responsive-font-size .selector-7,
+  .selector-7.disable-responsive-font-size {
+    font-size: 1.75rem ;
+  }
+  @media (max-width: 1200px) {
+    .selector-7 {
+      font-size: calc(1.15rem + 0.8vw) ;
+    }
+  }
+}

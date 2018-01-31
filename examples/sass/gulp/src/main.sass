@@ -1,0 +1,32 @@
+@import "../../../../scss/rfs"
+
+/* responsive-font-size property with `px` unit */
+.selector-1
+  background-color: red
+  width: 300px
+  @include responsive-font-size(32px)
+
+/* responsive-font-size property with `rem` unit */
+.selector-2
+  @include responsive-font-size(2rem)
+
+/* responsive-font-size property with !important */
+.selector-3
+  @include responsive-font-size(2rem, true)
+
+/* rfs shorthand */
+.selector-4
+  @include rfs(2rem)
+
+/* not supported unit */
+.selector-5
+  @include responsive-font-size(2em)
+
+/* special value */
+.selector-6
+  @include responsive-font-size(inherit)
+
+/* responsive-font-size property inside @support-query */
+@supports (display: flex)
+  .selector-7
+    @include rfs(28px)
