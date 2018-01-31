@@ -28,13 +28,21 @@
   },
   "homepage": "https://github.com/MartijnCuppens/rfs#readme",
   "devDependencies": {
-    "postcss": "^6.0.14",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "browserify": "^14.5.0",
+    "gulp": "^3.9.1",
+    "gulp-less": "^3.4.0",
+    "gulp-postcss": "^7.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-stylus": "^2.7.0",
+    "less": "^2.7.3",
+    "node-sass": "^4.7.2",
+    "postcss": "^6.0.14",
     "postcss-nested": "^3.0.0",
-    "uglify-js": "^3.2.2",
-    "gulp-postcss" : "^7.0.0",
-    "gulp": "^3.9.1"
+    "stylelint": "^8.4.0",
+    "stylelint-scss": "^2.2.0",
+    "stylus": "^0.54.5",
+    "uglify-js": "^3.2.2"
   }
 }

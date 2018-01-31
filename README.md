@@ -97,9 +97,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 > **Less:** `@rfs-minimum-font-size`  
 > **PostCSS:** `minimumFontSize`  
 
-Font sizes which are calculated by RFS will never be lower than this size. However, you can still pass a smaller font
-size to RFS, but then RFS won't dynamically scale this font size. For example: `responsive-font-size(19)` will trigger
-dynamic rescaling, with `responsive-font-size(10)` it will just stay `10px` all the time.  
+The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this minimum font size, no fluid font rescaling will take place.  
 *Default value: `1rem`*
 
 
@@ -108,7 +106,7 @@ dynamic rescaling, with `responsive-font-size(10)` it will just stay `10px` all 
 > **Less:** `@rfs-font-size-unit`  
 > **PostCSS:** `fontSizeUnit`  
 
-The font size will be rendered in this unit.  
+The output font size will be rendered in this unit.  
 *Default value: `rem`*
 
 
@@ -117,8 +115,7 @@ The font size will be rendered in this unit.
 > **Less:** `@rfs-breakpoint`  
 > **PostCSS:** `breakpoint`  
 
-Above this breakpoint, the font size will be equal to the font size you passed to RFS; below the breakpoint, the
-font size will dynamically scale.  
+Above this breakpoint, the font size will be equal to the font size you passed to RFS; below the breakpoint, the font size will dynamically scale.  
 *Default value: `1200px`*
 
 
@@ -127,7 +124,7 @@ font size will dynamically scale.
 > **Less:** `@rfs-breakpoint-unit`  
 > **PostCSS:** `breakpointUnit`  
 
-The width of the breakpoint will be rendered in this unit.  
+The width of the max width in the media query will be rendered in this unit.  
 *Default value: `px`*
 
 
@@ -136,9 +133,7 @@ The width of the breakpoint will be rendered in this unit.
 > **Less:** `@rfs-factor`  
 > **PostCSS:** `factor`  
 
-This value determines the strength of font size resizing. The higher the factor, the less difference there is between
-font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for
-small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.  
+This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.  
 *Default value: `5`*
 
 
@@ -147,8 +142,7 @@ small screens. The factor must me greater than 1, setting it to 1 will disable d
 > **Less:** `@rfs-two-dimensional`  
 > **PostCSS:** `twoDimensional`  
 
-Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with
-`vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
+Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
 *Default value: `false`*
 
 
@@ -157,8 +151,7 @@ Enabling the two dimensional media queries will determine the font size based on
 > **Less:** `@rfs-generate-disable-classes`  
 > **PostCSS:** `generateDisableClasses`  
 
-When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to
-disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to `false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
+When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to `false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
 *Default value: `true`*
 
 
@@ -186,20 +179,17 @@ CSS:
 }
 ```
 
-## But this generates a lot of css?
-True. But with gzip or other compression enabled, the difference in file size is barely noticeable due the high amount of repetitive strings. If you really want to minimize the amount of generated css, setting the _generate disable classes_ option to `false` can make a difference.
-
 ## Known issues
-Safari doesn't recalculate the value of vw in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this (dirty fix):
+Safari doesn't recalculate the value of `vw` in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this (dirty fix):
 ```css
 _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 ```
 
 ## Best practices
-- Remember to set RFS on your font size of your `html` or `body` (espessially if the minimum font size is lowered), otherwise some text may not dynamically rescale. Note that setting RFS on `html` can influence the value of `rem`.
+- Remember to set RFS on your font size of your `html` or `body` (especially if the minimum font size is lowered), otherwise some text may not dynamically rescale. Note that setting RFS on `html` can influence the value of `rem`.
 - Always set your line-heights relative (in `em` or unitless).
 - More tips and tricks with examples can be found
-[on this article](https://medium.com/@martijn.cuppens/magic-font-resizing-with-rfs-b5d781296dd6).
+[here](https://medium.com/@martijn.cuppens/magic-font-resizing-with-rfs-b5d781296dd6) (written when only the SCSS version was made).
 
 ##  Demos
 - [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
@@ -211,4 +201,4 @@ _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 * <https://github.com/MartijnCuppens>
 
 ## Copyright and license
-Code released under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE). Docs released under [Creative Commons](https://github.com/twbs/bootstrap/blob/master/docs/LICENSE).
+Code released under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
