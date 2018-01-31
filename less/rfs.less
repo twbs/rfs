@@ -1,4 +1,4 @@
-// stylelint-disable declaration-property-value-blacklist
+// stylelint-disable declaration-property-value-blacklist, scss/selector-no-redundant-nesting-selector
 
 // Less RFS mixin
 //
@@ -162,7 +162,6 @@
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
     // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vmin);
-
     ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
   }
 
@@ -171,7 +170,6 @@
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
     // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vw);
-
     ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
   }
 }
@@ -187,14 +185,29 @@
   }
 }
 
-._rfs-render-base-number(@fs, @suffix) {
+._rfs-render-base-declaration(@fs, @suffix) {
 
   & when (@rfs-font-size-unit = px) {
-    font-size: unit(@fs, px)@suffix;
+    font-size: unit(@fs, px) @suffix;
   }
 
   & when (@rfs-font-size-unit = rem) {
-    font-size: unit((@fs / @rfs-rem-value), rem)@suffix;
+    font-size: unit((@fs / @rfs-rem-value), rem) @suffix;
+  }
+}
+
+._rfs-render-base-number(@fs, @suffix) {
+
+  & when (@rfs-generate-disable-classes) {
+    &,
+    .disable-responsive-font-size &,
+    &.disable-responsive-font-size {
+      ._rfs-render-base-declaration(@fs, @suffix);
+    }
+  }
+
+  & when (not(@rfs-generate-disable-classes)) {
+    ._rfs-render-base-declaration(@fs, @suffix);
   }
 }
 

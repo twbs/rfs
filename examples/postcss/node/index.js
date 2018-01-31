@@ -1,7 +1,7 @@
 const fs = require('fs');
 const postcss = require('postcss');
 const rfs = require('../../..');
-const css = fs.readFileSync('src/main.css', 'utf8');
+const css = fs.readFileSync(__dirname + '/src/main.css', 'utf8');
 const options = {
   twoDimensional: false,
   minimumFontSize: 16,
@@ -16,7 +16,7 @@ const options = {
 
 const processedCss = postcss(rfs(options)).process(css).css;
 
-fs.writeFile('dest/main.css', processedCss, (err) => {
+fs.writeFile(__dirname + '/dest/main.css', processedCss, (err) => {
   if (err) {
     throw err;
   }

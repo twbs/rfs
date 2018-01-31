@@ -1,23 +1,19 @@
-const fs = require('fs');
-const stylus = require('stylus');
+const fs = require('fs'),
+  stylus = require('stylus'),
+  str = fs.readFileSync(__dirname + '/src/main.styl', 'utf8');
 
-
-sass.render({
-    file: 'src/main.sass', outFile: 'dest/main.css',
-  }, function (error, result) { // node-style callback from v3.0.0 onwards
-    if (!error) {
-      // No errors during the compilation, write this result on the disk
-      fs.writeFile('dest/main.css', result.css, function (err) {
-        if (!err) {
-          console.log('Responsive font sizes generated.');
-        }
-        else {
-          throw err;
-        }
-      });
-    }
-    else {
-      throw error;
-    }
+stylus.render(str, {filename: __dirname + '/src/main.styl'}, function (err, css) {
+  if (err) {
+    throw err;
   }
-);
+  else {
+    fs.writeFile(__dirname + '/dest/main.css', css, function (err) {
+      if (!err) {
+        console.log('Responsive font sizes generated.');
+      }
+      else {
+        throw err;
+      }
+    });
+  }
+});

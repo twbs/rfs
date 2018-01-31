@@ -53,7 +53,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
 
     css.walkRules(function (rule) {
 
-      if (rule.selector.includes(DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR)){
+      if (rule.selector.includes(DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR)) {
         return;
       }
 
@@ -107,6 +107,19 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         // Save selector for later
         const rule_selector = rule.selector;
 
+        const viewportUnit = opts.twoDimensional ? 'vmin' : 'vw';
+
+        value = 'calc(' + toFixed(baseFontSize, opts.unitPrecision) + opts.fontSizeUnit + ' + ' + toFixed((fontSizeDiff * 100 / opts.breakpoint), opts.unitPrecision) + viewportUnit + ')';
+
+        const mediaQuery = postcss.atRule(renderMediaQuery(opts));
+        const mediaQueryRule = postcss.rule({
+          selector: rule.selector,
+          source: rule.source
+        });
+        mediaQueryRule.append(decl.clone({value: value}));
+        mediaQuery.append(mediaQueryRule);
+        rule.parent.insertAfter(rule, mediaQuery.clone());
+
         // Disable classes
         if (opts.generateDisableClasses) {
           const selectors = rule.selector.split(',');
@@ -117,22 +130,17 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
             ruleSelector += DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ' ' + selector + ',\n';
             ruleSelector += DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR + selector + ',\n';
           }
+          ruleSelector = ruleSelector.slice(0, - 2);
 
-          rule.selector = ruleSelector.slice(0, - 2);
+          const dc_rule = postcss.rule({
+            selector: ruleSelector,
+            source: rule.source
+          });
+
+          dc_rule.append(decl.clone());
+          rule.parent.insertAfter(rule, dc_rule);
+          decl.remove();
         }
-
-        const viewportUnit = opts.twoDimensional ? 'vmin' : 'vw';
-
-        value = 'calc(' + toFixed(baseFontSize, opts.unitPrecision) + opts.fontSizeUnit + ' + ' + toFixed((fontSizeDiff * 100 / opts.breakpoint), opts.unitPrecision) + viewportUnit + ')';
-
-        const mediaQuery = postcss.atRule(renderMediaQuery(opts));
-        const mediaQueryRule = postcss.rule({
-          selector: rule_selector,
-          source: rule.source
-        });
-        mediaQueryRule.append(decl.clone({value: value}));
-        mediaQuery.append(mediaQueryRule);
-        rule.parent.insertAfter(rule, mediaQuery.clone());
       });
     });
 

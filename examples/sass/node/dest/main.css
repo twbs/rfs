@@ -2,17 +2,12 @@
 .selector-1 {
   background-color: red;
   width: 300px; }
-
-.selector-1,
-.disable-responsive-font-size .selector-1,
-.selector-1.disable-responsive-font-size {
-  font-size: 2rem;
-}
-
-@media (max-width: 1200px) {
-  .selector-1 {
-    font-size: calc(1.2rem + 1.06667vw); }
-}
+  .selector-1,
+  .disable-responsive-font-size .selector-1, .selector-1.disable-responsive-font-size {
+    font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-1 {
+      font-size: calc(1.2rem + 1.06667vw) ; } }
 
 /* responsive-font-size property with `rem` unit */
 .selector-2,
@@ -21,8 +16,7 @@
 
 @media (max-width: 1200px) {
   .selector-2 {
-    font-size: calc(1.2rem + 1.06667vw); }
-}
+    font-size: calc(1.2rem + 1.06667vw) ; } }
 
 /* responsive-font-size property with !important */
 .selector-3,
@@ -31,8 +25,7 @@
 
 @media (max-width: 1200px) {
   .selector-3 {
-    font-size: calc(1.2rem + 1.06667vw) !important; }
-}
+    font-size: calc(1.2rem + 1.06667vw)  !important; } }
 
 /* rfs shorthand */
 .selector-4,
@@ -41,8 +34,7 @@
 
 @media (max-width: 1200px) {
   .selector-4 {
-    font-size: calc(1.2rem + 1.06667vw); }
-}
+    font-size: calc(1.2rem + 1.06667vw) ; } }
 
 /* not supported unit */
 .selector-5 {
@@ -57,9 +49,6 @@
   .selector-7,
   .disable-responsive-font-size .selector-7, .selector-7.disable-responsive-font-size {
     font-size: 1.75rem; }
-
   @media (max-width: 1200px) {
     .selector-7 {
-      font-size: calc(1.15rem + 0.8vw); }
-  }
-}
+      font-size: calc(1.15rem + 0.8vw) ; } } }

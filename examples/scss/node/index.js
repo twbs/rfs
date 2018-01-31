@@ -1,13 +1,12 @@
 const fs = require('fs');
 const sass = require('node-sass');
 
-
 sass.render({
-    file: 'src/main.scss', outFile: 'dest/main.css',
+    file: __dirname + '/src/main.scss', outFile: __dirname + '/dest/main.css',
   }, function (error, result) { // node-style callback from v3.0.0 onwards
     if (!error) {
       // No errors during the compilation, write this result on the disk
-      fs.writeFile('dest/main.css', result.css, function (err) {
+      fs.writeFile(__dirname + '/dest/main.css', result.css, function (err) {
         if (!err) {
           console.log('Responsive font sizes generated.');
         }
