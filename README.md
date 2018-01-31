@@ -206,4 +206,4 @@ _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 * <https://github.com/MartijnCuppens>
 
 ## Copyright and license
-Code released under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/MartijnCuppens/rfs/blob/master/LICENSE).
