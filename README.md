@@ -200,7 +200,7 @@ _::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 - [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
 - [RFS in bootstrap demo](http://martijncuppens.github.io/rfs)
 
-# Creator
+## Creator
 **Martijn Cuppens**
 * <https://twitter.com/Martijn_Cuppens>
 * <https://github.com/MartijnCuppens>
