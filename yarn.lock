@@ -38,9 +38,9 @@ accord@^0.26.3:
     uglify-js "^2.7.0"
     when "^3.7.7"
 
-accord@^0.29.0:
-  version "0.29.0"
-  resolved "https://registry.yarnpkg.com/accord/-/accord-0.29.0.tgz#b741c176d00435c5929d466dfe8cf6bee933b1e4"
+accord@^0.28.0:
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/accord/-/accord-0.28.0.tgz#bec516a2f722e7d50f5f9f42f81b77f3b95448ba"
   dependencies:
     convert-source-map "^1.5.0"
     glob "^7.0.5"
@@ -2245,12 +2245,12 @@ graceful-fs@~1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-1.2.3.tgz#15a4806a57547cb2d2dbf27f42e89a8c3451b364"
 
-gulp-less@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/gulp-less/-/gulp-less-4.0.0.tgz#3c49deb96bdca913e436921ef792fb4c24296fcd"
+gulp-less@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/gulp-less/-/gulp-less-3.5.0.tgz#8014f469ddfc6544d7dda50098def0371bbb4f78"
   dependencies:
-    accord "^0.29.0"
-    less "2.6.x || ^3.0.0"
+    accord "^0.28.0"
+    less "2.6.x || ^2.7.1"
     object-assign "^4.0.1"
     plugin-error "^0.1.2"
     replace-ext "^1.0.0"
@@ -3053,7 +3053,20 @@ lcid@^1.0.0:
   dependencies:
     invert-kv "^1.0.0"
 
-"less@2.6.x || ^3.0.0", less@^3.0.1:
+"less@2.6.x || ^2.7.1":
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/less/-/less-2.7.3.tgz#cc1260f51c900a9ec0d91fb6998139e02507b63b"
+  optionalDependencies:
+    errno "^0.1.1"
+    graceful-fs "^4.1.2"
+    image-size "~0.5.0"
+    mime "^1.2.11"
+    mkdirp "^0.5.0"
+    promise "^7.1.1"
+    request "2.81.0"
+    source-map "^0.5.3"
+
+less@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/less/-/less-3.0.1.tgz#ba2fea24a5632ccb8c84230d6043c0bf91855e37"
   optionalDependencies:
@@ -3457,7 +3470,7 @@ mime-types@~2.1.17:
   dependencies:
     mime-db "~1.30.0"
 
-mime@^1.4.1:
+mime@^1.2.11, mime@^1.4.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
 
