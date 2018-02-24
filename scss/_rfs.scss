@@ -22,7 +22,7 @@ $rfs-two-dimensional: false !default;
 // Factor of decrease
 $rfs-factor: 5 !default;
 
-// Generate enable or disable classes
+// Generate enable or disable classes. Possibilities: false, "enable" or "disable"
 $rfs-class: false !default;
 
 // 1 rem = $rfs-rem-value px
