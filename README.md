@@ -81,9 +81,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 ```
 ### Generated css
 ```css
-.title,
-.disable-responsive-font-size .title,
-.title.disable-responsive-font-size  {
+.title {
   font-size: 4rem;
 }
 
@@ -151,13 +149,20 @@ Enabling the two dimensional media queries will determine the font size based on
 *Default value: `false`*
 
 
-### Generate disable classes <sub><sup>(boolean)</sup></sub> ###
-> **SCSS, Sass & Stylus:** `$rfs-generate-disable-classes`  
-> **Less:** `@rfs-generate-disable-classes`  
-> **PostCSS:** `generateDisableClasses`  
+### Class <sub><sup>(boolean)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-class`  
+> **Less:** `@rfs-class`  
+> **PostCSS:** `class`  
 
-When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to disable responsive font sizes for the element and its child elements. If you don't use this, it's better to set this to `false` to prevent the generation of unused css. This doesn't apply on font-sizes which are inherited from parents.  
-*Default value: `true`*
+RFS can ben enabled or disabled with a class. There are 3 options:  
+- `disable`  
+When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to disable responsive font sizes for the element and its child elements.  
+- `enable`  
+RFS is disabled by default in this case. The `.enable-responsive-font-size` class can be added to an element to enable responsive font sizes for the element and its child elements.  
+- `false`  
+No extra classes are generated.  
+
+*Default value: `false`*
 
 
 ## !important
@@ -171,9 +176,7 @@ By setting a second parameter to true, `!important` is added after the font-size
 
 CSS:
 ```css
-.label,
-.disable-responsive-font-size .label,
-.label.disable-responsive-font-size {
+.label {
   font-size: 2.5rem !important;
 }
 

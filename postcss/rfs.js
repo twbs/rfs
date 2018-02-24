@@ -13,6 +13,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
   const BREAKPOINT_UNIT_ERROR = 'breakpointUnit option is invalid, it must be `px`, `rem` or `em`.';
   const MINIMUM_FONT_SIZE_ERROR = 'minimumFontSize option is invalid, it must be set in `px` or `rem`.';
   const DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.disable-responsive-font-size';
+  const ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.enable-responsive-font-size';
   opts = opts || {};
   opts.minimumFontSize = opts.minimumFontSize || 16;
   opts.fontSizeUnit = opts.fontSizeUnit || 'rem';
@@ -21,7 +22,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
   opts.factor = opts.factor || 5;
   opts.twoDimensional = opts.twoDimensional || false;
   opts.unitPrecision = opts.unitPrecision || 5;
-  opts.generateDisableClasses = opts.generateDisableClasses || true;
+  opts.class = opts.class || false;
   opts.remValue = opts.remValue || 16;
   opts.propList = opts.propList || ['responsive-font-size', 'rfs'];
 
@@ -104,16 +105,28 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
           baseFontSize /= opts.remValue;
         }
 
-        // Save selector for later
-        const rule_selector = rule.selector;
-
         const viewportUnit = opts.twoDimensional ? 'vmin' : 'vw';
 
         value = 'calc(' + toFixed(baseFontSize, opts.unitPrecision) + opts.fontSizeUnit + ' + ' + toFixed((fontSizeDiff * 100 / opts.breakpoint), opts.unitPrecision) + viewportUnit + ')';
 
         const mediaQuery = postcss.atRule(renderMediaQuery(opts));
+        let rule_selector = rule.selector;
+
+        // Prefix with .enable-responsive-font-size class if needed
+        if (opts.class === 'enable') {
+          const selectors = rule.selector.split(',');
+          let ruleSelector = '';
+
+          for (let selector of selectors) {
+            ruleSelector += ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ' ' + selector + ',\n';
+            ruleSelector += ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR + selector + ',\n';
+          }
+          rule_selector = ruleSelector.slice(0, -2);
+        }
+
+
         const mediaQueryRule = postcss.rule({
-          selector: rule.selector,
+          selector: rule_selector,
           source: rule.source
         });
         mediaQueryRule.append(decl.clone({value: value}));
@@ -121,7 +134,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         rule.parent.insertAfter(rule, mediaQuery.clone());
 
         // Disable classes
-        if (opts.generateDisableClasses) {
+        if (opts.class === 'disable') {
           const selectors = rule.selector.split(',');
           let ruleSelector = '';
 

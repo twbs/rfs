@@ -1,6 +1,6 @@
 // stylelint-disable declaration-property-value-blacklist
 
-// Sass RFS mixin
+// SCSS RFS mixin
 //
 // Automated font-resizing
 //
@@ -22,8 +22,8 @@ $rfs-two-dimensional: false !default
 // Factor of decrease
 $rfs-factor: 5 !default
 
-// Generate disable classes
-$rfs-generate-disable-classes: true !default
+// Generate enable or disable classes. Possibilities: false, "enable" or "disable"
+$rfs-class: false !default
 
 // 1 rem = $rfs-rem-value px
 $rfs-rem-value: 16 !default
@@ -126,7 +126,7 @@ $enable-responsive-font-sizes: true !default
       @else
         @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`."
 
-      @if $rfs-generate-disable-classes
+      @if $rfs-class == "disable"
         // Adding an extra class increases specificity,
         // which prevents the media query to override the font size
         &,
@@ -138,10 +138,20 @@ $enable-responsive-font-sizes: true !default
 
       @if $rfs-two-dimensional
         @media (max-width: #{$mq-value}), (max-height: #{$mq-value})
-          font-size: $rfs-fluid
+          @if $rfs-class == "enable"
+            .enable-responsive-font-size &,
+            &.enable-responsive-font-size
+              font-size: $rfs-fluid
+          @else
+            font-size: $rfs-fluid
       @else
         @media (max-width: #{$mq-value})
-          font-size: $rfs-fluid
+          @if $rfs-class == "enable"
+            .enable-responsive-font-size &,
+            &.enable-responsive-font-size
+              font-size: $rfs-fluid
+          @else
+            font-size: $rfs-fluid
 
 // The responsive-font-size mixin uses RFS to rescale font sizes
 =responsive-font-size($fs, $important: false)

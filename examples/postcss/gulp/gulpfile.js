@@ -8,6 +8,7 @@ const options = {
   breakpoint: 1200,
   breakpointUnit: 'px',
   factor: 5,
+  class: false,
   unitPrecision: 6,
   remValue: 16,
   propList: ['responsive-font-size', 'rfs']

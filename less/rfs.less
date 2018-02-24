@@ -22,8 +22,8 @@
 // Factor of decrease
 @rfs-factor: 5;
 
-// Generate disable classes
-@rfs-generate-disable-classes: true;
+// Generate enable or disable classes. Possibilities: false, "enable" or "disable"
+@rfs-class: false;
 
 // 1 rem = @rfs-rem-value px
 @rfs-rem-value: 16;
@@ -162,7 +162,7 @@
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
     // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vmin);
-    ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
+    ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
   }
 
   & when (not(@rfs-two-dimensional)) {
@@ -170,7 +170,7 @@
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
     // Calculate difference between given font-size and minimum font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vw);
-    ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
+    ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
   }
 }
 
@@ -182,6 +182,20 @@
 
   & when (@rfs-font-size-unit = rem) {
     font-size: calc(unit(@fs-min / @rfs-rem-value, rem) e('+') @fs-variable-width)@suffix;
+  }
+}
+
+._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix) {
+
+  & when (@rfs-class = "enable") {
+    .enable-responsive-font-size &,
+    &.enable-responsive-font-size {
+      ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
+    }
+  }
+
+  & when (not(@rfs-class = "enable")) {
+    ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
   }
 }
 
@@ -198,7 +212,7 @@
 
 ._rfs-render-base-number(@fs, @suffix) {
 
-  & when (@rfs-generate-disable-classes) {
+  & when (@rfs-class = "disable") {
     &,
     .disable-responsive-font-size &,
     &.disable-responsive-font-size {
@@ -206,7 +220,7 @@
     }
   }
 
-  & when (not(@rfs-generate-disable-classes)) {
+  & when (not(@rfs-class = "disable")) {
     ._rfs-render-base-declaration(@fs, @suffix);
   }
 }
