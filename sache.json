@@ -1,0 +1,5 @@
+{
+  "name": "RFS",
+  "description": "RFS (abbreviation for responsive font size) is an algorithm which automatically calculates the appropriate font size based on the dimensions of the monitor or device.",
+  "tags": ["font-size", "responsive", "rwd", "automation", "mixin", "typography"]
+}
