@@ -35,11 +35,11 @@
 .rfs(@fs, @important: false) {
 
   & when (not(@important)) {
-    ._rfs-prefix(@fs, e(''));
+    ._rfs-prefix(@fs, ~"");
   }
 
   & when (@important) {
-    ._rfs-prefix(@fs, e(' !important'));
+    ._rfs-prefix(@fs, ~" !important");
   }
 }
 
@@ -49,14 +49,14 @@
     font-size: @fs @suffix;
   }
 
-  & when (((isnumber(@fs)) and (get-unit(@fs) = e(''))) or (isunit(@fs, px)) or (isunit(@fs, rem))) {
+  & when (((isnumber(@fs)) and (get-unit(@fs) = ~"")) or (isunit(@fs, px)) or (isunit(@fs, rem))) {
     ._rfs-render-base(@fs, @suffix);
   }
 }
 
 ._rfs-render-base(@fs, @suffix) {
 
-  & when ((isnumber(@fs)) and (get-unit(@fs) = e(''))) {
+  & when ((isnumber(@fs)) and (get-unit(@fs) = ~"")) {
     ._rfs-render-base-number(@fs, @suffix);
     ._rfs-render-media-query(@fs, @suffix);
   }
@@ -75,7 +75,7 @@
 ._rfs-render-media-query(@fs, @suffix) {
   & when ((@fs > @rfs-minimum-font-size) and (@rfs-factor > 1) and (@enable-responsive-font-sizes = true)) {
 
-    & when ((isnumber(@rfs-breakpoint)) and (get-unit(@rfs-breakpoint) = e(''))) {
+    & when ((isnumber(@rfs-breakpoint)) and (get-unit(@rfs-breakpoint) = ~"")) {
       ._rfs-render-media-query-breakpoint(@fs, @suffix, @rfs-breakpoint);
     }
 
@@ -143,7 +143,7 @@
 }
 
 ._rfs-render-media-query-content(@fs, @suffix, @breakpoint) {
-  & when ((isnumber(@rfs-minimum-font-size)) and (get-unit(@rfs-minimum-font-size) = e(''))) {
+  & when ((isnumber(@rfs-minimum-font-size)) and (get-unit(@rfs-minimum-font-size) = ~"")) {
     ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-minimum-font-size, @breakpoint);
   }
 
@@ -177,11 +177,11 @@
 ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix) {
 
   & when (@rfs-font-size-unit = px) {
-    font-size: calc(unit(@fs-min, px) e('+') @fs-variable-width)@suffix;
+    font-size: calc(unit(@fs-min, px) ~"+" @fs-variable-width)@suffix;
   }
 
   & when (@rfs-font-size-unit = rem) {
-    font-size: calc(unit(@fs-min / @rfs-rem-value, rem) e('+') @fs-variable-width)@suffix;
+    font-size: calc(unit(@fs-min / @rfs-rem-value, rem) ~"+" @fs-variable-width)@suffix;
   }
 }
 
@@ -202,11 +202,11 @@
 ._rfs-render-base-declaration(@fs, @suffix) {
 
   & when (@rfs-font-size-unit = px) {
-    font-size: unit(@fs, px) @suffix;
+    font-size: unit(@fs, px)@suffix;
   }
 
   & when (@rfs-font-size-unit = rem) {
-    font-size: unit((@fs / @rfs-rem-value), rem) @suffix;
+    font-size: unit((@fs / @rfs-rem-value), rem)@suffix;
   }
 }
 
