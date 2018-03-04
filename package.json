@@ -35,7 +35,7 @@
     "babel-preset-env": "^1.6.1",
     "browserify": "^16.1.0",
     "gulp": "^3.9.1",
-    "gulp-less": "^3.5.0",
+    "gulp-less": "^4.0.0",
     "gulp-postcss": "^7.0.0",
     "gulp-sass": "^3.1.0",
     "gulp-stylus": "^2.7.0",
@@ -47,6 +47,6 @@
     "stylelint": "^9.1.1",
     "stylelint-scss": "^2.2.0",
     "stylus": "^0.54.5",
-    "uglify-js": "^3.2.2"
+    "uglify-js": "^3.3.13"
   }
 }
