@@ -28,6 +28,9 @@ $rfs-class: false !default
 // 1 rem = $rfs-rem-value px
 $rfs-rem-value: 16 !default
 
+// Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
+$rfs-safari-iframe-resize-bug-fix: false !default
+
 // Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes: true !default
 
@@ -144,6 +147,10 @@ $enable-responsive-font-sizes: true !default
               font-size: $rfs-fluid
           @else
             font-size: $rfs-fluid
+
+          @if $safari-iframe-resize-bug-fix
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw
       @else
         @media (max-width: #{$mq-value})
           @if $rfs-class == "enable"
@@ -152,6 +159,10 @@ $enable-responsive-font-sizes: true !default
               font-size: $rfs-fluid
           @else
             font-size: $rfs-fluid
+
+          @if $safari-iframe-resize-bug-fix
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw
 
 // The responsive-font-size mixin uses RFS to rescale font sizes
 =responsive-font-size($fs, $important: false)

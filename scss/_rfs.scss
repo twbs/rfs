@@ -28,6 +28,9 @@ $rfs-class: false !default;
 // 1 rem = $rfs-rem-value px
 $rfs-rem-value: 16 !default;
 
+// Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
+$rfs-safari-iframe-resize-bug-fix: false !default;
+
 // Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes: true !default;
 
@@ -172,6 +175,11 @@ $enable-responsive-font-sizes: true !default;
           @else {
             font-size: $rfs-fluid;
           }
+
+          @if $rfs-safari-iframe-resize-bug-fix {
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw;
+          }
         }
       }
       @else {
@@ -184,6 +192,11 @@ $enable-responsive-font-sizes: true !default;
           }
           @else {
             font-size: $rfs-fluid;
+          }
+
+          @if $rfs-safari-iframe-resize-bug-fix {
+            // stylelint-disable-next-line length-zero-no-unit
+            min-width: 0vw;
           }
         }
       }
