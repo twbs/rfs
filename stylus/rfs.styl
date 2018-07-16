@@ -9,30 +9,30 @@
 // Configuration
 
 // Minimum font size
-$rfs-minimum-font-size = 1rem
-$rfs-font-size-unit = rem
+$rfs-minimum-font-size ?= 1rem
+$rfs-font-size-unit ?= rem
 
 // Breakpoint at where font-size starts decreasing if screen width is smaller
-$rfs-breakpoint = 1200px
-$rfs-breakpoint-unit = px
+$rfs-breakpoint ?= 1200px
+$rfs-breakpoint-unit ?= px
 
 // Resize font-size based on screen height and width
-$rfs-two-dimensional = false
+$rfs-two-dimensional ?= false
 
 // Factor of decrease
-$rfs-factor = 5
+$rfs-factor ?= 5
 
 // Generate enable or disable classes. Possibilities: false, "enable" or "disable"
-$rfs-classes = false
+$rfs-classes ?= false
 
 // 1 rem = $rfs-rem-value px
-$rfs-rem-value = 16
+$rfs-rem-value ?= 16
 
 // Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
-$rfs-safari-iframe-resize-bug-fix = false
+$rfs-safari-iframe-resize-bug-fix ?= false
 
 // Disable RFS by setting $enable-responsive-font-sizes to false
-$enable-responsive-font-sizes = true
+$enable-responsive-font-sizes ?= true
 
 if $enable-responsive-font-sizes == false
   // If $rfs-factor is set to 1, fluid font-resizing is disabled
