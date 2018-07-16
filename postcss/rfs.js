@@ -2,7 +2,7 @@
 //
 // Automated font-resizing
 //
-// See https://github.com/MartijnCuppens/rfs
+// See https://github.com/project-rfs/rfs
 
 'use strict';
 

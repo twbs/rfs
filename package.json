@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MartijnCuppens/rfs.git"
+    "url": "git+https://github.com/project-rfs/rfs.git"
   },
   "keywords": [
     "rfs",
@@ -27,9 +27,9 @@
   "author": "Martijn Cuppens <martijn.cuppens@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/MartijnCuppens/rfs/issues"
+    "url": "https://github.com/project-rfs/rfs/issues"
   },
-  "homepage": "https://github.com/MartijnCuppens/rfs#readme",
+  "homepage": "https://github.com/project-rfs/rfs#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
