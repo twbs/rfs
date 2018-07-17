@@ -28,6 +28,9 @@
 // 1 rem = @rfs-rem-value px
 @rfs-rem-value: 16;
 
+// Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
+@rfs-safari-iframe-resize-bug-fix: false;
+
 // Disable RFS by setting @enable-responsive-font-sizes to false
 @enable-responsive-font-sizes: true;
 
@@ -153,6 +156,10 @@
 
   & when ((isunit(@rfs-minimum-font-size, rem))) {
     ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-minimum-font-size * @rfs-rem-value), @breakpoint);
+  }
+
+  & when (@rfs-safari-iframe-resize-bug-fix) {
+    min-width: 0vw;
   }
 }
 
