@@ -170,7 +170,7 @@ No extra classes are generated.
 > **Less:** `@rfs-safari-iframe-resize-bug-fix`  
 > **PostCSS:** `safariIframeResizeBugFix`  
 
-Safari doesn't resize its font-size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See (#14)[https://github.com/project-rfs/rfs/issues/14].  
+Safari doesn't resize its font-size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/project-rfs/rfs/issues/14).  
 
 *Default value: `false`*
 
