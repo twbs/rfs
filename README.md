@@ -165,6 +165,16 @@ No extra classes are generated.
 *Default value: `false`*
 
 
+### Safari iframe resize bug fix <sub><sup>(boolean)</sup></sub> ###
+> **SCSS, Sass & Stylus:** `$rfs-safari-iframe-resize-bug-fix`  
+> **Less:** `@rfs-safari-iframe-resize-bug-fix`  
+> **PostCSS:** `safariIframeResizeBugFix`  
+
+Safari doesn't resize its font-size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See (#14)[https://github.com/project-rfs/rfs/issues/14].  
+
+*Default value: `false`*
+
+
 ## !important
 By setting a second parameter to true, `!important` is added after the font-size value. (Example is in `scss`)
 
@@ -185,12 +195,6 @@ CSS:
     font-size: calc(1.3rem + 1.6vw) !important;
   }
 }
-```
-
-## Known issues
-Safari doesn't recalculate the value of `vw` in a calc()-function for font-sizes in iframes if the min-width, max-width or width is not set in vw after the iframe is resized (edge case, but this is the case for Codepen demo's). Adding this line will solve this (dirty fix):
-```css
-_::-webkit-full-page-media, _:future, :root * {min-width: 0vw;}
 ```
 
 ## Best practices
