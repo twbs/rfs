@@ -10,6 +10,7 @@ const options = {
   factor: 5,
   class: false,
   unitPrecision: 6,
+  safariIframeResizeBugFix: false,
   remValue: 16,
   propList: ['responsive-font-size', 'rfs']
 };

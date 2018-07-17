@@ -23,6 +23,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
   opts.twoDimensional = opts.twoDimensional || false;
   opts.unitPrecision = opts.unitPrecision || 5;
   opts.class = opts.class || false;
+  opts.safariIframeResizeBugFix = opts.safariIframeResizeBugFix || false;
   opts.remValue = opts.remValue || 16;
   opts.propList = opts.propList || ['responsive-font-size', 'rfs'];
 
@@ -130,6 +131,12 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
           source: rule.source
         });
         mediaQueryRule.append(decl.clone({value: value}));
+
+        // Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
+        if (opts.safariIframeResizeBugFix) {
+          mediaQueryRule.append(postcss.decl({ prop: 'min-width', value: '0vw' }));
+        }
+
         mediaQuery.append(mediaQueryRule);
         rule.parent.insertAfter(rule, mediaQuery.clone());
 
