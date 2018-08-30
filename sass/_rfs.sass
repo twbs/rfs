@@ -34,10 +34,6 @@ $rfs-safari-iframe-resize-bug-fix: false !default
 // Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes: true !default
 
-@if $enable-responsive-font-sizes == false
-  // If $rfs-factor is set to 1, fluid font-resizing is disabled
-  $rfs-factor: 1
-
 // Remove px-unit from $rfs-minimum-font-size for calculations
 @if unit($rfs-minimum-font-size) == "px"
   $rfs-minimum-font-size: $rfs-minimum-font-size / ($rfs-minimum-font-size * 0 + 1)
@@ -85,7 +81,7 @@ $enable-responsive-font-sizes: true !default
 
     // Only add media query if font-size is bigger as the minimum font-size
     // If $rfs-factor == 1, no rescaling will take place
-    @if $fs > $rfs-minimum-font-size and $rfs-factor != 1
+    @if $fs > $rfs-minimum-font-size and $rfs-factor != 1 and $enable-responsive-font-sizes
       $min-width: null
       $variable-unit: null
 
