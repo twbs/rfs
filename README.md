@@ -2,7 +2,7 @@
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
 
-> RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the monitor or device. It's available in 5 languages: 
+> RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in 5 languages: 
 > - [SCSS](http://sass-lang.com/)
 > - [Sass](http://sass-lang.com/)
 > - [PostCSS](http://postcss.org/)
@@ -10,7 +10,7 @@
 > - [Stylus](http://stylus-lang.com/)
 
 ## Advantages
-- Font sizes will **rescale for every screen or device**, this prevents long words from being chopped off the screen on mobile devices.
+- Font sizes will **rescale for every screen or device**, this prevents long words from being chopped off the viewport on small devices.
 - The minimum font size (configuration variable) will prevent the font size from becoming too small so readability can
 be assured.
 - **Super easy** to use, no need to define complex configurations for each font size.
