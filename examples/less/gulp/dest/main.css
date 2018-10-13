@@ -52,3 +52,12 @@
     }
   }
 }
+/* responsive-font-size property without unit */
+.selector-8 {
+  font-size: 2rem ;
+}
+@media (max-width: 1200px) {
+  .selector-8 {
+    font-size: calc(1.2rem + 1.06666667vw) ;
+  }
+}
