@@ -55,7 +55,7 @@ rfs($fs, $important = false)
     $rfs-suffix = !important
 
   // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
-  if type-of($fs) != "unit" or (unit($fs) != "px" and unit($fs) != "rem") or $fs == 0
+  if type-of($fs) != "unit" or (unit($fs) != "" and unit($fs) != "px" and unit($fs) != "rem") or $fs == 0
     font-size: "%s%s" % ($fs  $rfs-suffix)
   else
     // Variables for storing static and fluid rescaling

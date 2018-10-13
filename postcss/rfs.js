@@ -69,7 +69,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         decl.prop = 'font-size';
 
         // Skip if value is not in px or rem
-        if (!new RegExp(/(\d*\.?\d+)(px|rem)/g).test(decl.value)) {
+        if (isNaN(decl.value) && !new RegExp(/(\d*\.?\d+)(px|rem)/g).test(decl.value)) {
           return;
         }
 
