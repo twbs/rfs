@@ -34,38 +34,47 @@ $rfs-safari-iframe-resize-bug-fix ?= false
 // Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes ?= true
 
+// Cache $rfs-minimum-font-size unit
+$rfs-minimum-font-size-unit = unit($rfs-minimum-font-size)
+
 // Remove px-unit from $rfs-minimum-font-size for calculations
-if unit($rfs-minimum-font-size) == "px"
+if $rfs-minimum-font-size-unit == "px"
   $rfs-minimum-font-size = unit($rfs-minimum-font-size, "")
-else if unit($rfs-minimum-font-size) == "rem"
+else if $rfs-minimum-font-size-unit == "rem"
   $rfs-minimum-font-size = unit($rfs-minimum-font-size * $rfs-rem-value, "")
 
+// Cache $rfs-breakpoint unit
+$rfs-breakpoint-unit = unit($rfs-breakpoint)
+
 // Remove unit from $rfs-breakpoint for calculations
-if unit($rfs-breakpoint) == "px"
+if $rfs-breakpoint-unit == "px"
   $rfs-breakpoint = unit($rfs-breakpoint, "")
-else if unit($rfs-breakpoint) == "rem" or unit($rfs-breakpoint) == "em"
+else if $rfs-breakpoint-unit == "rem" or $rfs-breakpoint-unit == "em"
   $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
 // Responsive font-size mixin
 rfs($fs, $important = false)
   $rfs-suffix = "%s" % ()
 
+  if type-of($fs) == "unit"
+    $fs-unit = unit($fs)
+
   // Add !important suffix if needed
   if $important
     $rfs-suffix = !important
 
-  // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
-  if type-of($fs) != "unit" or (unit($fs) != "" and unit($fs) != "px" and unit($fs) != "rem") or $fs == 0
-    font-size: "%s%s" % ($fs  $rfs-suffix)
+  // If $fs is not a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
+  if type-of($fs) != "unit" or ($fs-unit != "" and $fs-unit != "px" and $fs-unit != "rem") or $fs == 0
+    font-size: "%s%s" % ($fs $rfs-suffix)
   else
     // Variables for storing static and fluid rescaling
     $rfs-static = null
     $rfs-fluid = null
 
     // Remove px-unit from $fs for calculations
-    if unit($fs) == px
+    if $fs-unit == px
       $fs = unit($fs, "")
-    else if unit($fs) == rem
+    else if $fs-unit == rem
       $fs = unit($fs * $rfs-rem-value, "")
 
     // Set default font-size.
