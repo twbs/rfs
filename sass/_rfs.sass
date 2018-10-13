@@ -22,6 +22,9 @@ $rfs-two-dimensional: false !default
 // Factor of decrease
 $rfs-factor: 5 !default
 
+@if type-of($rfs-factor) != "number" or $rfs-factor <= 1
+  @error "`#{$rfs-factor}` is not a valid  $rfs-factor, it must be greater than 1."
+
 // Generate enable or disable classes. Possibilities: false, "enable" or "disable"
 $rfs-class: false !default
 
@@ -34,28 +37,34 @@ $rfs-safari-iframe-resize-bug-fix: false !default
 // Disable RFS by setting $enable-responsive-font-sizes to false
 $enable-responsive-font-sizes: true !default
 
+// Cache $rfs-minimum-font-size unit
+$rfs-minimum-font-size-unit: unit($rfs-minimum-font-size)
+
 // Remove px-unit from $rfs-minimum-font-size for calculations
-@if unit($rfs-minimum-font-size) == "px"
+@if $rfs-minimum-font-size-unit == "px"
   $rfs-minimum-font-size: $rfs-minimum-font-size / ($rfs-minimum-font-size * 0 + 1)
-@else if unit($rfs-minimum-font-size) == "rem"
+@else if $rfs-minimum-font-size-unit == "rem"
   $rfs-minimum-font-size: $rfs-minimum-font-size / ($rfs-minimum-font-size * 0 + 1 / $rfs-rem-value)
 
+// Cache $rfs-breakpoint unit
+$rfs-breakpoint-unit: unit($rfs-breakpoint)
+
 // Remove unit from $rfs-breakpoint for calculations
-@if unit($rfs-breakpoint) == "px"
+@if $rfs-breakpoint-unit == "px"
   $rfs-breakpoint: $rfs-breakpoint / ($rfs-breakpoint * 0 + 1)
-@else if unit($rfs-breakpoint) == "rem" or unit($rfs-breakpoint) == "em"
+@else if $rfs-breakpoint-unit == "rem" or $rfs-breakpoint-unit == "em"
   $rfs-breakpoint: $rfs-breakpoint / ($rfs-breakpoint * 0 + 1 / $rfs-rem-value)
 
 // Responsive font-size mixin
 =rfs($fs, $important: false)
-  $rfs-suffix: ""
+  // Cache $fs unit
+  $fs-unit: if(type-of($fs) == "number", unit($fs), false)
 
   // Add !important suffix if needed
-  @if $important
-    $rfs-suffix: " !important"
+  $rfs-suffix: if($important, " !important", "")
 
   // If $fs isn't a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
-  @if type-of($fs) != "number" or not unitless($fs) and unit($fs) != "px" and unit($fs) != "rem" or $fs == 0
+  @if not $fs-unit or not $fs-unit != "" and $fs-unit != "px" and $fs-unit != "rem" or $fs == 0
     font-size: #{$fs}#{$rfs-suffix}
   @else
     // Variables for storing static and fluid rescaling
@@ -63,9 +72,9 @@ $enable-responsive-font-sizes: true !default
     $rfs-fluid: null
 
     // Remove px-unit from $fs for calculations
-    @if unit($fs) == "px"
+    @if $fs-unit == "px"
       $fs: $fs / ($fs * 0 + 1)
-    @else if unit($fs) == "rem"
+    @else if $fs-unit == "rem"
       $fs: $fs / ($fs * 0 + 1 / $rfs-rem-value)
 
     // Set default font-size
@@ -76,12 +85,9 @@ $enable-responsive-font-sizes: true !default
     @else
       @error "`#{$rfs-font-size-unit}` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`."
 
-    @if type-of($rfs-factor) != "number" or $rfs-factor < 1
-      @error "`#{$rfs-factor}` is not a valid  $rfs-factor, it must be greater or equal to 1."
-
     // Only add media query if font-size is bigger as the minimum font-size
     // If $rfs-factor == 1, no rescaling will take place
-    @if $fs > $rfs-minimum-font-size and $rfs-factor != 1 and $enable-responsive-font-sizes
+    @if $fs > $rfs-minimum-font-size and $enable-responsive-font-sizes
       $min-width: null
       $variable-unit: null
 
@@ -93,16 +99,10 @@ $enable-responsive-font-sizes: true !default
 
       // Minimum font-size formatting
       // No need to check if the unit is valid, because we did that before
-      @if $rfs-font-size-unit == rem
-        $min-width: #{$fs-min / $rfs-rem-value}rem
-      @else
-        $min-width: #{$fs-min}px
+      $min-width: if($rfs-font-size-unit == rem, #{$fs-min / $rfs-rem-value}rem, #{$fs-min}px)
 
       // If two-dimensional, use smallest of screen width and height
-      @if $rfs-two-dimensional
-        $variable-unit: vmin
-      @else
-        $variable-unit: vw
+      $variable-unit: if($rfs-two-dimensional, vmin, vw)
 
       // Calculate the variable width between 0 and $rfs-breakpoint
       $variable-width: #{$fs-diff * 100 / $rfs-breakpoint}#{$variable-unit}
