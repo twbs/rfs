@@ -33,20 +33,20 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "browserify": "^16.2.2",
-    "gulp": "^3.9.1",
+    "browserify": "^16.2.3",
+    "gulp": "^4.0.0",
     "gulp-less": "^4.0.1",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.1",
     "gulp-stylus": "^2.7.0",
     "less": "^3.8.1",
-    "node-sass": "^4.9.3",
-    "postcss": "^7.0.2",
-    "postcss-nested": "^3.0.0",
+    "node-sass": "^4.9.4",
+    "postcss": "^7.0.5",
+    "postcss-nested": "^4.1.0",
     "postcss-prettify": "^0.3.4",
-    "stylelint": "^9.5.0",
-    "stylelint-scss": "^3.3.0",
+    "stylelint": "^9.6.0",
+    "stylelint-scss": "^3.3.1",
     "stylus": "^0.54.5",
-    "uglify-js": "^3.4.8"
+    "uglify-js": "^3.4.9"
   }
 }
