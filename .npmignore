@@ -1,5 +1,7 @@
 examples/
+postcss/codepen*
 .editorconfig
+.idea
 .stylelintrc
 bower.json
 CODE_OF_CONDUCT.md
