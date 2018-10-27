@@ -1,0 +1,8 @@
+examples/
+.editorconfig
+.stylelintrc
+bower.json
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+package-lock.json
+rfs.svg
