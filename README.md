@@ -1,11 +1,12 @@
 # RFS [![npm][npm-image]][npm-url]
 
-> RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in 5 languages:
-> - [SCSS](http://sass-lang.com/)
-> - [Sass](http://sass-lang.com/)
-> - [PostCSS](http://postcss.org/)
-> - [Less](http://lesscss.org/)
-> - [Stylus](http://stylus-lang.com/)
+RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in 5 languages:
+
+- [SCSS](http://sass-lang.com/)
+- [Sass](http://sass-lang.com/)
+- [PostCSS](http://postcss.org/)
+- [Less](http://lesscss.org/)
+- [Stylus](http://stylus-lang.com/)
 
 ## Advantages
 
@@ -75,7 +76,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 ```less
 .title {
   .responsive-font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
-}  
+}
 ```
 
 ### Stylus
@@ -105,91 +106,94 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ### Minimum font size <sub><sup>(unit in `px` or `rem`)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-minimum-font-size`  
-> **Less:** `@rfs-minimum-font-size`  
-> **PostCSS:** `minimumFontSize`  
+* SCSS, Sass & Stylus: `$rfs-minimum-font-size`
+* Less: `@rfs-minimum-font-size`
+* PostCSS: `minimumFontSize`
 
-The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this minimum font size, no fluid font rescaling will take place.  
-*Default value: `1rem`*
+The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this minimum font size, no fluid font rescaling will take place.
 
+* Default value: `1rem`
 
 ### Font size unit <sub><sup>(`px` or `rem`)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-font-size-unit`  
-> **Less:** `@rfs-font-size-unit`  
-> **PostCSS:** `fontSizeUnit`  
+* SCSS, Sass & Stylus: `$rfs-font-size-unit`
+* Less: `@rfs-font-size-unit`
+* PostCSS: `fontSizeUnit`
 
-The output font size will be rendered in this unit.  
-*Default value: `rem`*
+The output font size will be rendered in this unit.
 
+* Default value: `rem`
 
 ### Breakpoint <sub><sup>(in `px`, `em` or `rem`)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-breakpoint`  
-> **Less:** `@rfs-breakpoint`  
-> **PostCSS:** `breakpoint`  
+* SCSS, Sass & Stylus: `$rfs-breakpoint`
+* Less: `@rfs-breakpoint`
+* PostCSS: `breakpoint`
 
-Above this breakpoint, the font size will be equal to the font size you passed to RFS; below the breakpoint, the font size will dynamically scale.  
-*Default value: `1200px`*
+Above this breakpoint, the font size will be equal to the font size you passed to RFS; below the breakpoint, the font size will dynamically scale.
+
+* Default value: `1200px`
 
 
 ### Breakpoint unit <sub><sup>(`px`, `em` or `rem`)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-breakpoint-unit`  
-> **Less:** `@rfs-breakpoint-unit`  
-> **PostCSS:** `breakpointUnit`  
+* SCSS, Sass & Stylus: `$rfs-breakpoint-unit`
+* Less: `@rfs-breakpoint-unit`
+* PostCSS: `breakpointUnit`
 
-The width of the max width in the media query will be rendered in this unit.  
-*Default value: `px`*
+The width of the max width in the media query will be rendered in this unit.
+
+* Default value: `px`
 
 
 ### Factor <sub><sup>(number)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-factor`  
-> **Less:** `@rfs-factor`  
-> **PostCSS:** `factor`  
+* SCSS, Sass & Stylus: `$rfs-factor`
+* Less: `@rfs-factor`
+* PostCSS: `factor`
 
-This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.  
-*Default value: `5`*
+This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.
+
+* Default value: `5`
 
 
 ### Two dimensional <sub><sup>(boolean)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-two-dimensional`  
-> **Less:** `@rfs-two-dimensional`  
-> **PostCSS:** `twoDimensional`  
+> **SCSS, Sass & Stylus:** `$rfs-two-dimensional`
+> **Less:** `@rfs-two-dimensional`
+> **PostCSS:** `twoDimensional`
 
-Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.  
+Enabling the two dimensional media queries will determine the font size based on the smallest side of the screen with `vmin`. This prevents the font size from changing if the device toggles between portrait and landscape mode.
 *Default value: `false`*
 
 
 ### Class <sub><sup>(boolean)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-class`  
-> **Less:** `@rfs-class`  
-> **PostCSS:** `class`  
+* SCSS, Sass & Stylus: `$rfs-class`
+* Less: `@rfs-class`
+* PostCSS: `class`
 
 RFS can be enabled or disabled with a class. There are 3 options:
-  
-- `disable`
-  When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to disable responsive font sizes for the element and its child elements.  
-- `enable`
-  RFS is disabled by default in this case. The `.enable-responsive-font-size` class can be added to an element to enable responsive font sizes for the element and its child elements.  
-- `false`
-  No extra classes are generated.  
 
-*Default value: `false`*
+- `disable`
+  When the the disable classes are generated you can add the `.disable-responsive-font-size` class to an element to disable responsive font sizes for the element and its child elements.
+- `enable`
+  RFS is disabled by default in this case. The `.enable-responsive-font-size` class can be added to an element to enable responsive font sizes for the element and its child elements.
+- `false`
+  No extra classes are generated.
+
+* Default value: `false`
 
 
 ### Safari iframe resize bug fix <sub><sup>(boolean)</sup></sub>
 
-> **SCSS, Sass & Stylus:** `$rfs-safari-iframe-resize-bug-fix`  
-> **Less:** `@rfs-safari-iframe-resize-bug-fix`  
-> **PostCSS:** `safariIframeResizeBugFix`  
+* SCSS, Sass & Stylus: `$rfs-safari-iframe-resize-bug-fix`
+* Less: `@rfs-safari-iframe-resize-bug-fix`
+* PostCSS: `safariIframeResizeBugFix`
 
-Safari doesn't resize its font size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/twbs/rfs/issues/14).  
+Safari doesn't resize its font size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/project-rfs/rfs/issues/14).
 
-*Default value: `false`*
+* Default value: `false`
 
 
 ## !important
@@ -236,7 +240,7 @@ CSS:
 
 ## Copyright and license
 
-Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/project-rfs/rfs/blob/master/LICENSE).
 
 
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
