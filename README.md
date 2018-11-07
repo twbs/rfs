@@ -191,7 +191,7 @@ RFS can be enabled or disabled with a class. There are 3 options:
 * Less: `@rfs-safari-iframe-resize-bug-fix`
 * PostCSS: `safariIframeResizeBugFix`
 
-Safari doesn't resize its font size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/project-rfs/rfs/issues/14).
+Safari doesn't resize its font size in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/twbs/rfs/issues/14).
 
 * Default value: `false`
 
@@ -240,7 +240,7 @@ CSS:
 
 ## Copyright and license
 
-Code released under [the MIT license](https://github.com/project-rfs/rfs/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LICENSE).
 
 
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
