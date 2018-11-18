@@ -2,7 +2,7 @@
 //
 // Automated font-resizing
 //
-// See https://github.com/project-rfs/rfs
+// See https://github.com/twbs/rfs
 
 'use strict';
 
@@ -132,7 +132,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         });
         mediaQueryRule.append(decl.clone({value: value}));
 
-        // Safari iframe resize bug: https://github.com/project-rfs/rfs/issues/14
+        // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
         if (opts.safariIframeResizeBugFix) {
           mediaQueryRule.append(postcss.decl({ prop: 'min-width', value: '0vw' }));
         }

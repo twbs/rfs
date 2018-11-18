@@ -14,7 +14,7 @@
     "font-size",
     "typography"
   ],
-  "homepage": "https://github.com/project-rfs/rfs",
+  "homepage": "https://github.com/twbs/rfs",
   "ignore": [
     "**/.*",
     "node_modules",
