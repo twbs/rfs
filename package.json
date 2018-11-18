@@ -41,10 +41,10 @@
     "gulp-stylus": "^2.7.0",
     "less": "^3.8.1",
     "node-sass": "^4.10.0",
-    "postcss": "^7.0.5",
+    "postcss": "^7.0.6",
     "postcss-nested": "^4.1.0",
     "postcss-prettify": "^0.3.4",
-    "stylelint": "^9.7.1",
+    "stylelint": "^9.8.0",
     "stylelint-scss": "^3.4.0",
     "stylus": "^0.54.5",
     "uglify-js": "^3.4.9"
