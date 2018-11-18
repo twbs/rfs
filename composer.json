@@ -1,0 +1,26 @@
+{
+  "name": "twbs/rfs",
+  "description": "Automated responsive font sizes",
+  "keywords": [
+    "rfs",
+    "responsive",
+    "font-size",
+    "typography",
+    "scss",
+    "sass",
+    "less",
+    "stylus",
+    "postcss"
+  ],
+  "homepage": "https://github.com/twbs/rfs",
+  "authors": [
+    {
+      "name": "Martijn Cuppens",
+      "email": "martijn.cuppens@gmail.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/twbs/rfs/issues"
+  },
+  "license": "MIT"
+}
