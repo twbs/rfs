@@ -3,6 +3,13 @@
   "version": "7.1.8",
   "main": "postcss/rfs.js",
   "description": "Powerfull & easy-to-use responsive font sizing system.",
+  "files": [
+    "less/rfs.less",
+    "postcss/rfs.js",
+    "sass/_rfs.sass",
+    "scss/_rfs.scss",
+    "stylus/rfs.styl"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "codepen": "browserify postcss/codepen.js | babel --presets=env | uglifyjs --compress --mangle > postcss/codepen.bundle.js",
