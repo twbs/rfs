@@ -2,9 +2,9 @@
 
 RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in 5 languages:
 
-- [SCSS](http://sass-lang.com/)
-- [Sass](http://sass-lang.com/)
-- [PostCSS](http://postcss.org/)
+- [SCSS](https://sass-lang.com/)
+- [Sass](https://sass-lang.com/)
+- [PostCSS](https://postcss.org/)
 - [Less](http://lesscss.org/)
 - [Stylus](http://stylus-lang.com/)
 
@@ -228,8 +228,8 @@ CSS:
 
 ## Demos
 
-- [Simple Codepen Demo](http://codepen.io/MartijnCuppens/pen/ZBjdMy)
-- [RFS in bootstrap demo](http://martijncuppens.github.io/rfs)
+- [Simple Codepen Demo](https://codepen.io/MartijnCuppens/pen/ZBjdMy)
+- [RFS in bootstrap demo](https://martijncuppens.github.io/rfs)
 
 ## Creator
 
