@@ -49,6 +49,9 @@ $rfs-breakpoint-unit = unit($rfs-breakpoint)
 // Remove unit from $rfs-breakpoint for calculations
 if $rfs-breakpoint-unit == "px"
   $rfs-breakpoint = unit($rfs-breakpoint, "")
+else if $rfs-breakpoint-unit == ""
+  // Use `px` as default
+  $rfs-breakpoint-unit = "px"
 else if $rfs-breakpoint-unit == "rem" or $rfs-breakpoint-unit == "em"
   $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
@@ -172,3 +175,10 @@ rfs($fs, $important = false)
 // The responsive-font-size mixin uses RFS to rescale font sizes
 responsive-font-size($fs, $important = false)
   rfs($fs, $important)
+
+$rfs-is-included ?= false
+
+if $rfs-is-included
+  warn("Watch out, RFS is included more than once!")
+
+$rfs-is-included = true
