@@ -1,6 +1,6 @@
 {
   "name": "rfs",
-  "version": "7.1.8",
+  "version": "7.1.9",
   "main": "postcss/rfs.js",
   "description": "Powerfull & easy-to-use responsive font sizing system.",
   "files": [
