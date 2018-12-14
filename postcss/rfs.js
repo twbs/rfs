@@ -11,11 +11,11 @@ const postcss = require('postcss');
 module.exports = postcss.plugin('postcss-rfs', function (opts) {
   const BREAKPOINT_ERROR = 'breakpoint option is invalid, it must be set in `px`, `rem` or `em`.';
   const BREAKPOINT_UNIT_ERROR = 'breakpointUnit option is invalid, it must be `px`, `rem` or `em`.';
-  const MINIMUM_FONT_SIZE_ERROR = 'minimumFontSize option is invalid, it must be set in `px` or `rem`.';
+  const BASE_FONT_SIZE_ERROR = 'baseFontSize option is invalid, it must be set in `px` or `rem`.';
   const DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.disable-responsive-font-size';
   const ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.enable-responsive-font-size';
   opts = opts || {};
-  opts.minimumFontSize = opts.minimumFontSize || 16;
+  opts.baseFontSize = opts.baseFontSize || 16;
   opts.fontSizeUnit = opts.fontSizeUnit || 'rem';
   opts.breakpoint = opts.breakpoint || 1200;
   opts.breakpointUnit = opts.breakpointUnit || 'px';
@@ -27,15 +27,15 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
   opts.remValue = opts.remValue || 16;
   opts.propList = opts.propList || ['responsive-font-size', 'rfs'];
 
-  if (typeof opts.minimumFontSize !== 'number') {
-    if (opts.minimumFontSize.endsWith('px')) {
-      opts.minimumFontSize = parseFloat(opts.minimumFontSize);
+  if (typeof opts.baseFontSize !== 'number') {
+    if (opts.baseFontSize.endsWith('px')) {
+      opts.baseFontSize = parseFloat(opts.baseFontSize);
     }
-    else if (opts.minimumFontSize.endsWith('rem')) {
-      opts.minimumFontSize = parseFloat(opts.minimumFontSize) / opts.remValue;
+    else if (opts.baseFontSize.endsWith('rem')) {
+      opts.baseFontSize = parseFloat(opts.baseFontSize) / opts.remValue;
     }
     else {
-      console.error(MINIMUM_FONT_SIZE_ERROR);
+      console.error(BASE_FONT_SIZE_ERROR);
     }
   }
 
@@ -93,12 +93,12 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         }
 
         // Only add media query if needed
-        if (opts.minimumFontSize >= value || opts.factor === 1) {
+        if (opts.baseFontSize >= value || opts.factor === 1) {
           return;
         }
 
         // Calculate font-size and font-size difference
-        let baseFontSize = opts.minimumFontSize + (value - opts.minimumFontSize) / opts.factor;
+        let baseFontSize = opts.baseFontSize + (value - opts.baseFontSize) / opts.factor;
         const fontSizeDiff = value - baseFontSize;
 
         // Divide by remValue if needed

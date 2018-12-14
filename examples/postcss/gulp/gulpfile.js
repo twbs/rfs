@@ -3,7 +3,7 @@ const postcss = require('gulp-postcss');
 const rfs = require('../../..');
 const options = {
   twoDimensional: false,
-  minimumFontSize: 16,
+  baseFontSize: 16,
   fontSizeUnit: 'rem',
   breakpoint: 1200,
   breakpointUnit: 'px',

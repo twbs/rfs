@@ -10,7 +10,7 @@ RFS (simply the abbreviation for Responsive Font Size) is an font size engine wh
 ## Advantages
 
 - Font sizes will **rescale for every screen or device**, this prevents long words from being chopped off the viewport on small devices.
-- The minimum font size (configuration variable) will prevent the font size from becoming too small so readability can be assured.
+- The base font size (configuration variable) will prevent the font size from becoming too small so readability can be assured.
 - **Super easy** to use, no need to define complex configurations for each font size.
 - Font sizes of all text elements will always remain in relation with each other.
 
@@ -103,13 +103,13 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ![RFS visualisation](https://i.imgur.com/yaOonFe.png)
 
-### Minimum font size <sub><sup>(unit in `px` or `rem`)</sup></sub>
+### Base font size <sub><sup>(unit in `px` or `rem`)</sup></sub>
 
-* SCSS, Sass & Stylus: `$rfs-minimum-font-size`
-* Less: `@rfs-minimum-font-size`
-* PostCSS: `minimumFontSize`
+* SCSS, Sass & Stylus: `$rfs-base-font-size`
+* Less: `@rfs-base-font-size`
+* PostCSS: `baseFontSize`
 
-The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this minimum font size, no fluid font rescaling will take place.
+The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this base font size, no fluid font rescaling will take place.
 
 * Default value: `1rem`
 
@@ -221,7 +221,7 @@ CSS:
 
 ## Best practices
 
-- Remember to set RFS on your font size of your `html` or `body` (especially if the minimum font size is lowered), otherwise some text may not dynamically rescale. Note that setting RFS on `html` can influence the value of `rem`.
+- Don't set RFS on the `html` element, because this influences the value of `rem` and could lead to unexpected results.
 - Always set your line-heights relative (in `em` or unitless).
 - More tips and tricks with examples can be found [here](https://medium.com/@martijn.cuppens/magic-font-resizing-with-rfs-b5d781296dd6) (written when only the SCSS version was made).
 

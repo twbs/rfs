@@ -4,7 +4,7 @@ const rfs = require('../../..');
 const css = fs.readFileSync(__dirname + '/src/main.css', 'utf8');
 const options = {
   twoDimensional: false,
-  minimumFontSize: 16,
+  baseFontSize: 16,
   fontSizeUnit: 'rem',
   breakpoint: '75rem',
   breakpointUnit: 'px',
