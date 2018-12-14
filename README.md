@@ -1,8 +1,7 @@
 # RFS [![npm][npm-image]][npm-url]
 
-RFS (abbreviation for responsive font size) is an algorithm which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in 5 languages:
+RFS (simply the abbreviation for Responsive Font Size) is an font size engine which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in one of your favourite preprocessors or postprocessor:
 
-- [SCSS](https://sass-lang.com/)
 - [Sass](https://sass-lang.com/)
 - [PostCSS](https://postcss.org/)
 - [Less](http://lesscss.org/)
