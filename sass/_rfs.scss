@@ -1,4 +1,4 @@
-// stylelint-disable declaration-property-value-blacklist
+// stylelint-disable property-blacklist, scss/dollar-variable-default
 
 // SCSS RFS mixin
 //
@@ -198,7 +198,11 @@ $rfs-breakpoint-unit: unit($rfs-breakpoint);
   }
 }
 
-// The responsive-font-size mixin uses RFS to rescale font sizes
+// The font-size & responsive-font-size mixin uses RFS to rescale font sizes
+@mixin font-size($fs, $important: false) {
+  @include rfs($fs, $important);
+}
+
 @mixin responsive-font-size($fs, $important: false) {
   @include rfs($fs, $important);
 }
