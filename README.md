@@ -21,23 +21,9 @@ RFS (simply the abbreviation for Responsive Font Size) is an font size engine wh
 
 RFS can be installed using a package manager (recommended):
 
-**npm:**
-
-```sh
-$ npm install rfs --save
-```
-
-**yarn:**
-
-```sh
-$ yarn add rfs
-```
-
-**Bower:**
-
-```sh
-$ bower install rfs --save
-```
+- npm: `npm install rfs`
+- yarn: `yarn add rfs`
+- bower: `bower install rfs --save`
 
 **Copy/paste (not recommended):**
 
@@ -47,17 +33,16 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 
-### SCSS
+### Sass
 
 ```scss
+// .scss syntax:
 .title {
   @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
-
-### Sass
-
-```sass
+```sss
+# .sass syntax:
 .title
   +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
 ```
