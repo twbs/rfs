@@ -2,7 +2,7 @@ const fs = require('fs');
 const sass = require('node-sass');
 
 sass.render({
-    file: __dirname + '/src/main.sass', outFile: __dirname + '/dest/main.css',
+    file: __dirname + '/src/main.scss', outFile: __dirname + '/dest/main.css',
   }, function (error, result) { // node-style callback from v3.0.0 onwards
     if (!error) {
       // No errors during the compilation, write this result on the disk
