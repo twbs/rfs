@@ -8,8 +8,8 @@
 
 // Configuration
 
-// Minimum font size
-@rfs-minimum-font-size: 1rem;
+// Base font size
+@rfs-base-font-size: 1rem;
 @rfs-font-size-unit: rem;
 
 // Breakpoint at where font-size starts decreasing if screen width is smaller
@@ -76,7 +76,7 @@
 }
 
 ._rfs-render-media-query(@fs, @suffix) {
-  & when ((@fs > @rfs-minimum-font-size) and (@rfs-factor > 1) and (@enable-responsive-font-sizes = true)) {
+  & when ((@fs > @rfs-base-font-size) and (@rfs-factor > 1) and (@enable-responsive-font-sizes = true)) {
 
     & when ((isnumber(@rfs-breakpoint)) and (get-unit(@rfs-breakpoint) = ~"")) {
       ._rfs-render-media-query-breakpoint(@fs, @suffix, @rfs-breakpoint);
@@ -146,16 +146,16 @@
 }
 
 ._rfs-render-media-query-content(@fs, @suffix, @breakpoint) {
-  & when ((isnumber(@rfs-minimum-font-size)) and (get-unit(@rfs-minimum-font-size) = ~"")) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-minimum-font-size, @breakpoint);
+  & when ((isnumber(@rfs-base-font-size)) and (get-unit(@rfs-base-font-size) = ~"")) {
+    ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-base-font-size, @breakpoint);
   }
 
-  & when ((isunit(@rfs-minimum-font-size, px))) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-minimum-font-size), @breakpoint);
+  & when ((isunit(@rfs-base-font-size, px))) {
+    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-base-font-size), @breakpoint);
   }
 
-  & when ((isunit(@rfs-minimum-font-size, rem))) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-minimum-font-size * @rfs-rem-value), @breakpoint);
+  & when ((isunit(@rfs-base-font-size, rem))) {
+    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-base-font-size * @rfs-rem-value), @breakpoint);
   }
 
   & when (@rfs-safari-iframe-resize-bug-fix) {
@@ -165,17 +165,17 @@
 
 ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-min, @breakpoint) {
   & when (@rfs-two-dimensional) {
-    // Calculate minimum font-size for given font-size
+    // Calculate base font-size for given font-size
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and minimum font-size for given font-size
+    // Calculate difference between given font-size and base font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vmin);
     ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
   }
 
   & when (not(@rfs-two-dimensional)) {
-    // Calculate minimum font-size for given font-size
+    // Calculate base font-size for given font-size
     @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and minimum font-size for given font-size
+    // Calculate difference between given font-size and base font-size for given font-size
     @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vw);
     ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
   }
