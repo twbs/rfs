@@ -4,11 +4,11 @@ const rfs = require('../../..');
 const css = fs.readFileSync(__dirname + '/src/main.css', 'utf8');
 const options = {
   twoDimensional: false,
-  baseFontSize: 16,
+  baseFontSize: 20,
   fontSizeUnit: 'rem',
   breakpoint: '75rem',
   breakpointUnit: 'px',
-  factor: 5,
+  factor: 10,
   unitPrecision: 6,
   remValue: 16,
   propList: ['responsive-font-size', 'rfs']

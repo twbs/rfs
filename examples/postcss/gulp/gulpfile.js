@@ -3,11 +3,11 @@ const postcss = require('gulp-postcss');
 const rfs = require('../../..');
 const options = {
   twoDimensional: false,
-  baseFontSize: 16,
+  baseFontSize: 20,
   fontSizeUnit: 'rem',
   breakpoint: 1200,
   breakpointUnit: 'px',
-  factor: 5,
+  factor: 10,
   class: false,
   unitPrecision: 6,
   safariIframeResizeBugFix: false,

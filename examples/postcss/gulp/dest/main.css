@@ -6,7 +6,7 @@
 }
 @media (max-width: 1200px) {
   .selector-1 {
-  font-size: calc(1.2rem + 1.066667vw);
+  font-size: calc(1.325rem + 0.9vw);
   }
 }
 
@@ -16,7 +16,7 @@
 }
 @media (max-width: 1200px) {
   .selector-2 {
-  font-size: calc(1.2rem + 1.066667vw);
+  font-size: calc(1.325rem + 0.9vw);
   }
 }
 
@@ -26,7 +26,7 @@
 }
 @media (max-width: 1200px) {
   .selector-3 {
-  font-size: calc(1.2rem + 1.066667vw) !important;
+  font-size: calc(1.325rem + 0.9vw) !important;
   }
 }
 
@@ -36,7 +36,7 @@
 }
 @media (max-width: 1200px) {
   .selector-4 {
-  font-size: calc(1.2rem + 1.066667vw);
+  font-size: calc(1.325rem + 0.9vw);
   }
 }
 
@@ -57,7 +57,7 @@
   }
   @media (max-width: 1200px) {
     .selector-7 {
-    font-size: calc(1.15rem + 0.8vw);
+    font-size: calc(1.3rem + 0.6vw);
     }
   }
 }
@@ -68,6 +68,6 @@
 }
 @media (max-width: 1200px) {
   .selector-8 {
-  font-size: calc(1.2rem + 1.066667vw);
+  font-size: calc(1.325rem + 0.9vw);
   }
 }
