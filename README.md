@@ -33,7 +33,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 
-In the following examples, this folder structure is assumed:
+In the following examples, this folder structure is assumed (you will probably just use one pre/postprocessor):
 
 ```text
 project/
@@ -55,17 +55,19 @@ project/
 ### Sass
 
 ```scss
+// .scss syntax:
+// scss/main.scss
 @import "../node_modules/rfs/sass/rfs";
 
-// .scss syntax:
 .title {
   @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
-```sss
+```sass
+// .sass syntax:
+// scss/main.scss
 @import "../node_modules/rfs/sass/rfs";
 
-// .sass syntax:
 .title
   +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
 ```
@@ -73,14 +75,18 @@ project/
 ### PostCSS
 
 ```postcss
+// postcss/main.css
 .title {
   responsive-font-size: 4rem; // OR responsive-font-size: 64px; OR rfs: 64;
 }
+
+// Handle postcss afterwards (see examples folder for postcss example)
 ```
 
 ### Less
 
 ```less
+// less/main.less
 @import "../node_modules/rfs/less/rfs";
 
 .title {
@@ -91,6 +97,7 @@ project/
 ### Stylus
 
 ```stylus
+// stylus/main.styl
 @import "../node_modules/rfs/stylus/rfs";
 
 .title
