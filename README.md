@@ -33,16 +33,39 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 
+In the following examples, this folder structure is assumed:
+
+```text
+project/
+├── postccss/
+│   └── main.css
+├── less/
+│   └── main.less
+├── node_modules/
+│   └── rfs
+│        └── ...
+├── sass/
+│   └── main.sass
+├── scss/
+│   └── main.scss
+└── stylus/
+    └── main.styl
+```
+
 ### Sass
 
 ```scss
+@import "../node_modules/rfs/sass/rfs";
+
 // .scss syntax:
 .title {
   @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
 ```sss
-# .sass syntax:
+@import "../node_modules/rfs/sass/rfs";
+
+// .sass syntax:
 .title
   +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
 ```
@@ -58,6 +81,8 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 ### Less
 
 ```less
+@import "../node_modules/rfs/less/rfs";
+
 .title {
   .responsive-font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
 }
@@ -66,6 +91,8 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 ### Stylus
 
 ```stylus
+@import "../node_modules/rfs/stylus/rfs";
+
 .title
   responsive-font-size(4rem) // OR responsive-font-size(64px) OR rfs(64)
 ```
