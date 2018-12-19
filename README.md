@@ -233,7 +233,7 @@ CSS:
 
 @media (max-width: 1200px) {
   .label {
-    font-size: calc(1.3rem + 1.6vw) !important;
+    font-size: calc(1.375rem + 1.5vw) !important;
   }
 }
 ```
