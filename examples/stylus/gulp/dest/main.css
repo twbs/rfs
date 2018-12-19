@@ -6,7 +6,7 @@
 }
 @media (max-width: 1200px) {
   .selector-1 {
-    font-size: calc(1.2rem + 1.066666666666667vw);
+    font-size: calc(1.325rem + 0.9vw);
   }
 }
 /* responsive-font-size property with `rem` unit */
@@ -15,7 +15,7 @@
 }
 @media (max-width: 1200px) {
   .selector-2 {
-    font-size: calc(1.2rem + 1.066666666666667vw);
+    font-size: calc(1.325rem + 0.9vw);
   }
 }
 /* responsive-font-size property with !important */
@@ -24,7 +24,7 @@
 }
 @media (max-width: 1200px) {
   .selector-3 {
-    font-size: calc(1.2rem + 1.066666666666667vw)!important;
+    font-size: calc(1.325rem + 0.9vw)!important;
   }
 }
 /* rfs shorthand */
@@ -33,7 +33,7 @@
 }
 @media (max-width: 1200px) {
   .selector-4 {
-    font-size: calc(1.2rem + 1.066666666666667vw);
+    font-size: calc(1.325rem + 0.9vw);
   }
 }
 /* not supported unit */
@@ -51,7 +51,7 @@
   }
 @media (max-width: 1200px) {
     .selector-7 {
-      font-size: calc(1.15rem + 0.8vw);
+      font-size: calc(1.3rem + 0.6vw);
     }
 }
 }
@@ -61,6 +61,6 @@
 }
 @media (max-width: 1200px) {
   .selector-8 {
-    font-size: calc(1.2rem + 1.066666666666667vw);
+    font-size: calc(1.325rem + 0.9vw);
   }
 }

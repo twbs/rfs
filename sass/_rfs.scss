@@ -9,7 +9,7 @@
 // Configuration
 
 // Base font size
-$rfs-base-font-size: 1rem !default;
+$rfs-base-font-size: 1.25rem !default;
 $rfs-font-size-unit: rem !default;
 
 // Breakpoint at where font-size starts decreasing if screen width is smaller
@@ -20,7 +20,7 @@ $rfs-breakpoint-unit: px !default;
 $rfs-two-dimensional: false !default;
 
 // Factor of decrease
-$rfs-factor: 5 !default;
+$rfs-factor: 10 !default;
 
 @if type-of($rfs-factor) != "number" or $rfs-factor <= 1 {
   @error "`#{$rfs-factor}` is not a valid  $rfs-factor, it must be greater than 1.";

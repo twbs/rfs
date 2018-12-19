@@ -79,7 +79,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 @media (max-width: 1200px) {
   .title {
-    font-size: calc(1.6rem + 3.2vw);
+    font-size: calc(1.525rem + 3.3vw);
   }
 }
 ```
@@ -96,7 +96,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 The option will prevent the font size from becoming too small on smaller screens. If the font size which is passed to RFS is smaller than this base font size, no fluid font rescaling will take place.
 
-* Default value: `1rem`
+* Default value: `1.25rem`
 
 ### Font size unit <sub><sup>(`px` or `rem`)</sup></sub>
 
@@ -138,7 +138,7 @@ The width of the max width in the media query will be rendered in this unit.
 
 This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1, setting it to 1 will disable dynamic rescaling.
 
-* Default value: `5`
+* Default value: `10`
 
 
 ### Two dimensional <sub><sup>(boolean)</sup></sub>
