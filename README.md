@@ -128,9 +128,9 @@ project/
 
 ## Visualisation
 
-If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit:
+If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit. The font sizes used on the graph are in `px`, but in reality RFS renders them in `rem` by default:
 
-![RFS visualisation](https://i.imgur.com/yaOonFe.png)
+![RFS visualisation](https://i.imgur.com/P2ixaKH.png)
 
 
 ## Configuration
