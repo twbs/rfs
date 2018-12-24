@@ -2,10 +2,10 @@
 .selector-1 {
   background-color: red;
   width: 300px;
-  font-size: 6.0625rem; }
+  font-size: 2rem; }
   @media (max-width: 1200px) {
     .selector-1 {
-      font-size: calc(1.73125rem + 5.775vw) ; } }
+      font-size: calc(1.325rem + 0.9vw) ; } }
 
 /* responsive-font-size property with `rem` unit */
 .selector-2 {
