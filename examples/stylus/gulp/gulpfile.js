@@ -1,7 +1,7 @@
 'use strict';
 
 const gulp = require('gulp'),
- stylus = require('gulp-stylus');
+  stylus = require('gulp-stylus');
 
 gulp.task('build', function () {
   return gulp.src('./src/**/*.styl')
