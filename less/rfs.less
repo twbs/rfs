@@ -48,7 +48,7 @@
 
 ._rfs-prefix(@fs, @suffix) {
 
-  & when ((not(isnumber(@fs)) and not(isunit(@fs, px)) and not(isunit(@fs, rem))) or (@fs = 0)) {
+  & when ((not(isunit(@fs, px)) and not(isunit(@fs, rem)) and not((isnumber(@fs)) and (get-unit(@fs) = ~""))) or (@fs = 0)) {
     font-size: @fs @suffix;
   }
 
@@ -159,6 +159,7 @@
   }
 
   & when (@rfs-safari-iframe-resize-bug-fix) {
+    // stylelint-disable-next-line length-zero-no-unit
     min-width: 0vw;
   }
 }
@@ -218,7 +219,6 @@
 }
 
 ._rfs-render-base-number(@fs, @suffix) {
-
   & when (@rfs-class = "disable") {
     &,
     .disable-responsive-font-size &,
