@@ -1,0 +1,35 @@
+.selector-1 {
+  background-color: #f00;
+  width: 300px;
+  font-size: 2rem;
+}
+
+.selector-2 {
+  font-size: 2rem;
+}
+
+.selector-3 {
+  font-size: 2rem !important;
+}
+
+.selector-4 {
+  font-size: 2rem;
+}
+
+.selector-5 {
+  font-size: 2em;
+}
+
+.selector-6 {
+  font-size: inherit;
+}
+
+@supports (display: flex) {
+  .selector-7 {
+    font-size: 1.75rem;
+  }
+}
+
+.selector-8 {
+  font-size: 2rem;
+}

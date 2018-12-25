@@ -10,7 +10,7 @@
     "stylus/rfs.styl"
   ],
   "scripts": {
-    "test": "echo \"Test placeholder\"",
+    "test": "mocha",
     "codepen": "browserify postcss/codepen.js | babel --presets=env | uglifyjs --compress --mangle > postcss/codepen.bundle.js",
     "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
     "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/stylus/node/index.js"
@@ -46,10 +46,12 @@
     "gulp-sass": "^4.0.2",
     "gulp-stylus": "^2.7.0",
     "less": "^3.9.0",
+    "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "postcss": "^7.0.7",
     "postcss-nested": "^4.1.1",
     "postcss-prettify": "^0.3.4",
+    "prettier": "^1.15.3",
     "stylelint": "^9.9.0",
     "stylelint-scss": "^3.4.3",
     "stylus": "^0.54.5",
