@@ -1,7 +1,7 @@
 'use strict';
 
 const gulp = require('gulp'),
- less = require('gulp-less');
+  less = require('gulp-less');
 
 gulp.task('build', function () {
   return gulp.src('./src/**/*.less')

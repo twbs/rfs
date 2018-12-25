@@ -1,7 +1,7 @@
 'use strict';
 
 const gulp = require('gulp'),
- sass = require('gulp-sass');
+  sass = require('gulp-sass');
 
 gulp.task('build', function () {
   return gulp.src('./src/**/*.scss')
