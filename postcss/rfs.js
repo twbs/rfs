@@ -14,18 +14,21 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
   const BASE_FONT_SIZE_ERROR = 'baseFontSize option is invalid, it must be set in `px` or `rem`.';
   const DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.disable-responsive-font-size';
   const ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.enable-responsive-font-size';
-  opts = opts || {};
-  opts.baseFontSize = opts.baseFontSize || 20;
-  opts.fontSizeUnit = opts.fontSizeUnit || 'rem';
-  opts.breakpoint = opts.breakpoint || 1200;
-  opts.breakpointUnit = opts.breakpointUnit || 'px';
-  opts.factor = opts.factor || 10;
-  opts.twoDimensional = opts.twoDimensional || false;
-  opts.unitPrecision = opts.unitPrecision || 5;
-  opts.class = opts.class || false;
-  opts.safariIframeResizeBugFix = opts.safariIframeResizeBugFix || false;
-  opts.remValue = opts.remValue || 16;
-  opts.propList = opts.propList || ['responsive-font-size', 'rfs'];
+  const defaultOptions = {
+    baseFontSize: 20,
+    fontSizeUnit: 'rem',
+    breakpoint: '75rem',
+    breakpointUnit: 'px',
+    factor: 10,
+    twoDimensional: false,
+    unitPrecision: 5,
+    remValue: 16,
+    propList: ['responsive-font-size', 'rfs'],
+    class: false,
+    safariIframeResizeBugFix: false,
+    enableResponsiveFontSizes: true
+  };
+  opts = Object.assign(defaultOptions, opts);
 
   if (typeof opts.baseFontSize !== 'number') {
     if (opts.baseFontSize.endsWith('px')) {
@@ -93,7 +96,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
         }
 
         // Only add media query if needed
-        if (opts.baseFontSize >= value || opts.factor === 1) {
+        if (opts.baseFontSize >= value || opts.factor <= 1 || !opts.enableResponsiveFontSizes) {
           return;
         }
 
@@ -120,7 +123,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
 
           for (let selector of selectors) {
             ruleSelector += ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ' ' + selector + ',\n';
-            ruleSelector += ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR + selector + ',\n';
+            ruleSelector += selector + ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ',\n';
           }
           rule_selector = ruleSelector.slice(0, -2);
         }
@@ -148,7 +151,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
           for (let selector of selectors) {
             ruleSelector += selector + ',\n';
             ruleSelector += DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ' ' + selector + ',\n';
-            ruleSelector += DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR + selector + ',\n';
+            ruleSelector += selector + DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR + ',\n';
           }
           ruleSelector = ruleSelector.slice(0, - 2);
 
@@ -159,7 +162,7 @@ module.exports = postcss.plugin('postcss-rfs', function (opts) {
 
           dc_rule.append(decl.clone());
           rule.parent.insertAfter(rule, dc_rule);
-          decl.remove();
+          decl.prev() || decl.next() ? decl.remove() : decl.parent.remove();
         }
       });
     });
