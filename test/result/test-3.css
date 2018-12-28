@@ -1,66 +1,55 @@
 .selector-1 {
   background-color: #f00;
-  width: 300px;
-}
-.selector-1, .disable-responsive-font-size .selector-1, .selector-1.disable-responsive-font-size {
-  font-size: 2rem;
-}
-@media (max-width: 1200px) {
-  .selector-1 {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
+  width: 300px; }
+  .selector-1,
+  .disable-responsive-font-size .selector-1, .selector-1.disable-responsive-font-size {
+    font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-1 {
+      font-size: calc(1.325rem + 0.9vw) ; } }
 
-.selector-2, .disable-responsive-font-size .selector-2, .selector-2.disable-responsive-font-size {
-  font-size: 2rem;
-}
+.selector-2,
+.disable-responsive-font-size .selector-2, .selector-2.disable-responsive-font-size {
+  font-size: 2rem; }
+
 @media (max-width: 1200px) {
   .selector-2 {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
+    font-size: calc(1.325rem + 0.9vw) ; } }
 
-.selector-3, .disable-responsive-font-size .selector-3, .selector-3.disable-responsive-font-size {
-  font-size: 2rem !important;
-}
+.selector-3,
+.disable-responsive-font-size .selector-3, .selector-3.disable-responsive-font-size {
+  font-size: 2rem !important; }
+
 @media (max-width: 1200px) {
   .selector-3 {
-    font-size: calc(1.325rem + 0.9vw) !important;
-  }
-}
+    font-size: calc(1.325rem + 0.9vw)  !important; } }
 
-.selector-4, .disable-responsive-font-size .selector-4, .selector-4.disable-responsive-font-size {
-  font-size: 2rem;
-}
+.selector-4,
+.disable-responsive-font-size .selector-4, .selector-4.disable-responsive-font-size {
+  font-size: 2rem; }
+
 @media (max-width: 1200px) {
   .selector-4 {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
+    font-size: calc(1.325rem + 0.9vw) ; } }
 
 .selector-5 {
-  font-size: 2em;
-}
+  font-size: 2em; }
 
 .selector-6 {
-  font-size: inherit;
-}
+  font-size: inherit; }
 
 @supports (display: flex) {
-  .selector-7, .disable-responsive-font-size .selector-7, .selector-7.disable-responsive-font-size {
-    font-size: 1.75rem;
-  }
+  .selector-7,
+  .disable-responsive-font-size .selector-7, .selector-7.disable-responsive-font-size {
+    font-size: 1.75rem; }
   @media (max-width: 1200px) {
     .selector-7 {
-      font-size: calc(1.3rem + 0.6vw);
-    }
-  }
-}
-.selector-8, .disable-responsive-font-size .selector-8, .selector-8.disable-responsive-font-size {
-  font-size: 2rem;
-}
+      font-size: calc(1.3rem + 0.6vw) ; } } }
+
+.selector-8,
+.disable-responsive-font-size .selector-8, .selector-8.disable-responsive-font-size {
+  font-size: 2rem; }
+
 @media (max-width: 1200px) {
   .selector-8 {
-    font-size: calc(1.325rem + 0.9vw);
-  }
-}
+    font-size: calc(1.325rem + 0.9vw) ; } }
