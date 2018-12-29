@@ -43,16 +43,13 @@ if $rfs-base-font-size-unit == "px"
 else if $rfs-base-font-size-unit == "rem"
   $rfs-base-font-size = unit($rfs-base-font-size * $rfs-rem-value, "")
 
-// Cache $rfs-breakpoint unit
-$rfs-breakpoint-unit = unit($rfs-breakpoint)
+// Cache $rfs-breakpoint unit to prevent multiple calls
+$rfs-breakpoint-unit-cache = unit($rfs-breakpoint)
 
 // Remove unit from $rfs-breakpoint for calculations
-if $rfs-breakpoint-unit == "px"
+if $rfs-breakpoint-unit-cache == "px"
   $rfs-breakpoint = unit($rfs-breakpoint, "")
-else if $rfs-breakpoint-unit == ""
-  // Use `px` as default
-  $rfs-breakpoint-unit = "px"
-else if $rfs-breakpoint-unit == "rem" or $rfs-breakpoint-unit == "em"
+else if $rfs-breakpoint-unit-cache == "rem" or $rfs-breakpoint-unit-cache == "em"
   $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
 // Responsive font-size mixin
