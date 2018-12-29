@@ -1,0 +1,44 @@
+.selector-1 {
+  background-color: #f00;
+  width: 300px;
+  font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-1 {
+      font-size: calc(1.15625rem + 1.125vw) ; } }
+
+.selector-2 {
+  font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-2 {
+      font-size: calc(1.15625rem + 1.125vw) ; } }
+
+.selector-3 {
+  font-size: 2rem !important; }
+  @media (max-width: 1200px) {
+    .selector-3 {
+      font-size: calc(1.15625rem + 1.125vw)  !important; } }
+
+.selector-4 {
+  font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-4 {
+      font-size: calc(1.15625rem + 1.125vw) ; } }
+
+.selector-5 {
+  font-size: 2em; }
+
+.selector-6 {
+  font-size: inherit; }
+
+@supports (display: flex) {
+  .selector-7 {
+    font-size: 1.75rem; }
+    @media (max-width: 1200px) {
+      .selector-7 {
+        font-size: calc(1.13125rem + 0.825vw) ; } } }
+
+.selector-8 {
+  font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .selector-8 {
+      font-size: calc(1.15625rem + 1.125vw) ; } }
