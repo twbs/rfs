@@ -1,7 +1,15 @@
-# RFS [![npm][npm-image]][npm-url]
+<p align="center">
+  <img src="https://raw.githubusercontent.com/twbs/rfs/master/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
+</p>
 
-RFS (simply the abbreviation for Responsive Font Size) is an font size engine which **automatically calculates the appropriate font size** based on the dimensions of the browser viewport. It's available in one of your favourite preprocessors or postprocessor: [Sass](https://sass-lang.com/), [Less](http://lesscss.org/), [Stylus](http://stylus-lang.com/) or [PostCSS](https://postcss.org/).
+<p  align="center">
+RFS (simply the abbreviation for Responsive Font Size) is an font size engine which <strong>automatically calculates the appropriate font size</strong> based on the dimensions of the browser viewport. It's available in one of your favourite preprocessors or postprocessor: <a href="https://sass-lang.com/">Sass</a>, <a href="http://lesscss.org/">Less</a>, <a href="http://stylus-lang.com/">Stylus</a> or <a href="https://postcss.org/">PostCSS</a>.
+</p>
 
+# RFS
+[![npm][npm-image]][npm-url]
+[![licence][licence-image]][license-url]
+[![build][build-image]][build-url]
 
 ## Advantages
 
@@ -285,3 +293,7 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LI
 
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
+[licence-image]: https://img.shields.io/npm/l/rfs.svg
+[license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
+[build-image]: https://img.shields.io/travis/twbs/rfs.svg
+[build-url]: https://travis-ci.org/twbs/rfs
