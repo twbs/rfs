@@ -20,7 +20,7 @@
 - [`!important` usage](#important-usage)
 - [Demos](#demos)
 - [Creator](#creator)
-- [Copyright and licence](#copyright-and-licence)
+- [Copyright and license](#copyright-and-license)
 
 ## How does it work?
 
