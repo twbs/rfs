@@ -71,22 +71,24 @@ project/
 
 ### Sass
 
+`.scss` syntax:
+
 ```scss
-// .scss syntax:
 // scss/main.scss
 
-@import "../node_modules/rfs/sass/rfs";
+@import "../node_modules/rfs/scss";
 
 .title {
   @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
 
+`.sass` syntax:
+
 ```sass
-// .sass syntax:
 // scss/main.scss
 
-@import "../node_modules/rfs/sass/rfs";
+@import "../node_modules/rfs/sass"
 
 .title
   +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
@@ -111,7 +113,7 @@ project/
 ```less
 // less/main.less
 
-@import "../node_modules/rfs/less/rfs";
+@import "../node_modules/rfs/less";
 
 .title {
   .responsive-font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
@@ -124,7 +126,7 @@ project/
 ```stylus
 // stylus/main.styl
 
-@import "../node_modules/rfs/stylus/rfs";
+@import "../node_modules/rfs/stylus";
 
 .title
   responsive-font-size(4rem) // OR responsive-font-size(64px) OR rfs(64)
@@ -145,6 +147,13 @@ project/
 }
 ```
 
+If you're using Webpack, you can simplify the `@import` using the `~` prefix:
+```text
+@import "~rfs/less";
+@import "~rfs/sass";
+@import "~rfs/scss";
+@import "~rfs/stylus";
+```
 
 ## Visualisation
 
