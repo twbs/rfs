@@ -12,7 +12,6 @@
   "scripts": {
     "test": "mocha",
     "generate-test-results": "node-sass test/sass/ -o test/result/",
-    "codepen": "browserify postcss/codepen.js | babel --presets=env | uglifyjs --compress --mangle > postcss/codepen.bundle.js",
     "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
     "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/stylus/node/index.js"
   },
