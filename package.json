@@ -16,6 +16,11 @@
     "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
     "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/stylus/node/index.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/twbs/rfs.git"
@@ -46,6 +51,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-stylus": "^2.7.0",
+    "husky": "^1.3.1",
     "less": "^3.9.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
