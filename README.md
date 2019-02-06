@@ -91,7 +91,7 @@ project/
 @import "../node_modules/rfs/sass"
 
 .title
-  +responsive-font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
+  +font-size(4rem) // OR +responsive-font-size(64px) OR +rfs(64)
 ```
 
 
@@ -101,7 +101,7 @@ project/
 // postcss/main.css
 
 .title {
-  responsive-font-size: 4rem; // OR responsive-font-size: 64px; OR rfs: 64;
+  font-size: 4rem; // OR responsive-font-size: 64px; OR rfs: 64;
 }
 
 // Handle postcss afterwards (see examples folder for PostCSS example)
@@ -116,7 +116,7 @@ project/
 @import "../node_modules/rfs/less";
 
 .title {
-  .responsive-font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
+  .font-size(4rem); // OR .responsive-font-size(64px); OR .rfs(64);
 }
 ```
 
@@ -129,7 +129,7 @@ project/
 @import "../node_modules/rfs/stylus";
 
 .title
-  responsive-font-size(4rem) // OR responsive-font-size(64px) OR rfs(64)
+  font-size(4rem) // OR responsive-font-size(64px) OR rfs(64)
 ```
 
 
