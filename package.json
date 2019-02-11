@@ -6,7 +6,7 @@
   "files": [
     "less.less",
     "postcss.js",
-    "sass.scss",
+    "sass.sass",
     "scss.scss",
     "stylus.styl"
   ],
