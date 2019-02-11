@@ -3,7 +3,7 @@
 </p>
 
 <p  align="center">
-  RFS (simply the abbreviation for Responsive Font Size) is an font size engine which <strong>automatically calculates the appropriate font size</strong> based on the dimensions of the browser viewport. It's available in one of your favourite preprocessors or postprocessor: <a href="https://sass-lang.com/">Sass</a>, <a href="http://lesscss.org/">Less</a>, <a href="http://stylus-lang.com/">Stylus</a> or <a href="https://postcss.org/">PostCSS</a>.
+  RFS (simply the abbreviation for Responsive Font Size) is a font size engine which <strong>automatically calculates the appropriate font size</strong> based on the dimensions of the browser viewport. It's available in one of your favourite preprocessors or postprocessor: <a href="https://sass-lang.com/">Sass</a>, <a href="http://lesscss.org/">Less</a>, <a href="http://stylus-lang.com/">Stylus</a> or <a href="https://postcss.org/">PostCSS</a>.
 </p>
 
 # RFS
