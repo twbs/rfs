@@ -55,12 +55,12 @@
     "less": "^3.9.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
-    "postcss": "^7.0.7",
+    "postcss": "^7.0.14",
     "postcss-nested": "^4.1.1",
     "postcss-prettify": "^0.3.4",
-    "prettier": "^1.15.3",
-    "stylelint": "^9.9.0",
-    "stylelint-scss": "^3.4.3",
+    "prettier": "^1.16.4",
+    "stylelint": "^9.10.1",
+    "stylelint-scss": "^3.5.3",
     "stylus": "^0.54.5",
     "uglify-js": "^3.4.9"
   }
