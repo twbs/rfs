@@ -37,6 +37,6 @@ module.exports = [
   },
   {
     id: 'test-10',
-    name: 'Include mixins multiple times (Should throw a warning for SCSS & Stylus and not fail for less & PostCSS)'
+    name: 'Include mixins multiple times'
   },
 ];
