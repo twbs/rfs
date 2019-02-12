@@ -172,10 +172,3 @@ rfs($fs, $important = false)
 // The responsive-font-size mixin uses RFS to rescale font sizes
 responsive-font-size($fs, $important = false)
   rfs($fs, $important)
-
-$rfs-is-included ?= false
-
-if $rfs-is-included
-  warn("Watch out, RFS is included more than once!")
-
-$rfs-is-included = true
