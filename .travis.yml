@@ -8,10 +8,9 @@ node_js:
 install:
   - npm install
 script:
-  - npm test || travis_terminate 1
+  - npm test
 cache:
   directories:
     - node_modules
-    - vendor/bundle
 notifications:
   email: false
