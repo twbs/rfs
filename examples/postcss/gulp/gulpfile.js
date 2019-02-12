@@ -1,6 +1,9 @@
+'use strict';
+
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const rfs = require('../../..');
+
 const options = {
   twoDimensional: false,
   baseFontSize: 20,
@@ -21,6 +24,6 @@ gulp.task('build', () => {
     .pipe(gulp.dest('./dest'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch('./src/**/*.css', ['build']);
 });

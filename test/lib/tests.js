@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = [
   {
     id: 'test-1',
@@ -38,5 +40,5 @@ module.exports = [
   {
     id: 'test-10',
     name: 'Include mixins multiple times'
-  },
+  }
 ];
