@@ -148,6 +148,7 @@ project/
 ```
 
 If you're using Webpack, you can simplify the `@import` using the `~` prefix:
+
 ```text
 @import "~rfs/less";
 @import "~rfs/sass";
@@ -316,5 +317,5 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LI
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
 [license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
-[build-image]: https://img.shields.io/travis/twbs/rfs.svg
+[build-image]: https://img.shields.io/travis/twbs/rfs/master.svg
 [build-url]: https://travis-ci.org/twbs/rfs
