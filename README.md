@@ -79,7 +79,7 @@ project/
 @import "../node_modules/rfs/scss";
 
 .title {
-  @include responsive-font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
+  @include font-size(4rem); // OR @include responsive-font-size(64px); OR @include rfs(64);
 }
 ```
 
@@ -101,7 +101,7 @@ project/
 // postcss/main.css
 
 .title {
-  font-size: 4rem; // OR responsive-font-size: 64px; OR rfs: 64;
+  responsive-font-size: 4rem; // OR rfs: 64;
 }
 
 // Handle postcss afterwards (see examples folder for PostCSS example)
