@@ -30,7 +30,7 @@
 - The font sizes of all text elements will always remain in relation with each other
 
 
-![RFS](http://i.imgur.com/gJH6m6g.gif)
+![RFS](https://i.imgur.com/gJH6m6g.gif)
 
 
 ## Installation
