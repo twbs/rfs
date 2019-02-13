@@ -5,10 +5,6 @@ node_js:
   - "6"
   - "8"
   - "10"
-install:
-  - npm install
-script:
-  - npm test
 cache:
   directories:
     - node_modules
