@@ -1,7 +1,11 @@
+'use strict';
+
 const fs = require('fs');
+const path = require('path');
 const postcss = require('postcss');
 const rfs = require('../../..');
-const css = fs.readFileSync(__dirname + '/src/main.css', 'utf8');
+
+const css = fs.readFileSync(path.join(__dirname, '/src/main.css'), 'utf8');
 const options = {
   twoDimensional: false,
   baseFontSize: 20,
@@ -16,11 +20,10 @@ const options = {
 
 const processedCss = postcss(rfs(options)).process(css).css;
 
-fs.writeFile(__dirname + '/dest/main.css', processedCss, (err) => {
+fs.writeFile(path.join(__dirname, '/dest/main.css'), processedCss, err => {
   if (err) {
     throw err;
-  }
-  else {
+  } else {
     console.log('Responsive font sizes generated.');
   }
 });

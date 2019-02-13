@@ -1,14 +1,14 @@
 'use strict';
 
-const gulp = require('gulp'),
-  stylus = require('gulp-stylus');
+const gulp = require('gulp');
+const stylus = require('gulp-stylus');
 
-gulp.task('build', function () {
+gulp.task('build', () => {
   return gulp.src('./src/**/*.styl')
     .pipe(stylus())
     .pipe(gulp.dest('./dest'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   gulp.watch('./src/**/*.styl', ['build']);
 });

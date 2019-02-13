@@ -1,24 +1,27 @@
-const fs = require('fs'),
-  less = require('less'),
-  str = fs.readFileSync(__dirname + '/src/main.less', 'utf8');
+'use strict';
 
-less
-  .render(
-    str,
-    {paths: [__dirname + '/src']}
-  )
-  .then(
-    function (output) {
-      fs.writeFile(__dirname + '/dest/main.css', output.css, function (err) {
-        if (!err) {
-          console.log('Responsive font sizes generated.');
-        }
-        else {
-          throw err;
-        }
-      });
-    },
-    function (error) {
-      throw error;
-    }
-  );
+const fs = require('fs');
+const path = require('path');
+const less = require('less');
+
+const str = fs.readFileSync(path.join(__dirname, '/src/main.less'), 'utf8');
+
+less.render(
+  str,
+  {
+    paths: [path.join(__dirname, '/src')]
+  }
+).then(
+  output => {
+    fs.writeFile(path.join(__dirname, '/dest/main.css'), output.css, err => {
+      if (err) {
+        throw err;
+      } else {
+        console.log('Responsive font sizes generated.');
+      }
+    });
+  },
+  error => {
+    throw error;
+  }
+);

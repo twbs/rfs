@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
   'test-1': {},
   'test-2': {
@@ -29,7 +31,7 @@ module.exports = {
     twoDimensional: true,
     factor: 5,
     class: true,
-    safariIframeResizeBugFix: true,
+    safariIframeResizeBugFix: true
   },
   'test-10': { // Not testable
     baseFontSize: '12px',
@@ -39,6 +41,6 @@ module.exports = {
     twoDimensional: true,
     factor: 5,
     class: true,
-    safariIframeResizeBugFix: true,
+    safariIframeResizeBugFix: true
   }
 };

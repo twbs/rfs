@@ -1,18 +1,22 @@
-const fs = require('fs'),
-  stylus = require('stylus'),
-  str = fs.readFileSync(__dirname + '/src/main.styl', 'utf8');
+'use strict';
 
-stylus.render(str, {filename: __dirname + '/src/main.styl'}, function (err, css) {
+const fs = require('fs');
+const path = require('path');
+const stylus = require('stylus');
+
+const str = fs.readFileSync(path.join(__dirname, '/src/main.styl'), 'utf8');
+
+stylus.render(str, {
+  filename: path.join(__dirname, '/src/main.styl')
+}, (err, css) => {
   if (err) {
     throw err;
-  }
-  else {
-    fs.writeFile(__dirname + '/dest/main.css', css, function (err) {
-      if (!err) {
-        console.log('Responsive font sizes generated.');
-      }
-      else {
+  } else {
+    fs.writeFile(path.join(__dirname, '/dest/main.css'), css, err => {
+      if (err) {
         throw err;
+      } else {
+        console.log('Responsive font sizes generated.');
       }
     });
   }
