@@ -43,9 +43,6 @@
   },
   "homepage": "https://github.com/twbs/rfs#readme",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "browserify": "^16.2.3",
     "gulp": "^4.0.0",
     "gulp-less": "^4.0.1",
     "gulp-postcss": "^8.0.0",
@@ -56,12 +53,7 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
-    "postcss-nested": "^4.1.1",
-    "postcss-prettify": "^0.3.4",
     "prettier": "^1.16.4",
-    "stylelint": "^9.10.1",
-    "stylelint-scss": "^3.5.3",
-    "stylus": "^0.54.5",
-    "uglify-js": "^3.4.9"
+    "stylus": "^0.54.5"
   }
 }
