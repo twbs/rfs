@@ -151,9 +151,9 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 ```text
 @import "~rfs/less";
-@import "~rfs/sass";
+@import "~rfs/sass"
 @import "~rfs/scss";
-@import "~rfs/stylus";
+@import "~rfs/stylus"
 ```
 
 ## Visualisation
