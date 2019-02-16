@@ -3,10 +3,15 @@
 'use strict';
 
 const assert = require('assert');
-const tests = require('./lib/tests.js');
-
-const styles = ['Less', 'Sass', 'Stylus', 'PostCSS'];
 const result = require('./lib/result.js');
+const tests = require('./tests.json');
+
+const styles = [
+  'Less',
+  'Sass',
+  'Stylus',
+  'Postcss'
+];
 
 styles.forEach(style => {
   describe(style, () => {
