@@ -3,6 +3,16 @@
   "version": "8.0.1",
   "main": "postcss.js",
   "description": "Powerful & easy-to-use responsive font sizing engine.",
+  "author": "Martijn Cuppens <martijn.cuppens@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twbs/rfs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twbs/rfs/issues"
+  },
+  "homepage": "https://github.com/twbs/rfs#readme",
   "files": [
     "less.less",
     "postcss.js",
@@ -10,24 +20,6 @@
     "scss.scss",
     "stylus.styl"
   ],
-  "scripts": {
-    "mocha": "mocha",
-    "xo": "xo",
-    "lint": "npm run xo",
-    "test": "npm run lint && npm run mocha",
-    "generate-test-results": "node-sass test/sass/ -o test/result/",
-    "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
-    "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/stylus/node/index.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test"
-    }
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/twbs/rfs.git"
-  },
   "keywords": [
     "rfs",
     "responsive",
@@ -39,12 +31,23 @@
     "stylus",
     "postcss"
   ],
-  "author": "Martijn Cuppens <martijn.cuppens@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/twbs/rfs/issues"
+  "engines": {
+    "node": ">=6"
   },
-  "homepage": "https://github.com/twbs/rfs#readme",
+  "scripts": {
+    "mocha": "mocha",
+    "xo": "xo",
+    "lint": "npm run xo",
+    "test": "npm run lint && npm run mocha",
+    "generate-test-results": "node-sass test/sass/ -o test/result/",
+    "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../scss/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
+    "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/scss/node/index.js && node examples/stylus/node/index.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-less": "^4.0.1",
