@@ -306,7 +306,7 @@ CSS:
 ## Demos
 
 - [Simple Codepen Demo](https://codepen.io/MartijnCuppens/pen/ZBjdMy)
-- [RFS in bootstrap demo](https://martijncuppens.github.io/rfs)
+- [RFS in bootstrap demo](https://project-rfs.github.io/)
 
 
 ## Creator
