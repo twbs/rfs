@@ -11,7 +11,10 @@
     "stylus.styl"
   ],
   "scripts": {
-    "test": "mocha",
+    "mocha": "mocha",
+    "xo": "xo",
+    "lint": "npm run xo",
+    "test": "npm run lint && npm run mocha",
     "generate-test-results": "node-sass test/sass/ -o test/result/",
     "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../sass/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
     "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/sass/node/index.js && node examples/stylus/node/index.js"
@@ -54,6 +57,29 @@
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "prettier": "^1.16.4",
-    "stylus": "^0.54.5"
+    "stylus": "^0.54.5",
+    "xo": "^0.24.0"
+  },
+  "xo": {
+    "rules": {
+      "ava/no-import-test-files": "off",
+      "camelcase": "off",
+      "indent": [
+        "error",
+        2,
+        {
+          "MemberExpression": "off",
+          "SwitchCase": 1
+        }
+      ],
+      "prefer-destructuring": [
+        "error",
+        {
+          "object": true,
+          "array": false
+        }
+      ],
+      "unicorn/prefer-exponentiation-operator": "off"
+    }
   }
 }
