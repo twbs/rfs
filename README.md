@@ -150,9 +150,18 @@ project/
 If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 ```scss
-@import "~rfs/less";
-@import "~rfs/sass"
 @import "~rfs/scss";
+```
+
+```sass
+@import "~rfs/sass"
+```
+
+```less
+@import "~rfs/less";
+```
+
+```stylus
 @import "~rfs/stylus"
 ```
 
