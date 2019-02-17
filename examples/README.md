@@ -4,7 +4,7 @@ Setup
 
 ```shell
 npm install
-# OR
+# or
 yarn
 ```
 
