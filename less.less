@@ -185,11 +185,11 @@
 ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix) {
 
   & when (@rfs-font-size-unit = px) {
-    font-size: calc(unit(@fs-min, px) ~"+" @fs-variable-width)@suffix;
+    font-size: calc(unit(@fs-min, px) ~"+" @fs-variable-width) @suffix;
   }
 
   & when (@rfs-font-size-unit = rem) {
-    font-size: calc(unit(@fs-min / @rfs-rem-value, rem) ~"+" @fs-variable-width)@suffix;
+    font-size: calc(unit(@fs-min / @rfs-rem-value, rem) ~"+" @fs-variable-width) @suffix;
   }
 }
 
@@ -210,11 +210,11 @@
 ._rfs-render-base-declaration(@fs, @suffix) {
 
   & when (@rfs-font-size-unit = px) {
-    font-size: unit(@fs, px)@suffix;
+    font-size: unit(@fs, px) @suffix;
   }
 
   & when (@rfs-font-size-unit = rem) {
-    font-size: unit((@fs / @rfs-rem-value), rem)@suffix;
+    font-size: unit((@fs / @rfs-rem-value), rem) @suffix;
   }
 }
 
