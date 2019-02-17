@@ -11,13 +11,13 @@ stylus.render(str, {
 }, (err, css) => {
   if (err) {
     throw err;
-  } else {
-    fs.writeFile(path.join(__dirname, '/dest/main.css'), css, err => {
-      if (err) {
-        throw err;
-      } else {
-        console.log('Responsive font sizes generated.');
-      }
-    });
   }
+
+  fs.writeFile(path.join(__dirname, '/dest/main.css'), css, err => {
+    if (err) {
+      throw err;
+    }
+
+    console.log('Responsive font sizes generated.');
+  });
 });

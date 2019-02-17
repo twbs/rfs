@@ -16,9 +16,9 @@ less.render(
     fs.writeFile(path.join(__dirname, '/dest/main.css'), output.css, err => {
       if (err) {
         throw err;
-      } else {
-        console.log('Responsive font sizes generated.');
       }
+
+      console.log('Responsive font sizes generated.');
     });
   },
   error => {

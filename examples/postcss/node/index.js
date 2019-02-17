@@ -23,7 +23,7 @@ const processedCss = postcss(rfs(options)).process(css).css;
 fs.writeFile(path.join(__dirname, '/dest/main.css'), processedCss, err => {
   if (err) {
     throw err;
-  } else {
-    console.log('Responsive font sizes generated.');
   }
+
+  console.log('Responsive font sizes generated.');
 });
