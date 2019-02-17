@@ -107,23 +107,23 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
         value = `calc(${toFixed(baseFontSize, opts.unitPrecision)}${opts.fontSizeUnit} + ${toFixed(fontSizeDiff * 100 / opts.breakpoint, opts.unitPrecision)}${viewportUnit})`;
 
         const mediaQuery = postcss.atRule(renderMediaQuery(opts));
-        let rule_selector = rule.selector;
+        let ruleSelector = rule.selector;
 
         // Prefix with .enable-responsive-font-size class if needed
         if (opts.class === 'enable') {
           const selectors = rule.selector.split(',');
-          let ruleSelector = '';
+          let tempRuleSelector = '';
 
           for (const selector of selectors) {
-            ruleSelector += `${ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR} ${selector},\n`;
-            ruleSelector += `${selector + ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR},\n`;
+            tempRuleSelector += `${ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR} ${selector},\n`;
+            tempRuleSelector += `${selector + ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR},\n`;
           }
 
-          rule_selector = ruleSelector.slice(0, -2);
+          ruleSelector = tempRuleSelector.slice(0, -2);
         }
 
         const mediaQueryRule = postcss.rule({
-          selector: rule_selector,
+          selector: ruleSelector,
           source: rule.source
         });
 
