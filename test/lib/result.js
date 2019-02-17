@@ -2,6 +2,7 @@
 
 // Packages
 const fs = require('fs');
+const path = require('path');
 const prettier = require('prettier');
 const sass = require('node-sass');
 const less = require('less');
@@ -10,36 +11,46 @@ const stylus = require('stylus');
 // Postcss
 const postcss = require('postcss');
 const rfs = require('../..');
-const postcsstests = require('../postcss/tests.js');
-
-// Strings
-const encoding = 'utf8';
-const dir = `${__dirname}/../`;
+const postcssTests = require('../postcss/tests.js');
 
 // Functions
-const format = css => prettier.format(css, {parser: 'css'}).replace(/(\n)(\n)/g, '$1');
-const getFileContent = (folder, id, ext) => fs.readFileSync(`${dir}${folder}/${id}.${ext}`, {encoding});
+function format(css) {
+  return prettier.format(css, {parser: 'css'}).replace(/(\n)(\n)/g, '$1');
+}
 
-const postcsscss = getFileContent('postcss', 'main', 'css');
+function getFileContent(folder, id, ext) {
+  return fs.readFileSync(path.join(__dirname, `../${folder}/${id}.${ext}`), 'utf8');
+}
+
+const postcssCss = getFileContent('postcss', 'main', 'css');
 
 // Exports
 module.exports = {
   // Return formatted expected result
-  expected: id => format(getFileContent('result', id, 'css')),
+  expected: id => format(getFileContent('expected', id, 'css')),
 
   // Return parsed css
-  sass: id => format(sass.renderSync({file: `${dir}sass/${id}.scss`}).css.toString(encoding)),
+  sass: id => {
+    return format(sass.renderSync({
+      file: path.join(__dirname, `../sass/${id}.scss`)
+    }).css.toString('utf8'));
+  },
 
   // Return parsed css
   less: id => {
-    return less.render(getFileContent('less', id, 'less'), {paths: [dir + 'less'], syncImport: true}).then(result => {
+    return less.render(getFileContent('less', id, 'less'), {
+      paths: [path.join(__dirname, '../less')],
+      syncImport: true
+    }).then(result => {
       return format(result.css);
     });
   },
 
   stylus: id => {
     let formattedCSS = '';
-    stylus.render(getFileContent('stylus', id, 'styl'), {filename: `${dir}stylus/${id}.styl`}, (err, css) => {
+    stylus.render(getFileContent('stylus', id, 'styl'), {
+      filename: path.join(__dirname, `../stylus/${id}.styl`)
+    }, (err, css) => {
       if (err) {
         throw err;
       }
@@ -49,5 +60,7 @@ module.exports = {
     return formattedCSS;
   },
 
-  postcss: id => format(postcss(rfs(postcsstests[id])).process(postcsscss).css)
+  postcss: id => {
+    return format(postcss(rfs(postcssTests[id])).process(postcssCss).css);
+  }
 };
