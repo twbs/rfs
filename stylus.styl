@@ -1,5 +1,3 @@
-// stylelint-disable declaration-property-value-blacklist
-
 // Stylus RFS mixin
 //
 // Automated font-resizing
@@ -154,7 +152,6 @@ rfs($fs, $important = false)
             font-size: $rfs-fluid
 
           if $rfs-safari-iframe-resize-bug-fix
-            // stylelint-disable-next-line length-zero-no-unit
             min-width: 0vw
       else
         @media (max-width: $mq-value)
