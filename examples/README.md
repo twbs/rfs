@@ -42,22 +42,7 @@ gulp build
 ```
 
 
-## Sass
-
-### node
-
-```shell
-cd examples/sass/node
-node ./index.js
-```
-### Gulp
-```shell
-cd examples/sass/gulp
-gulp build
-```
-
-
-## SCSS
+## Sass/SCSS
 
 ### node
 
