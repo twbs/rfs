@@ -13,7 +13,7 @@ const styles = [
   'Postcss'
 ];
 
-styles.forEach(style => {
+function doTest(style) {
   describe(style, () => {
     tests.forEach(test => {
       it(test.name, done => {
@@ -35,4 +35,8 @@ styles.forEach(style => {
       });
     });
   });
+}
+
+styles.forEach(style => {
+  doTest(style);
 });
