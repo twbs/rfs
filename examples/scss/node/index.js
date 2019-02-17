@@ -10,15 +10,15 @@ sass.render({
 }, (error, result) => { // Node-style callback from v3.0.0 onwards
   if (error) {
     throw error;
-  } else {
-    // No errors during the compilation, write this result on the disk
-    fs.writeFile(path.join(__dirname, '/dest/main.css'), result.css, err => {
-      if (err) {
-        throw err;
-      } else {
-        console.log('Responsive font sizes generated.');
-      }
-    });
   }
+
+  // No errors during the compilation, write this result on the disk
+  fs.writeFile(path.join(__dirname, '/dest/main.css'), result.css, err => {
+    if (err) {
+      throw err;
+    }
+
+    console.log('Responsive font sizes generated.');
+  });
 }
 );
