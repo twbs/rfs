@@ -1,8 +1,10 @@
-// PostCSS RFS plugin
-//
-// Automated font-resizing
-//
-// See https://github.com/twbs/rfs
+/*!
+ * PostCSS RFS plugin
+ *
+ * Automated font-resizing
+ *
+ * Licensed under MIT (https://github.com/twbs/rfs/blob/master/LICENSE)
+ */
 
 'use strict';
 
@@ -14,6 +16,7 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
   const BASE_FONT_SIZE_ERROR = 'baseFontSize option is invalid, it must be set in `px` or `rem`.';
   const DISABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.disable-responsive-font-size';
   const ENABLE_RESPONSIVE_FONT_SIZE_SELECTOR = '.enable-responsive-font-size';
+
   const defaultOptions = {
     baseFontSize: 20,
     fontSizeUnit: 'rem',
