@@ -36,8 +36,9 @@
   },
   "scripts": {
     "mocha": "mocha",
+    "stylelint": "stylelint **/*.less **/*.scss **/*.sass",
     "xo": "xo",
-    "lint": "npm run xo",
+    "lint": "npm run xo && npm run stylelint",
     "test": "npm run lint && npm run mocha",
     "generate-test-results": "node-sass test/sass/ -o test/result/",
     "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../scss/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
@@ -60,6 +61,8 @@
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "prettier": "^1.16.4",
+    "stylelint": "^9.10.1",
+    "stylelint-config-standard": "^18.2.0",
     "stylus": "^0.54.5",
     "xo": "^0.24.0"
   },
