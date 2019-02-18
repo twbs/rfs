@@ -54,7 +54,7 @@ else if $rfs-breakpoint-unit-cache == "rem" or $rfs-breakpoint-unit-cache == "em
 
 // Responsive font-size mixin
 rfs($fs, $important = false)
-  $rfs-suffix = "%s" % ()
+  $rfs-suffix = unquote('')
 
   if type-of($fs) == "unit"
     $fs-unit = unit($fs)
@@ -65,7 +65,7 @@ rfs($fs, $important = false)
 
   // If $fs is not a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
   if type-of($fs) != "unit" or ($fs-unit != "" and $fs-unit != "px" and $fs-unit != "rem") or $fs == 0
-    font-size: "%s%s" % ($fs $rfs-suffix)
+    font-size: ($fs)$rfs-suffix
   else
     // Variables for storing static and fluid rescaling
     $rfs-static = null
@@ -79,9 +79,9 @@ rfs($fs, $important = false)
 
     // Set default font-size.
     if $rfs-font-size-unit == rem
-      $rfs-static = "%s%s" % (unit(($fs / $rfs-rem-value), rem)  $rfs-suffix)
+      $rfs-static = unit(($fs / $rfs-rem-value), rem)$rfs-suffix
     else if $rfs-font-size-unit == px
-      $rfs-static = "%s%s" % (unit($fs, px)  $rfs-suffix)
+      $rfs-static = unit($fs, px)$rfs-suffix
     else
       error("`$rfs-font-size-unit` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`.")
 
@@ -114,10 +114,10 @@ rfs($fs, $important = false)
         $variable-unit = vw
 
       // Calculate the variable width between 0 and $rfs-breakpoint
-      $variable-width = "%s%s" % ($fs-diff * 100 / $rfs-breakpoint $variable-unit)
+      $variable-width = unit(round($fs-diff * 100) / $rfs-breakpoint, $variable-unit)
 
       // Set the calculated font-size
-      $rfs-fluid = "calc(%s + %s)%s" % ($min-width $variable-width $rfs-suffix)
+      $rfs-fluid = unquote("calc(" + $min-width + " + " + $variable-width + ")" + $rfs-suffix)
 
     // Rendering
     if $rfs-fluid == null
