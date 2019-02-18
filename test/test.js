@@ -20,8 +20,7 @@ function doTest(style) {
         const generated = result[style.toLowerCase()](test.id);
         const expected = result.expected(test.id);
 
-        // If promise:
-        if (typeof generated.then === 'function') {
+        if (generated instanceof Promise) {
           generated.then(generated => {
             assert.strictEqual(generated, expected);
             done();
