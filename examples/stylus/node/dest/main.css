@@ -17,7 +17,7 @@
   }
 }
 .selector-3 {
-  font-size: 2rem!important;
+  font-size: 2rem !important;
 }
 @media (max-width: 1200px) {
   .selector-3 {
