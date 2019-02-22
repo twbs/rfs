@@ -258,6 +258,17 @@ This value determines the strength of font size resizing. The higher the factor,
 *Default value: `10`*
 
 
+### Rem value <sub><sup>(number)</sup></sub>
+
+- SCSS, Sass & Stylus: `$rfs-rem-value`
+- Less: `@rfs-rem-value`
+- PostCSS: `remValue`
+
+The value of `1rem` in `px`. The value of `1rem` is typically `16px` but if the font size is changed for `html` the value of `1rem` changes. This variable can be used to change the default value but be careful with it because changing it could lead to unexpected behaviour, for example if additional CSS is loaded which expects `1rem` to be `16px`.
+
+*Default value: `16`*
+
+
 ### Two dimensional <sub><sup>(boolean)</sup></sub>
 
 - SCSS, Sass & Stylus: `$rfs-two-dimensional`
