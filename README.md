@@ -189,6 +189,16 @@ If you wonder how the font sizes are rescaled, wonder no more and stare at this 
 
 ![RFS visualisation](https://i.imgur.com/P2ixaKH.png)
 
+Each color represents another font size being rescaled. For example:
+
+```scss
+.title {
+  @include font-size(40px);
+}
+```
+
+This is the green line. A font size of `40px` stays `40px` in viewports with a size larger than `1200px`. Below `1200px`, the font size is rescaled and at viewport of `360px`, the font size is about `27px`. Note that every font size is generated in a combination of `rem` and `vw` units, but they are mapped  to `px` in the graph to make it easier to understand.
+
 
 ## Configuration
 
