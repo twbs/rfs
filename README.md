@@ -189,6 +189,16 @@ If you wonder how the font sizes are rescaled, wonder no more and stare at this 
 
 ![RFS visualisation](https://i.imgur.com/P2ixaKH.png)
 
+Each color represents another font size being rescaled. For example:
+
+```scss
+.title {
+  @include font-size(40px);
+}
+```
+
+This is the green line. A font size of `40px` stays `40px` in viewports with a size larger than `1200px`. Below `1200px`, the font size is rescaled and at viewport of `360px`, the font size is about `27px`. Note that every font size is generated in a combination of `rem` and `vw` units, but they are mapped  to `px` in the graph to make it easier to understand.
+
 
 ## Configuration
 
@@ -248,6 +258,17 @@ The width of the max width in the media query will be rendered in this unit.
 This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1.
 
 *Default value: `10`*
+
+
+### Rem value <sub><sup>(number)</sup></sub>
+
+- SCSS, Sass & Stylus: `$rfs-rem-value`
+- Less: `@rfs-rem-value`
+- PostCSS: `remValue`
+
+The value of `1rem` in `px`. The value of `1rem` is typically `16px` but if the font size is changed for `html` the value of `1rem` changes. This variable can be used to change the default value but be careful with it because changing it could lead to unexpected behaviour, for example if additional CSS is loaded which expects `1rem` to be `16px`.
+
+*Default value: `16`*
 
 
 ### Two dimensional <sub><sup>(boolean)</sup></sub>
