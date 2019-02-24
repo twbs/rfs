@@ -30,7 +30,7 @@
 - The font sizes of all text elements will always remain in relation with each other
 
 
-![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif?sanitize=true)
+![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
 
 
 ## Installation
