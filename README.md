@@ -30,7 +30,7 @@
 - The font sizes of all text elements will always remain in relation with each other
 
 
-![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif?sanitize=true)
+![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
 
 
 ## Installation
@@ -185,7 +185,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 ## Visualisation
 
-If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit. The font sizes used on the graph are in `px`, but in reality RFS renders them in `rem` by default:
+If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit:
 
 ![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-graph.svg?sanitize=true)
 
