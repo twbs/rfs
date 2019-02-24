@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/twbs/rfs/master/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
+  <img src="https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
 </p>
 
 <p  align="center">
@@ -30,7 +30,7 @@
 - The font sizes of all text elements will always remain in relation with each other
 
 
-![RFS](https://i.imgur.com/gJH6m6g.gif)
+![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif?sanitize=true)
 
 
 ## Installation
@@ -187,7 +187,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit. The font sizes used on the graph are in `px`, but in reality RFS renders them in `rem` by default:
 
-![RFS visualisation](https://i.imgur.com/P2ixaKH.png)
+![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-graph.svg?sanitize=true)
 
 Each color represents another font size being rescaled. For example:
 
