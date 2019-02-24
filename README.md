@@ -185,7 +185,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 ## Visualisation
 
-If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit. The font sizes used on the graph are in `px`, but in reality RFS renders them in `rem` by default:
+If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit:
 
 ![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-graph.svg?sanitize=true)
 
