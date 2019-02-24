@@ -1,5 +1,0 @@
---check-leaks
---throw-deprecation
---trace-deprecation
---trace-warnings
---use_strict
