@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
+  <img src="https://raw.githubusercontent.com/twbs/rfs/master/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
 </p>
 
 <p  align="center">
