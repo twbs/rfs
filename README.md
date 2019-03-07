@@ -53,7 +53,7 @@ In the following examples, this folder structure is assumed (you will probably j
 
 ```text
 project/
-├── postccss/
+├── postcss/
 │   └── main.css
 ├── less/
 │   └── main.less
