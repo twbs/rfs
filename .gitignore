@@ -6,3 +6,5 @@ node_modules/
 
 # Ignore
 test/expected/main.css
+
+/.idea/
