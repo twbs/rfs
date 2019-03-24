@@ -342,6 +342,19 @@ CSS:
 - Always set your line-heights relative (in `em` or unitless) to prevent interline issues.
 
 
+## Browser support
+
+RFS is supported by all browsers that support [media queries](https://caniuse.com/#feat=css-mediaqueries) and [viewport units](https://caniuse.com/#feat=viewport-units). In browsers like IE8 or older, the font size will be set but the fluid rescaling will be disabled. A list of the most popular browsers that support RFS:
+- Chrome
+- Safari
+- Opera
+- Firefox
+- Edge
+- Samsung Internet
+- UC Browsers
+- IE >= 9
+
+
 ## Demos
 
 - [Simple Codepen Demo](https://codepen.io/MartijnCuppens/pen/ZBjdMy)
