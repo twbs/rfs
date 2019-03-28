@@ -42,3 +42,9 @@
   @media (max-width: 1200px) {
     .selector-8 {
       font-size: calc(21.2px + 0.9vw) ; } }
+
+.selector-9 {
+  font-size: 32px; }
+  @media (max-width: 1200px) {
+    .selector-9 {
+      font-size: calc(21.2px + 0.9vw) ; } }

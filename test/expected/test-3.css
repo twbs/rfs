@@ -53,3 +53,11 @@
 @media (max-width: 1200px) {
   .selector-8 {
     font-size: calc(1.325rem + 0.9vw) ; } }
+
+.selector-9,
+.disable-responsive-font-size .selector-9, .selector-9.disable-responsive-font-size {
+  font-size: 2rem; }
+
+@media (max-width: 1200px) {
+  .selector-9 {
+    font-size: calc(1.325rem + 0.9vw) ; } }

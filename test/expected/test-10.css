@@ -48,3 +48,10 @@
     .selector-8 {
       font-size: calc(16px + 2vmin) ;
       min-width: 0vw; } }
+
+.selector-9 {
+  font-size: 32px; }
+  @media (max-width: 50rem), (max-height: 50rem) {
+    .selector-9 {
+      font-size: calc(16px + 2vmin) ;
+      min-width: 0vw; } }

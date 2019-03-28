@@ -43,3 +43,8 @@
 .selector-8 {
   @include responsive-font-size(32);
 }
+
+// font-size shorthand
+.selector-9 {
+  @include font-size(2rem);
+}
