@@ -378,5 +378,5 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LI
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
 [license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
-[build-image]: https://img.shields.io/travis/twbs/rfs/master.svg
-[build-url]: https://travis-ci.org/twbs/rfs
+[build-image]: https://img.shields.io/circleci/project/gh/twbs/rfs/master.svg
+[build-url]: https://circleci.com/gh/twbs/rfs
