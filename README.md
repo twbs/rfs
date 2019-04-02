@@ -147,6 +147,7 @@ project/
   // or
   rfs(64)
 ```
+
 Note the `font-size` mixin can not be used to set the font size. That is because a `font-size()` mixin would override the `font-size` property. See [129#issuecomment-477926416](https://github.com/twbs/rfs/pull/129#issuecomment-477926416) for more info.
 
 ### Generated css
