@@ -42,3 +42,9 @@
   @media (max-width: 1200px) {
     .enable-responsive-font-size .selector-8, .selector-8.enable-responsive-font-size {
       font-size: calc(1.325rem + 0.9vw) ; } }
+
+.selector-9 {
+  font-size: 2rem; }
+  @media (max-width: 1200px) {
+    .enable-responsive-font-size .selector-9, .selector-9.enable-responsive-font-size {
+      font-size: calc(1.325rem + 0.9vw) ; } }
