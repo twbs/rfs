@@ -143,13 +143,12 @@ project/
 @import "../node_modules/rfs/stylus";
 
 .title
-  font-size(4rem)
-  // or
   responsive-font-size(64px)
   // or
   rfs(64)
 ```
 
+Note the `font-size` mixin can not be used to set the font size. That is because a `font-size()` mixin would override the `font-size` property. See [129#issuecomment-477926416](https://github.com/twbs/rfs/pull/129#issuecomment-477926416) for more info.
 
 ### Generated css
 
