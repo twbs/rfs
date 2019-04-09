@@ -69,16 +69,9 @@
     "xo": "^0.24.0"
   },
   "xo": {
+    "space": true,
     "rules": {
       "ava/no-import-test-files": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "MemberExpression": "off",
-          "SwitchCase": 1
-        }
-      ],
       "prefer-destructuring": [
         "error",
         {
