@@ -32,7 +32,7 @@
     "postcss"
   ],
   "engines": {
-    "node": ">=6"
+    "node": ">=8"
   },
   "scripts": {
     "mocha": "mocha",
@@ -79,6 +79,7 @@
           "array": false
         }
       ],
+      "promise/prefer-await-to-then": "off",
       "unicorn/prefer-exponentiation-operator": "off"
     }
   }
