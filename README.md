@@ -11,6 +11,7 @@
 [![npm][npm-image]][npm-url]
 [![licence][licence-image]][license-url]
 [![build][build-image]][build-url]
+[![devDeps][devDeps-image]][devDeps-url]
 
 - [How does it work?](#how-does-it-work)
 - [Installation](#installation)
@@ -379,3 +380,5 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LI
 [license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
 [build-image]: https://img.shields.io/circleci/project/github/twbs/rfs/master.svg
 [build-url]: https://circleci.com/gh/twbs/rfs
+[devDeps-image]: https://img.shields.io/david/dev/twbs/rfs.svg
+[devDeps-url]: https://david-dm.org/twbs/rfs?type=dev
