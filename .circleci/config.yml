@@ -20,19 +20,6 @@ commands:
       - run: npm --version
 
 jobs:
-  node-6:
-    docker:
-      - image: circleci/node:6-stretch
-    steps:
-      - install
-      - run: npm install
-      - save_cache:
-          key: *npm_cache_filename
-          name: Save npm modules
-          paths:
-            - ./node_modules/
-      - run: npm test
-
   node-8:
     docker:
       - image: circleci/node:8-stretch
@@ -59,10 +46,23 @@ jobs:
             - /home/circleci/.npm
       - run: npm test
 
+  node-12:
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - install
+      - run: npm ci
+      - save_cache:
+          key: *npm_cache_filename
+          name: Save npm modules
+          paths:
+            - /home/circleci/.npm
+      - run: npm test
+
 workflows:
   version: 2
   test:
     jobs:
-      - node-6
       - node-8
       - node-10
+      - node-12
