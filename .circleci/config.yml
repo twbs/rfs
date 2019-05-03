@@ -1,63 +1,38 @@
 version: 2.1
 
-aliases:
-  - &npm_cache_filename |
-    {{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
-
-commands:
-  install:
-    parameters:
-      install-commands:
-        description: "Steps that will be executed before the tests"
-        type: steps
-        default: []
-    steps:
-      - checkout
-      - restore_cache:
-          key: *npm_cache_filename
-          name: Restoring npm modules
-      - run: node --version
-      - run: npm --version
+_common: &common
+  steps:
+    - checkout
+    - restore_cache:
+        keys:
+          - npm-deps-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
+          - npm-deps-{{ .Environment.CIRCLE_JOB }}-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
+        name: Restore npm modules
+    - run: node --version
+    - run: npm --version
+    - run: npm ci
+    - save_cache:
+        key: npm-deps-{{ .Environment.CIRCLE_JOB }}-{{ .Branch }}-{{ checksum ".circleci/config.yml" }}-{{ checksum "package-lock.json" }}
+        name: Save npm modules
+        paths:
+          - ~/.npm/
+    - run: npm test
 
 jobs:
   node-8:
     docker:
       - image: circleci/node:8-stretch
-    steps:
-      - install
-      - run: npm ci
-      - save_cache:
-          key: *npm_cache_filename
-          name: Save npm modules
-          paths:
-            - /home/circleci/.npm
-      - run: npm test
+    <<: *common
 
   node-10:
     docker:
       - image: circleci/node:10-stretch
-    steps:
-      - install
-      - run: npm ci
-      - save_cache:
-          key: *npm_cache_filename
-          name: Save npm modules
-          paths:
-            - /home/circleci/.npm
-      - run: npm test
+    <<: *common
 
   node-12:
     docker:
       - image: circleci/node:12-stretch
-    steps:
-      - install
-      - run: npm ci
-      - save_cache:
-          key: *npm_cache_filename
-          name: Save npm modules
-          paths:
-            - /home/circleci/.npm
-      - run: npm test
+    <<: *common
 
 workflows:
   version: 2
