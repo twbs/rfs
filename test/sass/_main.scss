@@ -1,0 +1,137 @@
+@import "../../scss";
+
+// font-size property with `px` unit
+.selector-1 {
+  background-color: #f00;
+  width: 300px;
+  @include font-size(32px);
+}
+
+// font-size property with `rem` unit
+.selector-2 {
+  @include font-size(2rem);
+}
+
+// font-size property with !important
+.selector-3 {
+  @include font-size(2rem !important);
+}
+
+// rfs shorthand
+.selector-4 {
+  @include rfs(2rem);
+}
+
+// not supported unit
+.selector-5 {
+  @include font-size(2em);
+}
+
+// special value
+.selector-6 {
+  @include font-size(inherit);
+}
+
+// font-size property inside @support-query
+@supports (display: flex) {
+  .selector-7 {
+    @include rfs(28px);
+  }
+}
+
+// flex property with unitless values
+.selector-8 {
+  @include rfs(0 999 32rem, flex);
+}
+
+// padding property
+.selector-9 {
+  @include rfs(2rem, $property: padding);
+}
+
+// padding shorthands
+.selector-10 {
+  @include padding(2rem);
+}
+
+.selector-11 {
+  @include padding-top(2rem);
+}
+
+.selector-12 {
+  @include padding-right(2rem);
+}
+
+.selector-13 {
+  @include padding-bottom(2rem);
+}
+
+.selector-14 {
+  @include padding-left(2rem);
+}
+
+// margin shorthands
+.selector-15 {
+  @include margin(2rem);
+}
+
+.selector-16 {
+  @include margin-top(2rem);
+}
+
+.selector-17 {
+  @include margin-right(2rem);
+}
+
+.selector-18 {
+  @include margin-bottom(2rem);
+}
+
+.selector-19 {
+  @include margin-left(2rem);
+}
+
+// Multiple values
+.selector-20 {
+  @include margin(2rem 3rem);
+}
+
+// Multiple values with important
+.selector-21 {
+  @include margin(2rem 3rem !important);
+}
+
+// Zero test
+.selector-22 {
+  @include rfs(0);
+}
+
+// Zero combination test
+.selector-23 {
+  @include margin(0 3rem);
+}
+
+// Value with comma
+.selector-24 {
+  @include rfs(0 0 2rem #f00 #{","} 0 0 3rem #0f0, box-shadow);
+}
+
+// Custom properties
+.selector-25 {
+  @include rfs(3rem, --value);
+}
+
+// Test small value
+.selector-26 {
+  @include font-size(10px);
+}
+
+// Negative units
+.selector-27 {
+  @include margin(-3rem);
+}
+
+// Small negative unit
+.selector-28 {
+  @include margin(-.5rem);
+}

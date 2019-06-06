@@ -1,6 +1,8 @@
 # Examples
 
-Setup
+## Setup
+
+Install dependencies in the root of the project.
 
 ```shell
 npm install
@@ -8,20 +10,24 @@ npm install
 yarn
 ```
 
+## Example setup
+
+Each folder contains a node (`index.js`) & gulp (`gulpfile.js`) example.
+
 ## Less
 
 ### node
 
 ```shell
-cd examples/less/node
-node ./index.js
+cd examples/less
+node index.js
 ```
 
 ### Gulp
 
 ```shell
-cd examples/less/gulp
-gulp build
+cd examples/less
+gulp
 ```
 
 
@@ -30,15 +36,15 @@ gulp build
 ### node
 
 ```shell
-cd examples/postcss/node
-node ./index.js
+cd examples/postcss
+node index.js
 ```
 
 ### Gulp
 
 ```shell
-cd examples/postcss/gulp
-gulp build
+cd examples/postcss
+gulp
 ```
 
 
@@ -47,15 +53,15 @@ gulp build
 ### node
 
 ```shell
-cd examples/scss/node
-node ./index.js
+cd examples/scss
+node index.js
 ```
 
 ### Gulp
 
 ```shell
-cd examples/scss/gulp
-gulp build
+cd examples/scss
+gulp
 ```
 
 
@@ -64,13 +70,13 @@ gulp build
 ### node
 
 ```shell
-cd examples/stylus/node
-node ./index.js
+cd examples/stylus
+node index.js
 ```
 
 ### Gulp
 
 ```shell
-cd examples/stylus/gulp
-gulp build
+cd examples/stylus
+gulp
 ```
