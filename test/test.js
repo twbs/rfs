@@ -3,14 +3,15 @@
 'use strict';
 
 const assert = require('assert');
+const args = require('yargs').argv;
 const result = require('./lib/result.js');
 const tests = require('./tests.json');
 
-const styles = [
+const styles = args.styles ? args.styles.split(',') : [
   'Less',
+  'PostCSS',
   'Sass',
-  'Stylus',
-  'Postcss'
+  'Stylus'
 ];
 
 function doTest(style) {

@@ -36,7 +36,13 @@
   },
   "scripts": {
     "mocha": "mocha",
-    "stylelint": "stylelint \"**/*.less\" \"**/*.scss\" \"**/*.sass\" --cache --cache-location node_modules/.cache/stylelint",
+    "mocha-less": "mocha --styles=Less",
+    "mocha-postcss": "mocha --styles=PostCSS",
+    "mocha-sass": "mocha --styles=Sass",
+    "mocha-stylus": "mocha --styles=Stylus",
+    "stylelint": "npm-run-all stylelint-less stylelint-sass",
+    "stylelint-less": "stylelint \"**/*.less\" --cache --cache-location node_modules/.cache/stylelint",
+    "stylelint-sass": "stylelint \"**/*.scss\" \"**/*.sass\" --cache --cache-location node_modules/.cache/stylelint",
     "xo": "xo",
     "lint": "npm-run-all --parallel xo stylelint",
     "test": "npm run lint && npm run mocha",
@@ -61,7 +67,8 @@
     "stylelint": "^10.1.0",
     "stylelint-config-standard": "^18.3.0",
     "stylus": "^0.54.5",
-    "xo": "^0.24.0"
+    "xo": "^0.24.0",
+    "yargs": "^13.3.0"
   },
   "xo": {
     "space": true,
