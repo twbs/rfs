@@ -1,34 +1,34 @@
 pre-commit:
   commands:
     lint-sass:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "{*.sass,*.scss,.stylelintrc}"
       run: npm run stylelint-sass
     lint-less:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "{*.less,.stylelintrc}"
       run: npm run stylelint-less
     lint-js:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "*.js"
       run: npm run xo
     test-less:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "*.less"
       run: npm run mocha-less
     test-postcss:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "*.js"
       run: npm run mocha-postcss
     test-sass:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "{*.sass,*.scss}"
       run: npm run mocha-sass
     test-stylus:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "*.styl"
       run: npm run mocha-stylus
     test-all:
-      files: git diff --name-only
+      files: git diff --name-only HEAD
       glob: "package.json"
       run: npm test
