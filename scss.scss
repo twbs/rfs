@@ -155,7 +155,7 @@ $rfs-breakpoint-unit-cache: unit($rfs-breakpoint);
       $variable-width: #{$fs-diff * 100 / $rfs-breakpoint}#{$variable-unit};
 
       // Set the calculated font-size
-      $rfs-fluid: calc(#{$min-width} + #{$variable-width}) #{$rfs-suffix};
+      $rfs-fluid: calc(#{$min-width} + #{$variable-width})#{$rfs-suffix};
 
       // Breakpoint formatting
       $mq-value: if($rfs-breakpoint-unit == px, #{$rfs-breakpoint}px, #{$rfs-breakpoint / $rfs-rem-value}#{$rfs-breakpoint-unit});
