@@ -10,7 +10,7 @@
 
 [![npm][npm-image]][npm-url]
 [![licence][licence-image]][license-url]
-[![build][build-image]][build-url]
+![build][build-image]
 [![devDeps][devDeps-image]][devDeps-url]
 
 - [How does it work?](#how-does-it-work)
@@ -373,12 +373,10 @@ RFS is supported by all browsers that support [media queries](https://caniuse.co
 
 Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LICENSE).
 
-
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
 [license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
-[build-image]: https://img.shields.io/circleci/project/github/twbs/rfs/master.svg
-[build-url]: https://circleci.com/gh/twbs/rfs
+[build-image]: https://action-badges.now.sh/twbs/rfs
 [devDeps-image]: https://img.shields.io/david/dev/twbs/rfs.svg
 [devDeps-url]: https://david-dm.org/twbs/rfs?type=dev
