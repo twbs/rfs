@@ -255,7 +255,7 @@ The width of the max width in the media query will be rendered in this unit.
 - Less: `@rfs-factor`
 - PostCSS: `factor`
 
-This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must me greater than 1.
+This value determines the strength of font size resizing. The higher the factor, the less difference there is between font sizes on small screens. The lower the factor, the less influence RFS has, which results in bigger font sizes for small screens. The factor must be greater than 1.
 
 *Default value: `10`*
 
