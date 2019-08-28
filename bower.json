@@ -1,25 +1,29 @@
 {
   "name": "rfs",
-  "description": "A scss-mixin for responsive font-sizes.",
-  "main": "postcss/rfs.js",
+  "description": "Powerful & easy-to-use responsive resizing engine.",
+  "main": "postcss.js",
   "authors": [
     "Martijn Cuppens <martijn.cuppens@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
     "rfs",
-    "scss",
+    "fluid",
     "responsive",
-    "responsive-font-size",
     "font-size",
-    "typography"
+    "typography",
+    "mixin",
+    "scss",
+    "sass",
+    "less",
+    "stylus",
+    "postcss"
   ],
   "homepage": "https://github.com/twbs/rfs",
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test"
   ]
 }

@@ -38,5 +38,9 @@
   {
     "id": "test-10",
     "name": "Include mixins multiple times"
+  },
+  {
+    "id": "test-11",
+    "name": "Use max-media-query mode"
   }
 ]

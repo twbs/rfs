@@ -4,7 +4,4 @@ npm-debug.log*
 # Dependency directories
 node_modules/
 
-# Ignore
-/test/expected/main.css
-
 /.idea/

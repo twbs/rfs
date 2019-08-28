@@ -1,0 +1,88 @@
+@import "../../../stylus"
+
+.selector-1
+  background-color: #f00
+  width: 300px
+  rfs(32px)
+
+.selector-2
+  rfs(2rem)
+
+.selector-3
+  rfs(2rem !important)
+
+.selector-4
+  rfs(2rem)
+
+.selector-5
+  rfs(2em)
+
+.selector-6
+  rfs(inherit)
+
+@supports (display: flex)
+  .selector-7
+    rfs(28px)
+
+.selector-8
+  rfs(0 999 32rem, flex)
+
+.selector-9
+  rfs(2rem, padding)
+
+.selector-10
+  rfs-padding(2rem)
+
+.selector-11
+  rfs-padding-top(2rem)
+
+.selector-12
+  rfs-padding-right(2rem)
+
+.selector-13
+  rfs-padding-bottom(2rem)
+
+.selector-14
+  rfs-padding-left(2rem)
+
+.selector-15
+  rfs-margin(2rem)
+
+.selector-16
+  rfs-margin-top(2rem)
+
+.selector-17
+  rfs-margin-right(2rem)
+
+.selector-18
+  rfs-margin-bottom(2rem)
+
+.selector-19
+  rfs-margin-left(2rem)
+
+.selector-20
+  rfs-margin(2rem 3rem)
+
+.selector-21
+  rfs-margin(2rem 3rem !important)
+
+.selector-22
+  rfs(0)
+
+.selector-23
+  rfs-margin(0 3rem)
+
+.selector-24
+  rfs(0 0 2rem #f00\, 0 0 3rem #0f0, box-shadow)
+
+.selector-25
+  rfs(3rem, --value)
+
+.selector-26
+  rfs-font-size(10px)
+
+.selector-27
+  rfs-margin(-3rem)
+
+.selector-28
+  rfs-margin(-.5rem)

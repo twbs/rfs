@@ -1,24 +1,27 @@
 // Stylus RFS mixin
 //
-// Automated font-resizing
+// Automated responsive values for for font sizes, paddings, margins and much more
 //
-// See https://github.com/twbs/rfs
+// Licensed under MIT (https://github.com/twbs/rfs/blob/master/LICENSE)
 
 // Configuration
 
-// Base font size
-$rfs-base-font-size ?= 1.25rem
-$rfs-font-size-unit ?= rem
+// Base value
+$rfs-base-value ?= 1.25rem
+$rfs-unit ?= rem
 
-// Breakpoint at where font-size starts decreasing if screen width is smaller
+// Breakpoint at where values start decreasing if screen width is smaller
 $rfs-breakpoint ?= 1200px
 $rfs-breakpoint-unit ?= px
 
-// Resize font-size based on screen height and width
+// Resize values based on screen height and width
 $rfs-two-dimensional ?= false
 
 // Factor of decrease
 $rfs-factor ?= 10
+
+// Mode. Possibilities: "min-media-query", "max-media-query"
+$rfs-mode ?= "min-media-query"
 
 // Generate enable or disable classes. Possibilities: false, "enable" or "disable"
 $rfs-class ?= false
@@ -29,17 +32,17 @@ $rfs-rem-value ?= 16
 // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
 $rfs-safari-iframe-resize-bug-fix ?= false
 
-// Disable RFS by setting $enable-responsive-font-sizes to false
-$enable-responsive-font-sizes ?= true
+// Disable RFS by setting $enable-rfs to false
+$enable-rfs ?= true
 
-// Cache $rfs-base-font-size unit
-$rfs-base-font-size-unit = unit($rfs-base-font-size)
+// Cache $rfs-base-value unit
+$rfs-base-value-unit = unit($rfs-base-value)
 
-// Remove px-unit from $rfs-base-font-size for calculations
-if $rfs-base-font-size-unit == "px"
-  $rfs-base-font-size = unit($rfs-base-font-size, "")
-else if $rfs-base-font-size-unit == "rem"
-  $rfs-base-font-size = unit($rfs-base-font-size * $rfs-rem-value, "")
+// Remove px-unit from $rfs-base-value for calculations
+if $rfs-base-value-unit == "px"
+  $rfs-base-value = unit($rfs-base-value, "")
+else if $rfs-base-value-unit == "rem"
+  $rfs-base-value = unit($rfs-base-value * $rfs-rem-value, "")
 
 // Cache $rfs-breakpoint unit to prevent multiple calls
 $rfs-breakpoint-unit-cache = unit($rfs-breakpoint)
@@ -50,122 +53,195 @@ if $rfs-breakpoint-unit-cache == "px"
 else if $rfs-breakpoint-unit-cache == "rem" or $rfs-breakpoint-unit-cache == "em"
   $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
-// Responsive font-size mixin
-rfs($fs, $important = false)
-  $rfs-suffix = unquote('')
+if $rfs-breakpoint-unit == px
+  $rfs-mq-value = unit($rfs-breakpoint, px)
+else
+  $rfs-mq-value = unit($rfs-breakpoint / $rfs-rem-value, $rfs-breakpoint-unit)
 
-  if type-of($fs) == "unit"
-    $fs-unit = unit($fs)
 
-  // Add !important suffix if needed
-  if $important
-    $rfs-suffix = !important
+if $rfs-mode == min-media-query
+  $rfs-mq-property-width = min-width
+else
+  $rfs-mq-property-width = max-width
 
-  // If $fs is not a number (like inherit) or $fs has a unit (not px or rem, like 1.5em) or $ is 0, just print the value
-  if type-of($fs) != "unit" or ($fs-unit != "" and $fs-unit != "px" and $fs-unit != "rem") or $fs == 0
-    font-size: ($fs)$rfs-suffix
+if $rfs-mode == min-media-query
+  $rfs-mq-property-height = min-height
+else
+  $rfs-mq-property-height = max-height
+
+_rfs-rule()
+  if $rfs-class == "disable" and $rfs-mode == max-media-query
+    &,
+    .disable-rfs &,
+    &.disable-rfs
+      {block}
+  else if $rfs-class == "enable" and $rfs-mode == min-media-query
+    .enable-rfs &,
+    &.enable-rfs
+      {block}
   else
-    // Variables for storing static and fluid rescaling
-    $rfs-static = null
-    $rfs-fluid = null
+    {block}
 
-    // Remove px-unit from $fs for calculations
-    if $fs-unit == px
-      $fs = unit($fs, "")
-    else if $fs-unit == rem
-      $fs = unit($fs * $rfs-rem-value, "")
+_rfs-media-query-rule()
+  if $rfs-class == "enable"
+    if $rfs-mode == min-media-query
+      {block}
+    +_rfs-media-query()
+      .enable-rfs &,
+      &.enable-rfs
+        {block}
+  else
+    if $rfs-class == disable and $rfs-mode == min-media-query
+      .disable-rfs &,
+      &.disable-rfs
+        {block}
+    +_rfs-media-query()
+      {block}
 
-    // Set default font-size.
-    if $rfs-font-size-unit == rem
-      $rfs-static = unit(($fs / $rfs-rem-value), rem)$rfs-suffix
-    else if $rfs-font-size-unit == px
-      $rfs-static = unit($fs, px)$rfs-suffix
-    else
-      error("`$rfs-font-size-unit` is not a valid unit for $rfs-font-size-unit. Use `px` or `rem`.")
+// Internal mixin used to determine which media query needs to be used
+_rfs-media-query()
+  if $rfs-two-dimensional
+    @media ({$rfs-mq-property-width}: $rfs-mq-value), ({$rfs-mq-property-height}: $rfs-mq-value)
+      {block}
+  else
+    @media ({$rfs-mq-property-width}: $rfs-mq-value)
+      {block}
 
-    if type-of($rfs-factor) != "unit" or $rfs-factor < 1
-      error("`$rfs-factor` is not a valid  $rfs-factor, it must be greater or equal to 1.")
+// Helper function to get the formatted non-responsive value
+rfs-value($value)
+  if $value == 0
+    0
 
-    // Only add media query if font-size is bigger as the minimum font-size
-    // If $rfs-factor == 1, no rescaling will take place
-    if $fs > $rfs-base-font-size and $rfs-factor != 1 and $enable-responsive-font-sizes
-      $min-width = null
-      $variable-unit = null
+  else if type-of($value) != "unit"
+    $value
+  else
+    $unit = unit($value)
 
-      // Calculate minimum font-size for given font-size
-      $fs-min = $rfs-base-font-size + ($fs - $rfs-base-font-size) / $rfs-factor
-
-      // Calculate difference between given font-size and minimum font-size for given font-size
-      $fs-diff = $fs - $fs-min
-
-      // Base font-size formatting
-      // No need to check if the unit is valid, because we did that before
-      if $rfs-font-size-unit == rem
-        $min-width = unit($fs-min / $rfs-rem-value, rem)
+    if $unit == "px"
+      if $rfs-unit == "rem"
+        unit($value / $rfs-rem-value, rem)
       else
-        $min-width = unit($fs-min, px)
+        unit($value, px)
 
-      // If two-dimensional, use smallest of screen width and height
+    else if $unit == "rem"
+      if $rfs-unit == "rem"
+        unit($value, rem)
+      else
+        unit($value * $rfs-rem-value, px)
+    else
+      $value
+
+
+// Helper function to get the responsive value calculated by RFS
+rfs-fluid-value($value)
+  if $value == 0
+    0
+  else if type-of($value) != "unit"
+    $value
+  else if unit($value) != "px" and unit($value) != "rem"
+    $value
+  else
+    if unit($value) == "rem"
+      $value = unit($value * $rfs-rem-value, "")
+    else
+      $value = unit($value, "")
+
+    // Only add the media query if the value is greater than the minimum value
+    if abs($value) <= $rfs-base-value or !$enable-rfs
+      if $rfs-unit == "rem"
+        unit($value / $rfs-rem-value, rem)
+      else
+        unit($value, px)
+    else
+      // Calculate the minimum value
+      $value-min = $rfs-base-value + (abs($value) - $rfs-base-value) / $rfs-factor;
+
+      // Calculate difference between $value and the minimum value
+      $value-diff = abs($value) - $value-min;
+
+      // Base value formatting
+      if $rfs-unit == rem
+        $min-width = unit($value-min / $rfs-rem-value, rem)
+      else
+        $min-width = unit($value-min, px)
+
+      // Use `vmin` if two-dimensional is enabled
       if $rfs-two-dimensional
         $variable-unit = vmin
       else
         $variable-unit = vw
 
       // Calculate the variable width between 0 and $rfs-breakpoint
-      $variable-width = unit(round($fs-diff * 100) / $rfs-breakpoint, $variable-unit)
+      $variable-width = unit(round($value-diff * 100) / $rfs-breakpoint, $variable-unit)
 
-      // Set the calculated font-size
-      $rfs-fluid = unquote("calc(" + $min-width + " + " + $variable-width + ")" + $rfs-suffix)
-
-    // Rendering
-    if $rfs-fluid == null
-      // Only render static font-size if no fluid font-size is available
-      font-size: $rfs-static
-    else
-      $mq-value = null
-
-      // RFS breakpoint formatting
-      if $rfs-breakpoint-unit == em or $rfs-breakpoint-unit == rem
-        $mq-value = unit($rfs-breakpoint / $rfs-rem-value, $rfs-breakpoint-unit)
-      else if $rfs-breakpoint-unit == px
-        $mq-value = unit($rfs-breakpoint, px)
+      // Return the calculated value
+      if $value != abs($value)
+        unquote("calc(-" + $min-width + " - " + $variable-width + ")")
       else
-        error("`$rfs-breakpoint-unit` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.")
+        unquote("calc(" + $min-width + " + " + $variable-width + ")")
 
-      if $rfs-class == "disable"
-        // Adding an extra class increases specificity,
-        // which prevents the media query to override the font size
-        &,
-        .disable-responsive-font-size &,
-        &.disable-responsive-font-size
-          font-size: $rfs-static
+// RFS mixin
+rfs($values, $property = font-size)
+  $val = ''
+  $fluidVal = ''
+
+  // Loop over each value and calculate responsive & non-responsive values
+  for $value in $values
+    $val+= ' ' + rfs-value($value)
+    $fluidVal+= ' ' + rfs-fluid-value($value)
+
+  // Remove first space
+  $val = unquote(slice($val, 1))
+  $fluidVal = unquote(slice($fluidVal, 1))
+
+  // Do not print the media query if responsive & non-responsive values are the same
+  if $val == $fluidVal
+    {$property}: $val
+  else
+    +_rfs-rule()
+      if $rfs-mode == "min-media-query"
+        {$property}: $fluidVal
       else
-        font-size: $rfs-static
+        {$property}: $val
 
-      if $rfs-two-dimensional
-        @media (max-width: $mq-value), (max-height: $mq-value)
-          if $rfs-class == "enable"
-            .enable-responsive-font-size &,
-            &.enable-responsive-font-size
-              font-size: $rfs-fluid
-          else
-            font-size: $rfs-fluid
+      if $rfs-safari-iframe-resize-bug-fix and $rfs-mode == "min-media-query"
+        min-width: 0vw
 
-          if $rfs-safari-iframe-resize-bug-fix
-            min-width: 0vw
+    +_rfs-media-query-rule()
+      if $rfs-mode == "min-media-query"
+        {$property}: $val
       else
-        @media (max-width: $mq-value)
-          if $rfs-class == "enable"
-            .enable-responsive-font-size &,
-            &.enable-responsive-font-size
-              font-size: $rfs-fluid
-          else
-            font-size: $rfs-fluid
+        {$property}: $fluidVal
 
-          if $rfs-safari-iframe-resize-bug-fix
-            // stylelint-disable-next-line length-zero-no-unit
-            min-width: 0vw
+rfs-font-size($value)
+  rfs($value)
 
-// The responsive-font-size mixin uses RFS to rescale font sizes
-responsive-font-size($fs, $important = false)
-  rfs($fs, $important)
+rfs-padding($value, $property = padding)
+  rfs($value, $property)
+
+rfs-padding-top($value, $property = padding-top)
+  rfs($value, $property)
+
+rfs-padding-right($value, $property = padding-right)
+  rfs($value, $property)
+
+rfs-padding-bottom($value, $property = padding-bottom)
+  rfs($value, $property)
+
+rfs-padding-left($value, $property = padding-left)
+  rfs($value, $property)
+
+rfs-margin($value, $property = margin)
+  rfs($value, $property)
+
+rfs-margin-top($value, $property = margin-top)
+  rfs($value, $property)
+
+rfs-margin-right($value, $property = margin-right)
+  rfs($value, $property)
+
+rfs-margin-bottom($value, $property = margin-bottom)
+  rfs($value, $property)
+
+rfs-margin-left($value, $property = margin-left)
+  rfs($value, $property)

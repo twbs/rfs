@@ -1,24 +1,27 @@
 // Less RFS mixin
 //
-// Automated font-resizing
+// Automated responsive values for for font sizes, paddings, margins and much more
 //
 // See https://github.com/twbs/rfs
 
 // Configuration
 
-// Base font size
-@rfs-base-font-size: 1.25rem;
-@rfs-font-size-unit: rem;
+// Base value
+@rfs-base-value: 1.25rem;
+@rfs-unit: rem;
 
-// Breakpoint at where font-size starts decreasing if screen width is smaller
+// Breakpoint at where value stops increasing
 @rfs-breakpoint: 1200px;
 @rfs-breakpoint-unit: px;
 
-// Resize font-size based on screen height and width
+// Resize value based on screen height and width
 @rfs-two-dimensional: false;
 
 // Factor of decrease
 @rfs-factor: 10;
+
+// Mode. Possibilities: "min-media-query", "max-media-query"
+@rfs-mode: "min-media-query";
 
 // Generate enable or disable classes. Possibilities: false, "enable" or "disable"
 @rfs-class: false;
@@ -29,212 +32,208 @@
 // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
 @rfs-safari-iframe-resize-bug-fix: false;
 
-// Disable RFS by setting @enable-responsive-font-sizes to false
-@enable-responsive-font-sizes: true;
+// Disable RFS by setting @enable-rfs to false
+@enable-rfs: true;
 
-// Responsive font-size mixin
-.rfs(@fs, @important: false) {
+// RFS mixin
+.rfs(@values, @property: font-size) {
+  ._rfs-calculate(1, ~"", ~"");
+}
 
-  & when (not(@important)) {
-    ._rfs-prefix(@fs, ~"");
+// Recursive calculate mixin
+._rfs-calculate(@index, @valueResult, @fluidValueResult) {
+
+  & when (@index <= length(@values)) {
+    @currentValue: if(extract(@values, @index) = important, ~"!important" , extract(@values, @index));
+    @space: if(@index = length(@values), ~"", ~" ");
+
+    & when (not(isunit(@currentValue, px)) and not(isunit(@currentValue, rem))) {
+      ._rfs-calculate((@index + 1), ~"@{valueResult}@{currentValue}@{space}", ~"@{fluidValueResult}@{currentValue}@{space}");
+    }
+
+    & when ((isunit(@currentValue, px)) or (isunit(@currentValue, rem))) {
+      @val: if(isunit(@currentValue, rem), unit(@currentValue * @rfs-rem-value), unit(@currentValue));
+
+      // Remove unit if zero
+      @value-unit: if(@val = 0, ~"", @rfs-unit);
+
+      @renderedValue: unit(if(@rfs-unit = px, @val, @val / @rfs-rem-value), @value-unit);
+
+      @rfs-min: if(isunit(@rfs-base-value, rem), unit(@rfs-base-value * @rfs-rem-value), unit(@rfs-base-value));
+
+      & when (not((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true))) {
+        ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedValue}@{space}");
+      }
+
+      & when ((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true)) {
+
+        @breakpoint: if(isunit(@rfs-breakpoint, em) or isunit(@rfs-breakpoint, rem), unit(@rfs-breakpoint * @rfs-rem-value), unit(@rfs-breakpoint));
+        @max-width: unit(if(@rfs-breakpoint-unit = px, @breakpoint, @breakpoint / @rfs-rem-value), @rfs-breakpoint-unit);
+
+        // Calculate minimum value
+        @value-min: @rfs-min + (abs(@val) - @rfs-min) / @rfs-factor;
+
+        // Calculate difference between @val and the minimum value
+        // Rounding needed to prevent rounding errors
+        @value-variable-width: unit(round((abs(@val) - @value-min) / (@breakpoint / 100), 15), if(@rfs-two-dimensional, vmin, vw));
+
+        & when (@val > 0) {
+          @renderedFluidValue: calc(unit(if(@rfs-unit = px, @value-min, @value-min / @rfs-rem-value), @rfs-unit) ~"+" @value-variable-width);
+          ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
+        }
+
+        & when (@val < 0) {
+          @renderedFluidValue: calc(unit(if(@rfs-unit = px, -@value-min, -@value-min / @rfs-rem-value), @rfs-unit) ~"-" @value-variable-width);
+          ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
+        }
+      }
+    }
   }
 
-  & when (@important) {
-    ._rfs-prefix(@fs, ~" !important");
+  & when (@index > length(@values)) {
+    @fluidValue: @fluidValueResult;
+
+    & when (@valueResult = @fluidValueResult) {
+      @{property}: @valueResult;
+    }
+
+    & when (not(@valueResult = @fluidValueResult)) {
+
+      & when (@rfs-class = "disable") and (@rfs-mode = "max-media-query") {
+        &,
+        .disable-rfs &,
+        &.disable-rfs {
+          @{property}: @valueResult;
+        }
+      }
+
+      & when (@rfs-class = "enable") and (@rfs-mode = "min-media-query") {
+        @{property}: @valueResult;
+
+        .enable-rfs &,
+        &.enable-rfs {
+          @{property}: @fluidValue;
+        }
+      }
+
+      & when (not((@rfs-class = "disable") and (@rfs-mode = "max-media-query"))) and not((@rfs-class = "enable") and (@rfs-mode = "min-media-query")) {
+        @{property}: if(@rfs-mode = "min-media-query", @fluidValue, @valueResult);
+      }
+
+      // Media query
+      & when (@rfs-class = "enable") {
+        .enable-rfs &,
+        &.enable-rfs {
+          ._rfs-render-media-query();
+        }
+      }
+
+      & when (@rfs-class = "disable") and (@rfs-mode = "min-media-query") {
+        .disable-rfs &,
+        &.disable-rfs {
+          @{property}: @valueResult;
+        }
+
+        ._rfs-render-media-query();
+      }
+
+      & when (not(@rfs-class = "enable")) and not(@rfs-class = "disable") {
+        ._rfs-render-media-query();
+      }
+
+      & when ((@rfs-safari-iframe-resize-bug-fix)) {
+        // stylelint-disable-next-line length-zero-no-unit
+        min-width: 0vw;
+      }
+    }
   }
 }
 
-._rfs-prefix(@fs, @suffix) {
-
-  & when ((not(isunit(@fs, px)) and not(isunit(@fs, rem)) and not((isnumber(@fs)) and (get-unit(@fs) = ~""))) or (@fs = 0)) {
-    font-size: @fs @suffix;
-  }
-
-  & when (((isnumber(@fs)) and (get-unit(@fs) = ~"")) or (isunit(@fs, px)) or (isunit(@fs, rem))) {
-    ._rfs-render-base(@fs, @suffix);
-  }
-}
-
-._rfs-render-base(@fs, @suffix) {
-
-  & when ((isnumber(@fs)) and (get-unit(@fs) = ~"")) {
-    ._rfs-render-base-number(@fs, @suffix);
-    ._rfs-render-media-query(@fs, @suffix);
-  }
-
-  & when ((isunit(@fs, px))) {
-    ._rfs-render-base-number(unit(@fs), @suffix);
-    ._rfs-render-media-query(unit(@fs), @suffix);
-  }
-
-  & when ((isunit(@fs, rem))) {
-    ._rfs-render-base-number(unit(@fs/.0625), @suffix);
-    ._rfs-render-media-query(unit(@fs/.0625), @suffix);
-  }
-}
-
-._rfs-render-media-query(@fs, @suffix) {
-  & when ((@fs > @rfs-base-font-size) and (@rfs-factor > 1) and (@enable-responsive-font-sizes = true)) {
-
-    & when ((isnumber(@rfs-breakpoint)) and (get-unit(@rfs-breakpoint) = ~"")) {
-      ._rfs-render-media-query-breakpoint(@fs, @suffix, @rfs-breakpoint);
-    }
-
-    & when ((isunit(@rfs-breakpoint, px))) {
-      ._rfs-render-media-query-breakpoint(@fs, @suffix, unit(@rfs-breakpoint));
-    }
-
-    & when ((isunit(@rfs-breakpoint, rem))) {
-      ._rfs-render-media-query-breakpoint(@fs, @suffix, unit(@rfs-breakpoint * @rfs-rem-value));
-    }
-
-    & when ((isunit(@rfs-breakpoint, em))) {
-      ._rfs-render-media-query-breakpoint(@fs, @suffix, unit(@rfs-breakpoint * @rfs-rem-value));
-    }
-  }
-}
-
-._rfs-render-media-query-breakpoint(@fs, @suffix, @breakpoint) {
+._rfs-render-media-query () {
   & when (@rfs-two-dimensional) {
-    ._rfs-render-media-query-two-dimensional(@fs, @suffix, @breakpoint);
-  }
-  & when (not(@rfs-two-dimensional)) {
-    ._rfs-render-media-query-one-dimension(@fs, @suffix, @breakpoint);
-  }
-}
-
-._rfs-render-media-query-one-dimension(@fs, @suffix, @breakpoint) {
-  & when (@rfs-breakpoint-unit = px) {
-    @media (max-width: unit(@breakpoint, px)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
+    & when (@rfs-mode = "min-media-query") {
+      @media (min-width: @max-width), (min-height: @max-width) {
+        @{property}: @valueResult;
+      }
     }
-  }
 
-  & when (@rfs-breakpoint-unit = rem) {
-    @media (max-width: unit((@breakpoint / @rfs-rem-value), rem)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
+    & when (@rfs-mode = "max-media-query") {
+      @media (max-width: @max-width), (max-height: @max-width) {
+        @{property}: @fluidValue;
+      }
     }
-  }
-
-  & when (@rfs-breakpoint-unit = em) {
-    @media (max-width: unit((@breakpoint / @rfs-rem-value), em)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
-    }
-  }
-}
-
-._rfs-render-media-query-two-dimensional(@fs, @suffix, @breakpoint) {
-  & when (@rfs-breakpoint-unit = px) {
-    @media (max-width: unit(@breakpoint, px)), (max-height: unit(@breakpoint, px)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
-    }
-  }
-
-  & when (@rfs-breakpoint-unit = rem) {
-    @media (max-width: unit((@breakpoint / @rfs-rem-value), rem)), (max-height: unit((@breakpoint / @rfs-rem-value), rem)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
-    }
-  }
-
-  & when (@rfs-breakpoint-unit = em) {
-    @media (max-width: unit((@breakpoint / @rfs-rem-value), em)), (max-height: unit((@breakpoint / @rfs-rem-value), em)) {
-      ._rfs-render-media-query-content(@fs, @suffix, @breakpoint);
-    }
-  }
-}
-
-._rfs-render-media-query-content(@fs, @suffix, @breakpoint) {
-  & when ((isnumber(@rfs-base-font-size)) and (get-unit(@rfs-base-font-size) = ~"")) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-base-font-size, @breakpoint);
-  }
-
-  & when ((isunit(@rfs-base-font-size, px))) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-base-font-size), @breakpoint);
-  }
-
-  & when ((isunit(@rfs-base-font-size, rem))) {
-    ._rfs-render-media-query-content-dimensional(@fs, @suffix, unit(@rfs-base-font-size * @rfs-rem-value), @breakpoint);
-  }
-
-  & when (@rfs-safari-iframe-resize-bug-fix) {
-    // stylelint-disable-next-line length-zero-no-unit
-    min-width: 0vw;
-  }
-}
-
-._rfs-render-media-query-content-dimensional(@fs, @suffix, @rfs-min, @breakpoint) {
-  & when (@rfs-two-dimensional) {
-    // Calculate base font-size for given font-size
-    @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and base font-size for given font-size
-    @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vmin);
-    ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
   }
 
   & when (not(@rfs-two-dimensional)) {
-    // Calculate base font-size for given font-size
-    @fs-min: @rfs-min + (@fs - @rfs-min) / @rfs-factor;
-    // Calculate difference between given font-size and base font-size for given font-size
-    @fs-variable-width: unit((@fs - @fs-min) / (@breakpoint / 100), vw);
-    ._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix);
+    & when (@rfs-mode = "min-media-query") {
+      @media (min-width: @max-width) {
+        @{property}: @valueResult;
+      }
+    }
+
+    & when (@rfs-mode = "max-media-query") {
+      @media (max-width: @max-width) {
+        @{property}: @fluidValue;
+      }
+    }
   }
 }
 
-._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix) {
-
-  & when (@rfs-font-size-unit = px) {
-    font-size: calc(unit(@fs-min, px) ~"+" @fs-variable-width) @suffix;
-  }
-
-  & when (@rfs-font-size-unit = rem) {
-    font-size: calc(unit(@fs-min / @rfs-rem-value, rem) ~"+" @fs-variable-width) @suffix;
-  }
-}
-
-._rfs-render-enable-class(@fs-min, @fs-variable-width, @suffix) {
+._rfs-render-media-query-content() {
 
   & when (@rfs-class = "enable") {
-    .enable-responsive-font-size &,
-    &.enable-responsive-font-size {
-      ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
+    .enable-rfs &,
+    &.enable-rfs {
+      @{property}: if(@rfs-mode = "min-media-query", @valueResult, @fluidValue);
     }
   }
 
   & when (not(@rfs-class = "enable")) {
-    ._rfs-render-fluid(@fs-min, @fs-variable-width, @suffix);
+    @{property}: if(@rfs-mode = "min-media-query", @valueResult, @fluidValue);
   }
 }
 
-._rfs-render-base-declaration(@fs, @suffix) {
-
-  & when (@rfs-font-size-unit = px) {
-    font-size: unit(@fs, px) @suffix;
-  }
-
-  & when (@rfs-font-size-unit = rem) {
-    font-size: unit((@fs / @rfs-rem-value), rem) @suffix;
-  }
+// Sharthand mixins
+.font-size(@value) {
+  .rfs(@value);
 }
 
-._rfs-render-base-number(@fs, @suffix) {
-  & when (@rfs-class = "disable") {
-    &,
-    .disable-responsive-font-size &,
-    &.disable-responsive-font-size {
-      ._rfs-render-base-declaration(@fs, @suffix);
-    }
-  }
-
-  & when (not(@rfs-class = "disable")) {
-    ._rfs-render-base-declaration(@fs, @suffix);
-  }
+.padding(@value, @property: padding) {
+  .rfs(@value, @property);
 }
 
-// The font-size & responsive-font-size mixins use RFS to rescale font sizes
-.font-size(@fs, @important: false) {
-  .rfs(@fs, @important);
+.padding-top(@value, @property: padding-top) {
+  .rfs(@value, @property);
 }
 
-.responsive-font-size(@fs, @important: false) {
-  .rfs(@fs, @important);
+.padding-right(@value, @property: padding-right) {
+  .rfs(@value, @property);
+}
+
+.padding-bottom(@value, @property: padding-bottom) {
+  .rfs(@value, @property);
+}
+
+.padding-left(@value, @property: padding-left) {
+  .rfs(@value, @property);
+}
+
+.margin(@value, @property: margin) {
+  .rfs(@value, @property);
+}
+
+.margin-top(@value, @property: margin-top) {
+  .rfs(@value, @property);
+}
+
+.margin-right(@value, @property: margin-right) {
+  .rfs(@value, @property);
+}
+
+.margin-bottom(@value, @property: margin-bottom) {
+  .rfs(@value, @property);
+}
+
+.margin-left(@value, @property: margin-left) {
+  .rfs(@value, @property);
 }

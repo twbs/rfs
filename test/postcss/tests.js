@@ -3,7 +3,7 @@
 module.exports = {
   'test-1': {},
   'test-2': {
-    enableResponsiveFontSizes: false
+    enableRfs: false
   },
   'test-3': {
     class: 'disable'
@@ -15,17 +15,17 @@ module.exports = {
     breakpointUnit: 'em'
   },
   'test-6': {
-    baseFontSize: '17px'
+    baseValue: '17px'
   },
   'test-7': {
-    fontSizeUnit: 'px'
+    unit: 'px'
   },
   'test-8': {
     twoDimensional: true
   },
   'test-9': {
-    baseFontSize: '12px',
-    fontSizeUnit: 'px',
+    baseValue: '12px',
+    unit: 'px',
     breakpoint: 800,
     breakpointUnit: 'rem',
     twoDimensional: true,
@@ -34,13 +34,16 @@ module.exports = {
     safariIframeResizeBugFix: true
   },
   'test-10': { // Not testable
-    baseFontSize: '12px',
-    fontSizeUnit: 'px',
+    baseValue: '12px',
+    unit: 'px',
     breakpoint: 800,
     breakpointUnit: 'rem',
     twoDimensional: true,
     factor: 5,
     class: true,
     safariIframeResizeBugFix: true
+  },
+  'test-11': {
+    mode: 'max-media-query'
   }
 };
