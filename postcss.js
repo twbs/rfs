@@ -1,7 +1,7 @@
 /*!
  * PostCSS RFS plugin
  *
- * Automated responsive values for for font sizes, paddings, margins and much more
+ * Automated responsive values for font sizes, paddings, margins and much more
  *
  * Licensed under MIT (https://github.com/twbs/rfs/blob/master/LICENSE)
  */
