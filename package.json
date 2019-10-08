@@ -80,13 +80,6 @@
     "space": true,
     "rules": {
       "ava/no-import-test-files": "off",
-      "prefer-destructuring": [
-        "error",
-        {
-          "object": true,
-          "array": false
-        }
-      ],
       "promise/prefer-await-to-then": "off",
       "unicorn/prefer-exponentiation-operator": "off"
     }
