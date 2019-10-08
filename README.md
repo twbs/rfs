@@ -10,7 +10,7 @@ The mechanism **automatically calculates the appropriate values** based on the d
 
 [![npm][npm-image]][npm-url]
 [![licence][licence-image]][license-url]
-![build][build-image]
+[![build][build-image]][build-url]
 [![devDeps][devDeps-image]][devDeps-url]
 
 - [Demos](#demos)
@@ -614,5 +614,6 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LI
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
 [license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
 [build-image]: https://github.com/twbs/rfs/workflows/Tests/badge.svg
+[build-url]: https://github.com/twbs/rfs/actions?workflow=Tests
 [devDeps-image]: https://img.shields.io/david/dev/twbs/rfs.svg
 [devDeps-url]: https://david-dm.org/twbs/rfs?type=dev
