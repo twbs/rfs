@@ -221,7 +221,7 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
           $variable-width: #{$value-diff * 100 / $rfs-breakpoint}#{$variable-unit};
 
           // Return the calculated value
-          $val: $val + ' ' + if($value < 0, calc(-#{$min-width} - #{$variable-width}), calc(#{$min-width} + #{$variable-width}));
+          $val: $val + ' calc(' + if($value < 0, -#{$min-width} - #{$variable-width}, #{$min-width} + #{$variable-width}) + ')';
         }
       }
     }
