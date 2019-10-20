@@ -33,10 +33,10 @@ The mechanism **automatically calculates the appropriate values** based on the d
 
 ## Advantages
 
-- No need to rescale paddings or margins anymore
-- Text won't be chopped off smaller viewports when RFS is applied to font sizes
-- RFS will prevent the font size from rescaling too small so readability can be assured
-- The font sizes of all text elements will always remain in relation with each other
+- No need to rescale paddings or margins anymore.
+- Text won't be chopped off in smaller viewports when RFS is applied to font sizes.
+- RFS will prevent the font size from rescaling too small, so readability can be assured.
+- The font sizes of all text elements will always remain in relation with each other.
 
 ## Fluid rescaling in action
 
@@ -250,7 +250,7 @@ project/
          └── ...
 ```
 
-Have a look at the [examples folder](https://github.com/twbs/rfs/tree/master/examples/postcss) to find examples of how your PostCSS setup can be configured.
+Have a look at the [examples folder](https://github.com/twbs/rfs/tree/master/examples/postcss) to find examples on how your PostCSS setup can be configured.
 
 ```postcss
 // postcss/main.css
@@ -258,7 +258,7 @@ Have a look at the [examples folder](https://github.com/twbs/rfs/tree/master/exa
 .title {
   font-size: rfs(4rem);
 
-  // Or use it with any other property, eg
+  // Or use it with any other property, for example
   // padding: rfs(4rem);
 
   // It's also possible to pass multiple values
@@ -326,10 +326,10 @@ project/
   // .margin-bottom(4rem);
   // .margin-left(4rem);
 
-  // For properties which do not have a shorthand, the property can be passed:
+  // For properties which do not have a shorthand, the property can be passed as:
   // .rfs(4rem, border-radius);
 
-  // Whenever a value contains a space, it should be escaped with a tilde:
+  // Whenever a value contains a space, it should be escaped with a tilde(~):
   // .rfs(0 0 4rem red ~"," 0 0 5rem blue, box-shadow)
 
   // Custom properties (css variables):
@@ -417,7 +417,7 @@ project/
   // rfs-margin-bottom(4rem)
   // rfs-margin-left(4rem)
 
-  // For properties which do not have a shorthand, the property can be passed:
+  // For properties which do not have a shorthand, the property can be passed as:
   // rfs(4rem, border-radius)
 
   // Whenever a value contains a space, it should be escaped with a backslash:
