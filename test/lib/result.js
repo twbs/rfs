@@ -4,7 +4,8 @@
 const fs = require('fs');
 const path = require('path');
 const prettier = require('prettier');
-const sass = require('node-sass');
+const libSass = require('node-sass');
+const dartSass = require('sass');
 const less = require('less');
 const stylus = require('stylus');
 
@@ -30,8 +31,15 @@ module.exports = {
   expected: id => format(getFileContent('expected', id, 'css')),
 
   // Return parsed css
-  sass: id => {
-    return format(sass.renderSync({
+  dartsass: id => {
+    return format(dartSass.renderSync({
+      file: path.join(__dirname, `../sass/${id}.scss`)
+    }).css.toString('utf8'));
+  },
+
+  // Return parsed css
+  libsass: id => {
+    return format(libSass.renderSync({
       file: path.join(__dirname, `../sass/${id}.scss`)
     }).css.toString('utf8'));
   },
