@@ -214,6 +214,9 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
           // Base value formatting
           $min-width: if($rfs-unit == rem, #{$value-min / $rfs-rem-value}rem, #{$value-min}px);
 
+          // Use negative value if needed
+          $min-width: if($value < 0, -$min-width, $min-width);
+
           // Use `vmin` if two-dimensional is enabled
           $variable-unit: if($rfs-two-dimensional, vmin, vw);
 
@@ -221,7 +224,7 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
           $variable-width: #{$value-diff * 100 / $rfs-breakpoint}#{$variable-unit};
 
           // Return the calculated value
-          $val: $val + ' calc(' + if($value < 0, -#{$min-width} - #{$variable-width}, #{$min-width} + #{$variable-width}) + ')';
+          $val: $val + ' calc(' + $min-width + if($value < 0, ' - ', ' + ') + $variable-width + ')';
         }
       }
     }
