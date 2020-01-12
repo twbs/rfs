@@ -35,7 +35,7 @@
     "postcss"
   ],
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "scripts": {
     "mocha": "mocha",
