@@ -77,6 +77,13 @@
     "stylus": "^0.54.8",
     "xo": "^0.25.4"
   },
+  "mocha": {
+    "check-leaks": true,
+    "throw-deprecation": true,
+    "trace-deprecation": true,
+    "trace-warnings": true,
+    "use_strict": true
+  },
   "xo": {
     "space": true,
     "rules": {
