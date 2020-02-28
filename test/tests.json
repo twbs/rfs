@@ -42,5 +42,9 @@
   {
     "id": "test-11",
     "name": "Use max-media-query mode"
+  },
+  {
+    "id": "test-12",
+    "name": "Use max-media-query mode & enable two dimensional media queries"
   }
 ]
