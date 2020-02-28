@@ -101,8 +101,12 @@ _rfs-media-query-rule()
 // Internal mixin used to determine which media query needs to be used
 _rfs-media-query()
   if $rfs-two-dimensional
-    @media ({$rfs-mq-property-width}: $rfs-mq-value), ({$rfs-mq-property-height}: $rfs-mq-value)
-      {block}
+    if $rfs-mode == min-media-query
+      @media ({$rfs-mq-property-width}: $rfs-mq-value) and ({$rfs-mq-property-height}: $rfs-mq-value)
+        {block}
+    else
+      @media ({$rfs-mq-property-width}: $rfs-mq-value), ({$rfs-mq-property-height}: $rfs-mq-value)
+        {block}
   else
     @media ({$rfs-mq-property-width}: $rfs-mq-value)
       {block}
