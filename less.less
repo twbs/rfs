@@ -152,7 +152,7 @@
 ._rfs-render-media-query () {
   & when (@rfs-two-dimensional) {
     & when (@rfs-mode = "min-media-query") {
-      @media (min-width: @max-width), (min-height: @max-width) {
+      @media (min-width: @max-width) and (min-height: @max-width) {
         @{property}: @valueResult;
       }
     }
