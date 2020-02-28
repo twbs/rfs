@@ -45,5 +45,9 @@ module.exports = {
   },
   'test-11': {
     mode: 'max-media-query'
+  },
+  'test-12': {
+    mode: 'max-media-query',
+    twoDimensional: true
   }
 };
