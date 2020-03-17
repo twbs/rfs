@@ -90,7 +90,8 @@
       "ava/no-import-test-files": "off",
       "import/order": "off",
       "prefer-named-capture-group": "off",
-      "promise/prefer-await-to-then": "off"
+      "promise/prefer-await-to-then": "off",
+      "unicorn/prevent-abbreviations": "off"
     }
   }
 }
