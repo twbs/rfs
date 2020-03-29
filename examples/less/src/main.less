@@ -1,133 +1,91 @@
+// stylelint-disable function-whitespace-after
 @import "../../../less";
 
-// responsive-font-size property with `px` unit
+// font-size property with `px` unit
 .selector-1 {
   background-color: #f00;
   width: 300px;
-  .font-size(32px);
+  font-size: .rfs(32px)[];
 }
 
-// responsive-font-size property with `rem` unit
+// font-size property with `rem` unit
 .selector-2 {
-  .font-size(2rem);
+  font-size: .rfs(2rem)[];
 }
 
-// responsive-font-size property with !important
+// font-size property with !important
 .selector-3 {
-  .font-size(2rem important);
-}
-
-// rfs shorthand
-.selector-4 {
-  .rfs(2rem);
+  font-size: .rfs(2rem)[] !important;
 }
 
 // not supported unit
-.selector-5 {
-  .font-size(2em);
+.selector-4 {
+  font-size: .rfs(2em)[];
 }
 
 // special value
-.selector-6 {
-  .font-size(inherit);
+.selector-5 {
+  font-size: .rfs(inherit)[];
 }
 
-// responsive-font-size property inside @support-query
+// font-size property inside @support-query
 @supports (display: flex) {
-  .selector-7 {
-    .rfs(28px);
+  .selector-6 {
+    font-size: .rfs(28px)[];
   }
 }
 
-// responsive-font-size property without unit
-.selector-8 {
-  .rfs(0 999 32rem, flex);
+// flex property with unitless values
+.selector-7 {
+  flex: .rfs(0 999 32rem)[];
 }
 
 // padding property
-.selector-9 {
-  .rfs(2rem, padding);
-}
-
-// padding shorthands
-.selector-10 {
-  .padding(2rem);
-}
-
-.selector-11 {
-  .padding-top(2rem);
-}
-
-.selector-12 {
-  .padding-right(2rem);
-}
-
-.selector-13 {
-  .padding-bottom(2rem);
-}
-
-.selector-14 {
-  .padding-left(2rem);
-}
-
-// margin shorthands
-.selector-15 {
-  .margin(2rem);
-}
-
-.selector-16 {
-  .margin-top(2rem);
-}
-
-.selector-17 {
-  .margin-right(2rem);
-}
-
-.selector-18 {
-  .margin-bottom(2rem);
-}
-
-.selector-19 {
-  .margin-left(2rem);
+.selector-8 {
+  padding: .rfs(2rem)[];
 }
 
 // Multiple values
-.selector-20 {
-  .margin(2rem 3rem);
+.selector-9 {
+  margin: .rfs(2rem 3rem)[];
 }
 
 // Multiple values with important
-.selector-21 {
-  .margin(2rem 3rem important);
+.selector-10 {
+  margin: .rfs(2rem 3rem)[] !important;
 }
 
 // Zero test
-.selector-22 {
-  .rfs(0);
+.selector-11 {
+  font-size: .rfs(0)[];
 }
 
-// Zero test
-.selector-23 {
-  .margin(0 3rem);
+// Zero combination test
+.selector-12 {
+  margin: .rfs(0 3rem)[];
 }
 
 // Value with comma
-.selector-24 {
-  .rfs(0 0 2rem #f00 ~"," 0 0 3rem #0f0, box-shadow);
+.selector-13 {
+  box-shadow: .rfs(0 0 2rem #f00~"," 0 0 3rem #0f0)[];
 }
 
-.selector-25 {
-  .rfs(3rem, --value);
+// Custom properties
+.selector-14 {
+  --value: .rfs(3rem)[];
 }
 
-.selector-26 {
-  .font-size(10px);
+// Test small value
+.selector-15 {
+  font-size: .rfs(10px)[];
 }
 
-.selector-27 {
-  .margin(-3rem);
+// Negative units
+.selector-16 {
+  margin: .rfs(-3rem)[];
 }
 
-.selector-28 {
-  .margin(-.5rem);
+// Small negative unit
+.selector-17 {
+  margin: .rfs(-.5rem)[];
 }

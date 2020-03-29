@@ -6,48 +6,33 @@ module.exports = {
     enableRfs: false
   },
   'test-3': {
-    class: 'disable'
-  },
-  'test-4': {
-    class: 'enable'
-  },
-  'test-5': {
     breakpointUnit: 'em'
   },
-  'test-6': {
+  'test-4': {
     baseValue: '17px'
   },
-  'test-7': {
+  'test-5': {
     unit: 'px'
   },
-  'test-8': {
+  'test-6': {
     twoDimensional: true
   },
-  'test-9': {
+  'test-7': {
     baseValue: '12px',
     unit: 'px',
     breakpoint: 800,
     breakpointUnit: 'rem',
     twoDimensional: true,
     factor: 5,
-    class: true,
-    safariIframeResizeBugFix: true
+    class: true
   },
-  'test-10': { // Not testable
+  'test-8': { // Not testable
     baseValue: '12px',
     unit: 'px',
     breakpoint: 800,
     breakpointUnit: 'rem',
     twoDimensional: true,
     factor: 5,
-    class: true,
-    safariIframeResizeBugFix: true
-  },
-  'test-11': {
-    mode: 'max-media-query'
-  },
-  'test-12': {
-    mode: 'max-media-query',
-    twoDimensional: true
+    class: true
   }
 };

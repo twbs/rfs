@@ -1,4 +1,4 @@
-// Less RFS mixin
+// Less RFS function 10.0.0-alpha.0
 //
 // Automated responsive values for font sizes, paddings, margins and much more
 //
@@ -20,35 +20,25 @@
 // Factor of decrease
 @rfs-factor: 10;
 
-// Mode. Possibilities: "min-media-query", "max-media-query"
-@rfs-mode: "min-media-query";
-
-// Generate enable or disable classes. Possibilities: false, "enable" or "disable"
-@rfs-class: false;
-
 // 1 rem = @rfs-rem-value px
 @rfs-rem-value: 16;
-
-// Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
-@rfs-safari-iframe-resize-bug-fix: false;
 
 // Disable RFS by setting @enable-rfs to false
 @enable-rfs: true;
 
-// RFS mixin
-.rfs(@values, @property: font-size) {
-  ._rfs-calculate(1, ~"", ~"");
+// RFS function
+.rfs(@values) {
+  ._rfs-calculate(1, "");
 }
 
-// Recursive calculate mixin
-._rfs-calculate(@index, @valueResult, @fluidValueResult) {
+// Recursive calculate function
+._rfs-calculate(@index, @valueResult) {
 
   & when (@index <= length(@values)) {
-    @currentValue: if(extract(@values, @index) = important, ~"!important" , extract(@values, @index));
-    @space: if(@index = length(@values), ~"", ~" ");
+    @currentValue: extract(@values, @index);
 
     & when (not(isunit(@currentValue, px)) and not(isunit(@currentValue, rem))) {
-      ._rfs-calculate((@index + 1), ~"@{valueResult}@{currentValue}@{space}", ~"@{fluidValueResult}@{currentValue}@{space}");
+      ._rfs-calculate((@index + 1), ~"@{valueResult} @{currentValue}");
     }
 
     & when ((isunit(@currentValue, px)) or (isunit(@currentValue, rem))) {
@@ -62,7 +52,7 @@
       @rfs-min: if(isunit(@rfs-base-value, rem), unit(@rfs-base-value * @rfs-rem-value), unit(@rfs-base-value));
 
       & when (not((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true))) {
-        ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedValue}@{space}");
+        ._rfs-calculate((@index + 1), ~"@{valueResult} @{renderedValue}");
       }
 
       & when ((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true)) {
@@ -79,161 +69,18 @@
 
         & when (@val > 0) {
           @renderedFluidValue: calc(unit(if(@rfs-unit = px, @value-min, @value-min / @rfs-rem-value), @rfs-unit) ~"+" @value-variable-width);
-          ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
+          ._rfs-calculate((@index + 1), ~"@{valueResult} min(@{renderedValue}, @{renderedFluidValue})");
         }
 
         & when (@val < 0) {
           @renderedFluidValue: calc(unit(if(@rfs-unit = px, -@value-min, -@value-min / @rfs-rem-value), @rfs-unit) ~"-" @value-variable-width);
-          ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
+          ._rfs-calculate((@index + 1), ~"@{valueResult} min(@{renderedValue}, @{renderedFluidValue})");
         }
       }
     }
   }
 
   & when (@index > length(@values)) {
-    @fluidValue: @fluidValueResult;
-
-    & when (@valueResult = @fluidValueResult) {
-      @{property}: @valueResult;
-    }
-
-    & when (not(@valueResult = @fluidValueResult)) {
-
-      & when (@rfs-class = "disable") and (@rfs-mode = "max-media-query") {
-        &,
-        .disable-rfs &,
-        &.disable-rfs {
-          @{property}: @valueResult;
-        }
-      }
-
-      & when (@rfs-class = "enable") and (@rfs-mode = "min-media-query") {
-        @{property}: @valueResult;
-
-        .enable-rfs &,
-        &.enable-rfs {
-          @{property}: @fluidValue;
-        }
-      }
-
-      & when (not((@rfs-class = "disable") and (@rfs-mode = "max-media-query"))) and not((@rfs-class = "enable") and (@rfs-mode = "min-media-query")) {
-        @{property}: if(@rfs-mode = "min-media-query", @fluidValue, @valueResult);
-      }
-
-      // Media query
-      & when (@rfs-class = "enable") {
-        .enable-rfs &,
-        &.enable-rfs {
-          ._rfs-render-media-query();
-        }
-      }
-
-      & when (@rfs-class = "disable") and (@rfs-mode = "min-media-query") {
-        .disable-rfs &,
-        &.disable-rfs {
-          @{property}: @valueResult;
-        }
-
-        ._rfs-render-media-query();
-      }
-
-      & when (not(@rfs-class = "enable")) and not(@rfs-class = "disable") {
-        ._rfs-render-media-query();
-      }
-
-      & when ((@rfs-safari-iframe-resize-bug-fix)) {
-        // stylelint-disable-next-line length-zero-no-unit
-        min-width: 0vw;
-      }
-    }
+    --return: replace(@valueResult, ' ', '');
   }
-}
-
-._rfs-render-media-query () {
-  & when (@rfs-two-dimensional) {
-    & when (@rfs-mode = "min-media-query") {
-      @media (min-width: @max-width) and (min-height: @max-width) {
-        @{property}: @valueResult;
-      }
-    }
-
-    & when (@rfs-mode = "max-media-query") {
-      @media (max-width: @max-width), (max-height: @max-width) {
-        @{property}: @fluidValue;
-      }
-    }
-  }
-
-  & when (not(@rfs-two-dimensional)) {
-    & when (@rfs-mode = "min-media-query") {
-      @media (min-width: @max-width) {
-        @{property}: @valueResult;
-      }
-    }
-
-    & when (@rfs-mode = "max-media-query") {
-      @media (max-width: @max-width) {
-        @{property}: @fluidValue;
-      }
-    }
-  }
-}
-
-._rfs-render-media-query-content() {
-
-  & when (@rfs-class = "enable") {
-    .enable-rfs &,
-    &.enable-rfs {
-      @{property}: if(@rfs-mode = "min-media-query", @valueResult, @fluidValue);
-    }
-  }
-
-  & when (not(@rfs-class = "enable")) {
-    @{property}: if(@rfs-mode = "min-media-query", @valueResult, @fluidValue);
-  }
-}
-
-// Sharthand mixins
-.font-size(@value) {
-  .rfs(@value);
-}
-
-.padding(@value, @property: padding) {
-  .rfs(@value, @property);
-}
-
-.padding-top(@value, @property: padding-top) {
-  .rfs(@value, @property);
-}
-
-.padding-right(@value, @property: padding-right) {
-  .rfs(@value, @property);
-}
-
-.padding-bottom(@value, @property: padding-bottom) {
-  .rfs(@value, @property);
-}
-
-.padding-left(@value, @property: padding-left) {
-  .rfs(@value, @property);
-}
-
-.margin(@value, @property: margin) {
-  .rfs(@value, @property);
-}
-
-.margin-top(@value, @property: margin-top) {
-  .rfs(@value, @property);
-}
-
-.margin-right(@value, @property: margin-right) {
-  .rfs(@value, @property);
-}
-
-.margin-bottom(@value, @property: margin-bottom) {
-  .rfs(@value, @property);
-}
-
-.margin-left(@value, @property: margin-left) {
-  .rfs(@value, @property);
 }

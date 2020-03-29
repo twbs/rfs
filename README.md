@@ -13,36 +13,14 @@ The mechanism **automatically calculates the appropriate values** based on the d
 [![build][build-image]][build-url]
 [![devDeps][devDeps-image]][devDeps-url]
 
-- [Demos](#demos)
-- [Advantages](#advantages)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Visualisation](#visualisation)
 - [Configuration](#configuration)
+- [Demos](#demos)
+- [Versions](#versions)
 - [Creator](#creator)
 - [Copyright and license](#copyright-and-license)
-
-## Demos
-
-- [Card example (Sass)](https://codepen.io/MartijnCuppens/pen/vqaEBG?editors=0100)
-- [Card example (Sass, with custom properties)](https://codepen.io/MartijnCuppens/pen/voXLGL?editors=1100)
-- [Card example (PostCSS)](https://codepen.io/MartijnCuppens/pen/aeojgG?editors=0100)
-- [Card example (PostCSS, with custom properties)](https://codepen.io/MartijnCuppens/pen/JgRYaw?editors=0100)
-- [Simple font rescaling Codepen Demo](https://codepen.io/MartijnCuppens/pen/ZBjdMy?editors=0100)
-- [RFS in Bootstrap demo](https://project-rfs.github.io/)
-
-## Advantages
-
-- No need to rescale paddings or margins anymore.
-- Text won't be chopped off in smaller viewports when RFS is applied to font sizes.
-- RFS will prevent the font size from rescaling too small, so readability can be assured.
-- The font sizes of all text elements will always remain in relation with each other.
-
-## Fluid rescaling in action
-
-The following example shows the effect of RFS on font sizes:
-
-![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
 
 ## Installation
 
@@ -50,7 +28,6 @@ RFS can be installed using a package manager (recommended):
 
 - npm: `npm install rfs`
 - yarn: `yarn add rfs`
-- bower (deprecated): `bower install rfs --save`
 
 **Copy/paste (not recommended):**
 
@@ -59,418 +36,107 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 
-### Sass (<code>.scss</code> syntax)
+### Input
 
-```text
-project/
-├── node_modules/
-│   └── rfs
-│        └── ...
-└── scss/
-    └── main.scss
-```
-
-#### Input
+#### Sass (<code>.scss</code> syntax)
 
 ```scss
-// scss/main.scss
+@import "node_modules/rfs/scss";
 
-@import "../node_modules/rfs/scss";
+:root {
+  --spacer-lg: rfs(2.5rem);
+}
 
 .title {
-  @include font-size(4rem);
-
-  // The font-size mixin is a shorthand which calls
-  // @include rfs(4rem, font-size);
-
-  // Other shorthand mixins that are available are:
-  // @include padding(4rem);
-  // @include padding-top(4rem);
-  // @include padding-right(4rem);
-  // @include padding-bottom(4rem);
-  // @include padding-left(4rem);
-  // @include margin(4rem);
-  // @include margin-top(4rem);
-  // @include margin-right(4rem);
-  // @include margin-bottom(4rem);
-  // @include margin-left(4rem);
-
-  // For properties which do not have a shorthand, the property can be passed:
-  // @include rfs(4rem, border-radius);
-
-  // Whenever a value contains a comma, it should be escaped with `#{}`:
-  // @include rfs(0 0 4rem red #{","} 0 0 5rem blue, box-shadow);
-
-  // Custom properties (css variables):
-  // @include rfs(4rem, --border-radius);
+  margin-bottom: var(--spacer-lg);
+  padding-top: rfs(.5rem) !important;
+  font-size: rfs(4rem);
 }
 ```
 
-If you're using Webpack, you can simplify the `@import` using the `~` prefix:
-
-```scss
-@import "~rfs/scss";
-```
-
-#### Generated css
-
-```css
-.title {
-  font-size: calc(1.525rem + 3.3vw);
-}
-
-@media (min-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
-}
-```
-
-#### !important usage
-
-##### Input
-
-```scss
-.label {
-  @include font-size(2.5rem !important);
-}
-```
-
-##### Output
-
-```css
-.label {
-  font-size: calc(1.375rem + 1.5vw) !important;
-}
-
-@media (min-width: 1200px) {
-  .label {
-    font-size: 2.5rem !important;
-  }
-}
-```
-
-### Sass (<code>.sass</code> syntax)
-
-```text
-project/
-├── node_modules/
-│   └── rfs
-│        └── ...
-└── sass/
-    └── main.sass
-```
-
-#### Input
+#### Sass (<code>.sass</code> syntax)
 
 ```sass
-// scss/main.scss
+@import "node_modules/rfs/sass"
 
-@import "../node_modules/rfs/sass"
+:root
+  --spacer-lg: rfs(2.5rem)
 
 .title
-  +font-size(4rem)
-
-  // The font-size mixin is a shorthand which calls
-  // +rfs(4rem, font-size)
-
-  // Other shorthand mixins that are available are:
-  // +padding(4rem)
-  // +padding-top(4rem)
-  // +padding-right(4rem)
-  // +padding-bottom(4rem)
-  // +padding-left(4rem)
-  // +margin(4rem)
-  // +margin-top(4rem)
-  // +margin-right(4rem)
-  // +margin-bottom(4rem)
-  // +margin-left(4rem)
-
-  // For properties which do not have a shorthand, the property can be passed:
-  // +rfs(4rem, border-radius)
-
-  // Whenever a value contains a comma, it should be escaped with `#{}`:
-  // +rfs(0 0 4rem red #{","} 0 0 5rem blue, box-shadow)
-
-  // Custom properties (css variables):
-  // +rfs(4rem, --border-radius)
+  margin-bottom: var(--spacer-lg)
+  padding-top: rfs(.5rem) !important
+  font-size: rfs(4rem)
 ```
 
-If you're using Webpack, you can simplify the `@import` using the `~` prefix:
-
-```sass
-@import "~rfs/scss"
-```
-
-#### Generated css
-
-```css
-.title {
-  font-size: calc(1.525rem + 3.3vw);
-}
-
-@media (min-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
-}
-```
-
-#### !important usage
-
-##### Input
-
-```sass
-.label
-  +font-size(2.5rem !important)
-```
-
-#### output
-
-```css
-.label {
-  font-size: calc(1.375rem + 1.5vw) !important;
-}
-
-@media (min-width: 1200px) {
-  .label {
-    font-size: 2.5rem !important;
-  }
-}
-```
-
-### PostCSS
-
-```text
-project/
-├── postcss/
-│   └── main.css
-└── node_modules/
-    └── rfs
-         └── ...
-```
+#### PostCSS
 
 Have a look at the [examples folder](https://github.com/twbs/rfs/tree/master/examples/postcss) to find examples on how your PostCSS setup can be configured.
 
-```postcss
-// postcss/main.css
+```css
+:root {
+  --spacer-lg: rfs(2.5rem);
+}
 
 .title {
+  margin-bottom: var(--spacer-lg);
+  padding-top: rfs(.5rem) !important;
   font-size: rfs(4rem);
-
-  // Or use it with any other property, for example
-  // padding: rfs(4rem);
-
-  // It's also possible to pass multiple values
-  // padding: rfs(3rem 4rem);
-
-  // or even
-  // box-shadow: rfs(0 3px 4rem red);
-
-  // or even comma seperated values
-  // box-shadow: rfs(0 3px 4rem red, 3px 0 4rem blue);
-
-  // To combine it with !important, use
-  // box-shadow: rfs(0 3px 4rem red) !important;
-
-  // Custom properties (css variables):
-  // --border-radius: rfs(4rem);
 }
 ```
 
-#### Generated css
+#### Less
 
-```css
-.title {
-  font-size: calc(1.525rem + 3.3vw);
-}
-
-@media (min-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
-}
-```
-
-### Less
-
-```text
-project/
-├── less/
-│   └── main.less
-└── node_modules/
-    └── rfs
-         └── ...
-```
+Using [unnamed lookups](http://lesscss.org/features/#mixins-feature-unnamed-lookups).
 
 ```less
-// less/main.less
+@import "node_modules/rfs/less";
 
-@import "../node_modules/rfs/less";
+:root {
+  --spacer-lg: .rfs(2.5rem)[];
+}
 
 .title {
-  .font-size(4rem);
-
-  // The font-size mixin is a shorthand which calls
-  // .rfs(4rem, font-size);
-
-  // Other shorthand mixins that are available are:
-  // .padding(4rem);
-  // .padding-top(4rem);
-  // .padding-right(4rem);
-  // 'padding-bottom(4rem);
-  // .padding-left(4rem);
-  // .margin(4rem);
-  // .margin-top(4rem);
-  // .margin-right(4rem);
-  // .margin-bottom(4rem);
-  // .margin-left(4rem);
-
-  // For properties which do not have a shorthand, the property can be passed as:
-  // .rfs(4rem, border-radius);
-
-  // Whenever a value contains a comma, it should be escaped with a tilde(~):
-  // .rfs(0 0 4rem red ~"," 0 0 5rem blue, box-shadow)
-
-  // Custom properties (css variables):
-  // .rfs(4rem, --border-radius)
+  margin-bottom: var(--spacer-lg);
+  padding-top: rfs(.5rem)[] !important;
+  font-size: rfs(4rem)[];
 }
 ```
 
-If you're using Webpack, you can simplify the `@import` using the `~` prefix:
-
-```less
-@import "~rfs/less"
-```
-
-#### Generated css
-
-```css
-.title {
-  font-size: calc(1.525rem + 3.3vw);
-}
-
-@media (min-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
-}
-```
-
-#### !important usage
-
-Less still has [a bug](https://github.com/less/less.js/issues/2917) for [native `!important` support](http://lesscss.org/features/#mixins-feature-the-important-keyword), and `!important` can not be accepted as a parameter, so you 'll need to pass `important` as a flag:
-
-##### Input
-
-```less
-.label {
-  .font-size(2.5rem important);
-}
-```
-
-#### output
-
-```css
-.label {
-  font-size: calc(1.375rem + 1.5vw) !important;
-}
-
-@media (min-width: 1200px) {
-  .label {
-    font-size: 2.5rem !important;
-  }
-}
-```
-
-### Stylus
-
-```text
-project/
-├── node_modules/
-│   └── rfs
-│        └── ...
-└── stylus/
-    └── main.styl
-```
+#### Stylus
 
 ```stylus
-// stylus/main.styl
+@import "node_modules/rfs/stylus";
 
-@import "../node_modules/rfs/stylus";
+:root {
+  --spacer-lg: rfs(2.5rem);
+}
 
-.title
-  rfs-font-size(64px)
-
-  // The font-size mixin is a shorthand which calls
-  // rfs(4rem, font-size)
-
-  // Other shorthand mixins that are available are:
-  // rfs-padding(4rem)
-  // rfs-padding-top(4rem)
-  // rfs-padding-right(4rem)
-  // rfs-padding-bottom(4rem)
-  // rfs-padding-left(4rem)
-  // rfs-margin(4rem)
-  // rfs-margin-top(4rem)
-  // rfs-margin-right(4rem)
-  // rfs-margin-bottom(4rem)
-  // rfs-margin-left(4rem)
-
-  // For properties which do not have a shorthand, the property can be passed as:
-  // rfs(4rem, border-radius)
-
-  // Whenever a value contains a comma, it should be escaped with a backslash:
-  // rfs(0 0 4rem red \, 0 0 5rem blue, box-shadow)
-
-  // Custom properties (css variables):
-  // rfs(4rem, --border-radius)
-```
-
-Note the `font-size` mixin can not be used to set the font size. That is because a `font-size()` mixin would override the `font-size` property. See [129#issuecomment-477926416](https://github.com/twbs/rfs/pull/129#issuecomment-477926416) for more info.
-
-If you're using Webpack, you can simplify the `@import` using the `~` prefix:
-
-```stylus
-@import "~rfs/stylus"
-```
-
-#### Generated css
-
-```css
 .title {
-  font-size: calc(1.525rem + 3.3vw);
-}
-
-@media (min-width: 1200px) {
-  .title {
-    font-size: 4rem;
-  }
+  margin-bottom: var(--spacer-lg);
+  padding-top: rfs(.5rem) !important;
+  font-size: rfs(4rem);
 }
 ```
 
-#### !important usage
-
-##### Input
-
-```less
-.label
-  rfs-font-size(2.5rem important)
-```
-
-#### output
+### Generated css
 
 ```css
-.label {
-  font-size: calc(1.375rem + 1.5vw) !important;
+:root {
+  --spacer-lg: min(2.5rem, calc(1.375rem + 1.5vw));
 }
 
-@media (min-width: 1200px) {
-  .label {
-    font-size: 2.5rem !important;
-  }
+.title {
+  margin-bottom: var(--spacer-lg);
+  padding-top: .5rem !important;
+  font-size: min(4rem, calc(1.525rem + 3.3vw));
 }
 ```
+
+## Fluid rescaling in action
+
+The following example shows the effect of RFS on `padding`s, `box-shadow`s & `font-size`s:
+
+![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
 
 ## Visualisation
 
@@ -482,7 +148,7 @@ Each color represents another value being rescaled. For example:
 
 ```scss
 .title {
-  @include font-size(40px);
+  font-size: rfs(40px);
 }
 ```
 
@@ -522,16 +188,6 @@ Above this breakpoint, the value will be equal to the value you passed to RFS; b
 
 *Default value: `1200px`*
 
-### Breakpoint unit <sub><sup>(`px`, `em` or `rem`)</sup></sub>
-
-- SCSS, Sass & Stylus: `$rfs-breakpoint-unit`
-- Less: `@rfs-breakpoint-unit`
-- PostCSS: `breakpointUnit`
-
-The width of the max width in the media query will be rendered in this unit.
-
-*Default value: `px`*
-
 ### Factor <sub><sup>(number)</sup></sub>
 
 - SCSS, Sass & Stylus: `$rfs-factor`
@@ -558,34 +214,7 @@ The value of `1rem` in `px`. The value of `1rem` is typically `16px` but if the 
 - Less: `@rfs-two-dimensional`
 - PostCSS: `twoDimensional`
 
-Enabling the two dimensional media queries will determine the value based on the smallest side of the screen with `vmin`. This prevents values from changing if the device toggles between portrait and landscape mode.
-
-*Default value: `false`*
-
-### Class <sub><sup>(boolean)</sup></sub>
-
-- SCSS, Sass & Stylus: `$rfs-class`
-- Less: `@rfs-class`
-- PostCSS: `class`
-
-RFS can be enabled or disabled with a class. There are 3 options:
-
-- `false`
-  No extra classes are generated.
-- `disable`
-  When the the disable classes are generated you can add the `.disable-rfs` class to an element to disable responsive value rescaling for the element and its child elements.
-- `enable`
-  RFS is disabled by default in this case. The `.enable-rfs` class can be added to an element to enable responsive value rescaling for the element and its child elements.
-
-*Default value: `false`*
-
-### Safari iframe resize bug fix <sub><sup>(boolean)</sup></sub>
-
-- SCSS, Sass & Stylus: `$rfs-safari-iframe-resize-bug-fix`
-- Less: `@rfs-safari-iframe-resize-bug-fix`
-- PostCSS: `safariIframeResizeBugFix`
-
-Safari doesn't resize its values in an iframe if the iframe is resized. To fix this `min-width: 0vw` can be added and that's what happens if this option is enabled. See [#14](https://github.com/twbs/rfs/issues/14).
+Enabling the two dimensional option will determine the value based on the smallest side of the screen with `vmin`. This prevents values from changing if the device toggles between portrait and landscape mode.
 
 *Default value: `false`*
 
@@ -596,7 +225,29 @@ Safari doesn't resize its values in an iframe if the iframe is resized. To fix t
 
 ## Browser support
 
-RFS is supported by all browsers that support [media queries](https://caniuse.com/#feat=css-mediaqueries) and [viewport units](https://caniuse.com/#feat=viewport-units).
+RFS is supported by all browsers that support [CSS math functions](https://caniuse.com/#feat=css-math-functions). If you need support for legacy browsers, check out the [v9 version](https://github.com/twbs/rfs/tree/v9.0.3) which uses media queries.
+
+## Demos
+
+- [Card example (Sass)](https://codepen.io/MartijnCuppens/pen/NWxxWWz?editors=0100)
+- [Card example (Sass, with custom properties)](https://codepen.io/MartijnCuppens/pen/wvMgGpN?editors=1100)
+- [Card example (PostCSS)](https://codepen.io/MartijnCuppens/pen/OJMWNod?editors=0100)
+- [Card example (PostCSS, with custom properties)](https://codepen.io/MartijnCuppens/pen/zYrNqLN?editors=0100)
+- [RFS in Bootstrap demo](https://v5.getbootstrap.com/)
+
+## Versions
+
+### Current version (v10)
+
+In v10, rfs is a function which outputs the css `min()` function.
+
+### Version 9
+
+In v9, rfs is a mixin in Sass, Less & Stylelint. This version uses a media query with `min-width` (mobile first approach). v9 is used in Bootstrap 5.
+
+### Version 8
+
+In v8, rfs only supported font sizes. This version uses a `max-width` media query. v8 is used in from Bootstrap 4.3.
 
 ## Creator
 

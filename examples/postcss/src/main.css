@@ -13,103 +13,59 @@
 }
 
 .selector-4 {
-  font-size: rfs(2rem);
-}
-
-.selector-5 {
   font-size: rfs(2em);
 }
 
-.selector-6 {
+.selector-5 {
   font-size: rfs(inherit);
 }
 
 @supports (display: flex) {
-  .selector-7 {
+  .selector-6 {
     font-size: rfs(28px);
   }
 }
 
-.selector-8 {
+.selector-7 {
   flex: rfs(0 999 32rem);
 }
 
+.selector-8 {
+  padding: rfs(2rem);
+}
+
 .selector-9 {
-  padding: rfs(2rem);
-}
-
-.selector-10 {
-  padding: rfs(2rem);
-}
-
-.selector-11 {
-  padding-top: rfs(2rem);
-}
-
-.selector-12 {
-  padding-right: rfs(2rem);
-}
-
-.selector-13 {
-  padding-bottom: rfs(2rem);
-}
-
-.selector-14 {
-  padding-left: rfs(2rem);
-}
-
-.selector-15 {
-  margin: rfs(2rem);
-}
-
-.selector-16 {
-  margin-top: rfs(2rem);
-}
-
-.selector-17 {
-  margin-right: rfs(2rem);
-}
-
-.selector-18 {
-  margin-bottom: rfs(2rem);
-}
-
-.selector-19 {
-  margin-left: rfs(2rem);
-}
-
-.selector-20 {
   margin: rfs(2rem 3rem);
 }
 
-.selector-21 {
+.selector-10 {
   margin: rfs(2rem 3rem) !important;
 }
 
-.selector-22 {
+.selector-11 {
   font-size: rfs(0);
 }
 
-.selector-23 {
+.selector-12 {
   margin: rfs(0 3rem);
 }
 
-.selector-24 {
+.selector-13 {
   box-shadow: rfs(0 0 2rem #f00, 0 0 3rem #0f0);
 }
 
-.selector-25 {
+.selector-14 {
   --value: rfs(3rem);
 }
 
-.selector-26 {
+.selector-15 {
   font-size: rfs(10px);
 }
 
-.selector-27 {
+.selector-16 {
   margin: rfs(-3rem);
 }
 
-.selector-28 {
+.selector-17 {
   margin: rfs(-.5rem);
 }

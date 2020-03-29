@@ -4,8 +4,16 @@
 
 const assert = require('assert');
 const result = require('./lib/result.js');
-const tests = require('./tests.json');
-
+const tests = [
+  'Default build',
+  'Disable responsive font size',
+  'Change breakpoint unit to em',
+  'Change base font size',
+  'Change font size unit',
+  'Enable two dimensional',
+  'Go loco with the config',
+  'Include function multiple times'
+];
 const styles = [
   'Less',
   'LibSass',
@@ -16,10 +24,11 @@ const styles = [
 
 function doTest(style) {
   describe(style, () => {
-    tests.forEach(test => {
-      it(test.name, done => {
-        const generated = result[style.toLowerCase()](test.id);
-        const expected = result.expected(test.id);
+    tests.forEach((test, index) => {
+      const name = `test-${index + 1}`;
+      it(test, done => {
+        const generated = result[style.toLowerCase()](name);
+        const expected = result.expected(name);
 
         if (generated instanceof Promise) {
           generated.then(generated => {

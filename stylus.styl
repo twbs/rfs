@@ -1,4 +1,4 @@
-// Stylus RFS mixin
+// Stylus RFS function 10.0.0-alpha.0
 //
 // Automated responsive values for font sizes, paddings, margins and much more
 //
@@ -12,7 +12,6 @@ $rfs-unit ?= rem
 
 // Breakpoint at where values start decreasing if screen width is smaller
 $rfs-breakpoint ?= 1200px
-$rfs-breakpoint-unit ?= px
 
 // Resize values based on screen height and width
 $rfs-two-dimensional ?= false
@@ -20,124 +19,28 @@ $rfs-two-dimensional ?= false
 // Factor of decrease
 $rfs-factor ?= 10
 
-// Mode. Possibilities: "min-media-query", "max-media-query"
-$rfs-mode ?= "min-media-query"
-
 // Generate enable or disable classes. Possibilities: false, "enable" or "disable"
 $rfs-class ?= false
 
 // 1 rem = $rfs-rem-value px
 $rfs-rem-value ?= 16
 
-// Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
-$rfs-safari-iframe-resize-bug-fix ?= false
-
 // Disable RFS by setting $enable-rfs to false
 $enable-rfs ?= true
 
-// Cache $rfs-base-value unit
-$rfs-base-value-unit = unit($rfs-base-value)
-
 // Remove px-unit from $rfs-base-value for calculations
-if $rfs-base-value-unit == "px"
+if unit($rfs-base-value) == "px"
   $rfs-base-value = unit($rfs-base-value, "")
-else if $rfs-base-value-unit == "rem"
+else if unit($rfs-base-value) == "rem"
   $rfs-base-value = unit($rfs-base-value * $rfs-rem-value, "")
-
-// Cache $rfs-breakpoint unit to prevent multiple calls
-$rfs-breakpoint-unit-cache = unit($rfs-breakpoint)
-
-// Remove unit from $rfs-breakpoint for calculations
-if $rfs-breakpoint-unit-cache == "px"
-  $rfs-breakpoint = unit($rfs-breakpoint, "")
-else if $rfs-breakpoint-unit-cache == "rem" or $rfs-breakpoint-unit-cache == "em"
-  $rfs-breakpoint = unit($rfs-breakpoint * $rfs-rem-value, "")
 
 if $rfs-breakpoint-unit == px
   $rfs-mq-value = unit($rfs-breakpoint, px)
 else
   $rfs-mq-value = unit($rfs-breakpoint / $rfs-rem-value, $rfs-breakpoint-unit)
 
-
-if $rfs-mode == min-media-query
-  $rfs-mq-property-width = min-width
-else
-  $rfs-mq-property-width = max-width
-
-if $rfs-mode == min-media-query
-  $rfs-mq-property-height = min-height
-else
-  $rfs-mq-property-height = max-height
-
-_rfs-rule()
-  if $rfs-class == "disable" and $rfs-mode == max-media-query
-    &,
-    .disable-rfs &,
-    &.disable-rfs
-      {block}
-  else if $rfs-class == "enable" and $rfs-mode == min-media-query
-    .enable-rfs &,
-    &.enable-rfs
-      {block}
-  else
-    {block}
-
-_rfs-media-query-rule()
-  if $rfs-class == "enable"
-    if $rfs-mode == min-media-query
-      {block}
-    +_rfs-media-query()
-      .enable-rfs &,
-      &.enable-rfs
-        {block}
-  else
-    if $rfs-class == disable and $rfs-mode == min-media-query
-      .disable-rfs &,
-      &.disable-rfs
-        {block}
-    +_rfs-media-query()
-      {block}
-
-// Internal mixin used to determine which media query needs to be used
-_rfs-media-query()
-  if $rfs-two-dimensional
-    if $rfs-mode == min-media-query
-      @media ({$rfs-mq-property-width}: $rfs-mq-value) and ({$rfs-mq-property-height}: $rfs-mq-value)
-        {block}
-    else
-      @media ({$rfs-mq-property-width}: $rfs-mq-value), ({$rfs-mq-property-height}: $rfs-mq-value)
-        {block}
-  else
-    @media ({$rfs-mq-property-width}: $rfs-mq-value)
-      {block}
-
-// Helper function to get the formatted non-responsive value
-rfs-value($value)
-  if $value == 0
-    0
-
-  else if type-of($value) != "unit"
-    $value
-  else
-    $unit = unit($value)
-
-    if $unit == "px"
-      if $rfs-unit == "rem"
-        unit($value / $rfs-rem-value, rem)
-      else
-        unit($value, px)
-
-    else if $unit == "rem"
-      if $rfs-unit == "rem"
-        unit($value, rem)
-      else
-        unit($value * $rfs-rem-value, px)
-    else
-      $value
-
-
 // Helper function to get the responsive value calculated by RFS
-rfs-fluid-value($value)
+rfs-value($value)
   if $value == 0
     0
   else if type-of($value) != "unit"
@@ -163,11 +66,15 @@ rfs-fluid-value($value)
       // Calculate difference between $value and the minimum value
       $value-diff = abs($value) - $value-min;
 
+      $base-value = $value
+
       // Base value formatting
       if $rfs-unit == rem
         $min-width = unit($value-min / $rfs-rem-value, rem)
+        $base-value = unit($base-value / $rfs-rem-value, rem)
       else
         $min-width = unit($value-min, px)
+        $base-value = unit($base-value, px)
 
       // Use `vmin` if two-dimensional is enabled
       if $rfs-two-dimensional
@@ -180,72 +87,17 @@ rfs-fluid-value($value)
 
       // Return the calculated value
       if $value != abs($value)
-        unquote("calc(-" + $min-width + " - " + $variable-width + ")")
+        "min(" + $base-value ", calc(-" + $min-width + " - " + $variable-width + "))"
       else
-        unquote("calc(" + $min-width + " + " + $variable-width + ")")
+        "min(" + $base-value ", calc(" + $min-width + " + " + $variable-width + "))"
 
-// RFS mixin
-rfs($values, $property = font-size)
+// RFS function
+rfs($values)
   $val = ''
-  $fluidVal = ''
 
   // Loop over each value and calculate responsive & non-responsive values
   for $value in $values
-    $val+= ' ' + rfs-value($value)
-    $fluidVal+= ' ' + rfs-fluid-value($value)
+    $val+= " " + rfs-value($value)
 
   // Remove first space
-  $val = unquote(slice($val, 1))
-  $fluidVal = unquote(slice($fluidVal, 1))
-
-  // Do not print the media query if responsive & non-responsive values are the same
-  if $val == $fluidVal
-    {$property}: $val
-  else
-    +_rfs-rule()
-      if $rfs-mode == "min-media-query"
-        {$property}: $fluidVal
-      else
-        {$property}: $val
-
-      if $rfs-safari-iframe-resize-bug-fix and $rfs-mode == "min-media-query"
-        min-width: 0vw
-
-    +_rfs-media-query-rule()
-      if $rfs-mode == "min-media-query"
-        {$property}: $val
-      else
-        {$property}: $fluidVal
-
-rfs-font-size($value)
-  rfs($value)
-
-rfs-padding($value, $property = padding)
-  rfs($value, $property)
-
-rfs-padding-top($value, $property = padding-top)
-  rfs($value, $property)
-
-rfs-padding-right($value, $property = padding-right)
-  rfs($value, $property)
-
-rfs-padding-bottom($value, $property = padding-bottom)
-  rfs($value, $property)
-
-rfs-padding-left($value, $property = padding-left)
-  rfs($value, $property)
-
-rfs-margin($value, $property = margin)
-  rfs($value, $property)
-
-rfs-margin-top($value, $property = margin-top)
-  rfs($value, $property)
-
-rfs-margin-right($value, $property = margin-right)
-  rfs($value, $property)
-
-rfs-margin-bottom($value, $property = margin-bottom)
-  rfs($value, $property)
-
-rfs-margin-left($value, $property = margin-left)
-  rfs($value, $property)
+  unquote(slice($val, 1))

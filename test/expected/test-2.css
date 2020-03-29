@@ -13,103 +13,59 @@
 }
 
 .selector-4 {
-  font-size: 2rem;
-}
-
-.selector-5 {
   font-size: 2em;
 }
 
-.selector-6 {
+.selector-5 {
   font-size: inherit;
 }
 
 @supports (display: flex) {
-  .selector-7 {
+  .selector-6 {
     font-size: 1.75rem;
   }
 }
 
-.selector-8 {
+.selector-7 {
   flex: 0 999 32rem;
 }
 
+.selector-8 {
+  padding: 2rem;
+}
+
 .selector-9 {
-  padding: 2rem;
-}
-
-.selector-10 {
-  padding: 2rem;
-}
-
-.selector-11 {
-  padding-top: 2rem;
-}
-
-.selector-12 {
-  padding-right: 2rem;
-}
-
-.selector-13 {
-  padding-bottom: 2rem;
-}
-
-.selector-14 {
-  padding-left: 2rem;
-}
-
-.selector-15 {
-  margin: 2rem;
-}
-
-.selector-16 {
-  margin-top: 2rem;
-}
-
-.selector-17 {
-  margin-right: 2rem;
-}
-
-.selector-18 {
-  margin-bottom: 2rem;
-}
-
-.selector-19 {
-  margin-left: 2rem;
-}
-
-.selector-20 {
   margin: 2rem 3rem;
 }
 
-.selector-21 {
+.selector-10 {
   margin: 2rem 3rem !important;
 }
 
-.selector-22 {
+.selector-11 {
   font-size: 0;
 }
 
-.selector-23 {
+.selector-12 {
   margin: 0 3rem;
 }
 
-.selector-24 {
+.selector-13 {
   box-shadow: 0 0 2rem #f00, 0 0 3rem #0f0;
 }
 
-.selector-25 {
+.selector-14 {
   --value: 3rem;
 }
 
-.selector-26 {
+.selector-15 {
   font-size: 0.625rem;
 }
 
-.selector-27 {
+.selector-16 {
   margin: -3rem;
 }
 
-.selector-28 {
+.selector-17 {
   margin: -0.5rem;
 }

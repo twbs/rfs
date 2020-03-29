@@ -27,7 +27,6 @@
     "responsive",
     "font-size",
     "typography",
-    "mixin",
     "scss",
     "sass",
     "less",
@@ -72,7 +71,7 @@
     "postcss": "^7.0.32",
     "prettier": "^2.0.5",
     "sass": "^1.26.8",
-    "stylelint": "^13.6.0",
+    "stylelint": "^13.6.1",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.7",
     "xo": "^0.32.0"
