@@ -75,7 +75,7 @@
     "stylelint": "^13.2.1",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.7",
-    "xo": "^0.28.0"
+    "xo": "^0.28.1"
   },
   "mocha": {
     "check-leaks": true,
@@ -88,8 +88,6 @@
     "space": true,
     "rules": {
       "ava/no-import-test-files": "off",
-      "import/order": "off",
-      "prefer-named-capture-group": "off",
       "promise/prefer-await-to-then": "off",
       "unicorn/prevent-abbreviations": "off"
     }
