@@ -72,10 +72,10 @@
     "postcss": "^7.0.27",
     "prettier": "^2.0.4",
     "sass": "^1.26.3",
-    "stylelint": "^13.2.1",
+    "stylelint": "^13.3.0",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.7",
-    "xo": "^0.28.1"
+    "xo": "^0.28.3"
   },
   "mocha": {
     "check-leaks": true,
