@@ -57,7 +57,7 @@
     "node-example-stylus": "node examples/stylus/index.js"
   },
   "dependencies": {
-    "postcss-value-parser": "^4.0.2"
+    "postcss-value-parser": "^4.0.3"
   },
   "devDependencies": {
     "gulp": "^4.0.2",
@@ -65,17 +65,17 @@
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-stylus": "^2.7.0",
-    "less": "^3.10.3",
-    "mocha": "^6.2.2",
-    "node-sass": "^4.12.0",
+    "less": "^3.11.1",
+    "mocha": "^6.2.3",
+    "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
-    "postcss": "^7.0.18",
-    "prettier": "^1.18.2",
-    "sass": "^1.23.0",
+    "postcss": "^7.0.27",
+    "prettier": "^1.19.1",
+    "sass": "^1.26.3",
     "stylelint": "^11.1.1",
     "stylelint-config-standard": "^19.0.0",
     "stylus": "^0.54.7",
-    "xo": "^0.25.3"
+    "xo": "^0.25.4"
   },
   "xo": {
     "space": true,
