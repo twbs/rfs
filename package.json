@@ -72,7 +72,7 @@
     "postcss": "^7.0.31",
     "prettier": "^2.0.5",
     "sass": "^1.26.5",
-    "stylelint": "^13.4.1",
+    "stylelint": "^13.5.0",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.7",
     "xo": "^0.30.0"
