@@ -98,7 +98,7 @@ project/
   // For properties which do not have a shorthand, the property can be passed:
   // @include rfs(4rem, border-radius);
 
-  // Whenever a value contains a space, it should be escaped with `#{}`:
+  // Whenever a value contains a comma, it should be escaped with `#{}`:
   // @include rfs(0 0 4rem red #{","} 0 0 5rem blue, box-shadow);
 
   // Custom properties (css variables):
@@ -189,7 +189,7 @@ project/
   // For properties which do not have a shorthand, the property can be passed:
   // +rfs(4rem, border-radius)
 
-  // Whenever a value contains a space, it should be escaped with `#{}`:
+  // Whenever a value contains a comma, it should be escaped with `#{}`:
   // +rfs(0 0 4rem red #{","} 0 0 5rem blue, box-shadow)
 
   // Custom properties (css variables):
@@ -329,7 +329,7 @@ project/
   // For properties which do not have a shorthand, the property can be passed as:
   // .rfs(4rem, border-radius);
 
-  // Whenever a value contains a space, it should be escaped with a tilde(~):
+  // Whenever a value contains a comma, it should be escaped with a tilde(~):
   // .rfs(0 0 4rem red ~"," 0 0 5rem blue, box-shadow)
 
   // Custom properties (css variables):
@@ -420,7 +420,7 @@ project/
   // For properties which do not have a shorthand, the property can be passed as:
   // rfs(4rem, border-radius)
 
-  // Whenever a value contains a space, it should be escaped with a backslash:
+  // Whenever a value contains a comma, it should be escaped with a backslash:
   // rfs(0 0 4rem red \, 0 0 5rem blue, box-shadow)
 
   // Custom properties (css variables):
