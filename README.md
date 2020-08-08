@@ -164,7 +164,7 @@ project/
 #### Input
 
 ```sass
-// scss/main.scss
+// sass/main.sass
 
 @import "../node_modules/rfs/sass"
 
