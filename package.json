@@ -66,16 +66,16 @@
     "gulp-sass": "^4.1.0",
     "gulp-stylus": "^2.7.0",
     "less": "^3.12.2",
-    "mocha": "^8.1.1",
+    "mocha": "^8.1.3",
     "node-sass": "^4.14.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^7.0.32",
-    "prettier": "^2.1.0",
+    "prettier": "^2.1.1",
     "sass": "^1.26.10",
     "stylelint": "^13.7.0",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.8",
-    "xo": "^0.33.0"
+    "xo": "^0.33.1"
   },
   "mocha": {
     "check-leaks": true,
