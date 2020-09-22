@@ -14,4 +14,3 @@ updates:
     labels:
       - dependencies
     versioning-strategy: increase
-    rebase-strategy: disabled
