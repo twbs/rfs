@@ -112,7 +112,7 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
         }
       });
 
-      if (mediaQueryRules.length !== 0) {
+      if (mediaQueryRules.length > 0) {
         // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
         if (opts.safariIframeResizeBugFix) {
           rule.append({
