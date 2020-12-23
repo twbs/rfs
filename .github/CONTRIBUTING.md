@@ -7,7 +7,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Pull Request Process
 
-1. Always create a fork from the `master` branch.
+1. Always create a fork from the `v9.x` branch.
 2. If needed, update the README.md with details of changes.
 3. Do not increase the version numbers in any files. The project owner(s) will take care of this.
 4. You may merge the Pull Request in once you have the sign-off of two other developers, or if you

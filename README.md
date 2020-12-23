@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/twbs/rfs/master/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
+  <img src="https://raw.githubusercontent.com/twbs/rfs/v9.x/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
 </p>
 
 RFS is a unit resizing engine which was initially developed to resize font sizes (hence its abbreviation for Responsive Font Sizes). Nowadays RFS is capable of rescaling basically every value for any css property with units, like `margin`, `padding`, `border-radius` or even `box-shadow`.
@@ -42,7 +42,7 @@ The mechanism **automatically calculates the appropriate values** based on the d
 
 The following example shows the effect of RFS on font sizes:
 
-![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
+![RFS](https://raw.githubusercontent.com/twbs/rfs/v9.x/.github/rfs-rescale.gif)
 
 ## Installation
 
@@ -59,7 +59,7 @@ lose the ability to easily and quickly manage and update RFS as a dependency.
 
 ## Usage
 
-### Sass (<code>.scss</code> syntax)
+### Sass (`.scss` syntax)
 
 ```text
 project/
@@ -126,7 +126,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-#### !important usage
+#### `!important` usage
 
 ##### Input
 
@@ -150,7 +150,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-### Sass (<code>.sass</code> syntax)
+### Sass (`.sass` syntax)
 
 ```text
 project/
@@ -216,7 +216,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-#### !important usage
+#### `!important` usage
 
 ##### Input
 
@@ -250,7 +250,7 @@ project/
          └── ...
 ```
 
-Have a look at the [examples folder](https://github.com/twbs/rfs/tree/master/examples/postcss) to find examples on how your PostCSS setup can be configured.
+Have a look at the [examples folder](https://github.com/twbs/rfs/tree/v9.x/examples/postcss) to find examples on how your PostCSS setup can be configured.
 
 ```postcss
 // postcss/main.css
@@ -357,7 +357,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-#### !important usage
+#### `!important` usage
 
 Less still has [a bug](https://github.com/less/less.js/issues/2917) for [native `!important` support](http://lesscss.org/features/#mixins-feature-the-important-keyword), and `!important` can not be accepted as a parameter, so you 'll need to pass `important` as a flag:
 
@@ -449,7 +449,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-#### !important usage
+#### `!important` usage
 
 ##### Input
 
@@ -476,7 +476,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 If you wonder how the values are rescaled, wonder no more and stare at this graph which might clarify things a bit:
 
-![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-graph.svg?sanitize=true)
+![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/v9.x/.github/rfs-graph.svg?sanitize=true)
 
 Each color represents another value being rescaled. For example:
 
@@ -607,12 +607,12 @@ RFS is supported by all browsers that support [media queries](https://caniuse.co
 
 ## Copyright and license
 
-Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/twbs/rfs/blob/main/LICENSE).
 
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
-[license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
+[license-url]: https://github.com/twbs/rfs/blob/main/LICENSE
 [build-image]: https://github.com/twbs/rfs/workflows/Tests/badge.svg
 [build-url]: https://github.com/twbs/rfs/actions?workflow=Tests
 [devDeps-image]: https://img.shields.io/david/dev/twbs/rfs.svg
