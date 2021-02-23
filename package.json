@@ -89,6 +89,7 @@
     "rules": {
       "ava/no-import-test-files": "off",
       "promise/prefer-await-to-then": "off",
+      "unicorn/no-array-for-each": "off",
       "unicorn/prevent-abbreviations": "off"
     }
   }
