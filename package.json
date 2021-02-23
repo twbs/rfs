@@ -75,7 +75,7 @@
     "stylelint": "^13.11.0",
     "stylelint-config-standard": "^20.0.0",
     "stylus": "^0.54.8",
-    "xo": "^0.37.1"
+    "xo": "^0.38.1"
   },
   "mocha": {
     "check-leaks": true,
