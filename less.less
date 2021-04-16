@@ -52,14 +52,14 @@
     }
 
     & when ((isunit(@currentValue, px)) or (isunit(@currentValue, rem))) {
-      @val: if(isunit(@currentValue, rem), unit(@currentValue * @rfs-rem-value), unit(@currentValue));
+      @val: if(isunit(@currentValue, rem), unit((@currentValue * @rfs-rem-value)), unit(@currentValue));
 
       // Remove unit if zero
       @value-unit: if(@val = 0, ~"", @rfs-unit);
 
-      @renderedValue: unit(if(@rfs-unit = px, @val, @val / @rfs-rem-value), @value-unit);
+      @renderedValue: unit(if(@rfs-unit = px, @val, ((@val / @rfs-rem-value))), @value-unit);
 
-      @rfs-min: if(isunit(@rfs-base-value, rem), unit(@rfs-base-value * @rfs-rem-value), unit(@rfs-base-value));
+      @rfs-min: if(isunit(@rfs-base-value, rem), unit((@rfs-base-value * @rfs-rem-value)), unit(@rfs-base-value));
 
       & when (not((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true))) {
         ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedValue}@{space}");
@@ -67,23 +67,23 @@
 
       & when ((abs(@val) > @rfs-min) and (@rfs-factor > 1) and (@enable-rfs = true)) {
 
-        @breakpoint: if(isunit(@rfs-breakpoint, em) or isunit(@rfs-breakpoint, rem), unit(@rfs-breakpoint * @rfs-rem-value), unit(@rfs-breakpoint));
-        @max-width: unit(if(@rfs-breakpoint-unit = px, @breakpoint, @breakpoint / @rfs-rem-value), @rfs-breakpoint-unit);
+        @breakpoint: if(isunit(@rfs-breakpoint, em) or isunit(@rfs-breakpoint, rem), unit((@rfs-breakpoint * @rfs-rem-value)), unit(@rfs-breakpoint));
+        @max-width: unit(if(@rfs-breakpoint-unit = px, @breakpoint, ((@breakpoint / @rfs-rem-value))), @rfs-breakpoint-unit);
 
         // Calculate minimum value
-        @value-min: @rfs-min + (abs(@val) - @rfs-min) / @rfs-factor;
+        @value-min: @rfs-min + (((abs(@val) - @rfs-min) / @rfs-factor));
 
         // Calculate difference between @val and the minimum value
         // Rounding needed to prevent rounding errors
-        @value-variable-width: unit(round((abs(@val) - @value-min) / (@breakpoint / 100), 15), if(@rfs-two-dimensional, vmin, vw));
+        @value-variable-width: unit(round(((abs(@val) - @value-min) / ((@breakpoint / 100))), 15), if(@rfs-two-dimensional, vmin, vw));
 
         & when (@val > 0) {
-          @renderedFluidValue: calc(unit(if(@rfs-unit = px, @value-min, @value-min / @rfs-rem-value), @rfs-unit) ~"+" @value-variable-width);
+          @renderedFluidValue: calc(unit(if(@rfs-unit = px, ((@value-min)), ((@value-min / @rfs-rem-value))), @rfs-unit) ~"+" @value-variable-width);
           ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
         }
 
         & when (@val < 0) {
-          @renderedFluidValue: calc(unit(if(@rfs-unit = px, -@value-min, -@value-min / @rfs-rem-value), @rfs-unit) ~"-" @value-variable-width);
+          @renderedFluidValue: calc(unit(if(@rfs-unit = px, ((-@value-min)), ((-@value-min / @rfs-rem-value))), @rfs-unit) ~"-" @value-variable-width);
           ._rfs-calculate((@index + 1), ~"@{valueResult}@{renderedValue}@{space}", ~"@{fluidValueResult}@{renderedFluidValue}@{space}");
         }
       }
