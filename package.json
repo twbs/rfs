@@ -35,7 +35,7 @@
     "postcss"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   },
   "scripts": {
     "mocha": "mocha",
@@ -89,6 +89,7 @@
     "rules": {
       "ava/no-import-test-files": "off",
       "import/extensions": "off",
+      "node/prefer-promises/fs": "off",
       "promise/prefer-await-to-then": "off",
       "unicorn/no-array-for-each": "off",
       "unicorn/prevent-abbreviations": "off"
