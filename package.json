@@ -65,7 +65,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-stylus": "^2.7.0",
-    "less": "^3.13.0",
+    "less": "^3.13.1",
     "mocha": "^8.4.0",
     "node-sass": "^6.0.0",
     "npm-run-all": "^4.1.5",
@@ -88,6 +88,7 @@
     "space": true,
     "rules": {
       "ava/no-import-test-files": "off",
+      "import/extensions": "off",
       "promise/prefer-await-to-then": "off",
       "unicorn/no-array-for-each": "off",
       "unicorn/prevent-abbreviations": "off"
