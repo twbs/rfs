@@ -8,6 +8,7 @@ const tests = require('./tests.json');
 
 const styles = [
   'Less',
+  'Less4',
   'LibSass',
   'DartSass',
   'Stylus',
