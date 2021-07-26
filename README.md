@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/twbs/rfs/master/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
+  <img src="https://raw.githubusercontent.com/twbs/rfs/v8.x/rfs.svg?sanitize=true" alt="RFS logo" width="99" height="108.6">
 </p>
 
 <p  align="center">
@@ -30,7 +30,7 @@
 - The font sizes of all text elements will always remain in relation with each other
 
 
-![RFS](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-rescale.gif)
+![RFS](https://raw.githubusercontent.com/twbs/rfs/v8.x/.github/rfs-rescale.gif)
 
 
 ## Installation
@@ -186,7 +186,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 
 If you wonder how the font sizes are rescaled, wonder no more and stare at this graph which might clarify things a bit:
 
-![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/master/.github/rfs-graph.svg?sanitize=true)
+![RFS visualisation](https://raw.githubusercontent.com/twbs/rfs/v8.x/.github/rfs-graph.svg?sanitize=true)
 
 Each color represents another font size being rescaled. For example:
 
@@ -370,12 +370,12 @@ RFS is supported by all browsers that support [media queries](https://caniuse.co
 
 ## Copyright and license
 
-Code released under [the MIT license](https://github.com/twbs/rfs/blob/master/LICENSE).
+Code released under [the MIT license](https://github.com/twbs/rfs/blob/v8.x/LICENSE).
 
 
 [npm-image]: https://img.shields.io/npm/v/rfs.svg
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
-[license-url]: https://github.com/twbs/rfs/blob/master/LICENSE
+[license-url]: https://github.com/twbs/rfs/blob/v8.x/LICENSE
 [build-image]: https://img.shields.io/circleci/project/github/twbs/rfs/master.svg
 [build-url]: https://circleci.com/gh/twbs/rfs

@@ -3,7 +3,7 @@
  *
  * Automated font-resizing
  *
- * Licensed under MIT (https://github.com/twbs/rfs/blob/master/LICENSE)
+ * Licensed under MIT (https://github.com/twbs/rfs/blob/v8.x/LICENSE)
  */
 
 'use strict';
