@@ -1,6 +1,6 @@
 {
   "name": "rfs",
-  "version": "9.0.4",
+  "version": "9.0.5",
   "main": "postcss.js",
   "description": "Powerful & easy-to-use responsive resizing engine.",
   "author": "Martijn Cuppens <martijn.cuppens@gmail.com>",
