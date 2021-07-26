@@ -377,5 +377,5 @@ Code released under [the MIT license](https://github.com/twbs/rfs/blob/v8.x/LICE
 [npm-url]: https://npmjs.org/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs.svg
 [license-url]: https://github.com/twbs/rfs/blob/v8.x/LICENSE
-[build-image]: https://img.shields.io/circleci/project/github/twbs/rfs/master.svg
-[build-url]: https://circleci.com/gh/twbs/rfs
+[build-image]: https://github.com/twbs/rfs/workflows/Tests/badge.svg
+[build-url]: https://github.com/twbs/rfs/actions?workflow=Tests
