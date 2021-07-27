@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [6, 8, 10, 12, 14]
+        node: [8, 10, 12, 14]
 
     steps:
       - name: Clone repository
@@ -26,12 +26,7 @@ jobs:
           cache: npm
 
       - name: Install npm dependencies
-        run: npm install
-        if: matrix.node == 6
-
-      - name: Install npm dependencies
         run: npm ci
-        if: matrix.node != 6
 
       - name: Run tests
         run: npm test
