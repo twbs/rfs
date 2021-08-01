@@ -123,16 +123,16 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
 
         const fluidMediaQuery = mediaQuery.clone();
 
-        mediaQueryRules.forEach(mediaQueryRule => {
+        for (const mediaQueryRule of mediaQueryRules) {
           fluidMediaQuery.append(mediaQueryRule);
-        });
+        }
 
         parent.insertAfter(rule, fluidMediaQuery);
 
         if (extraBlocks.length > 0) {
-          extraBlocks.forEach(disableBlock => {
+          for (const disableBlock of extraBlocks) {
             parent.insertAfter(rule, disableBlock);
-          });
+          }
         }
 
         if (removeRule) {
