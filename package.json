@@ -41,8 +41,17 @@
     "lint": "npm-run-all --parallel xo stylelint",
     "test": "npm run lint && npm run mocha",
     "generate-test-results": "node-sass test/sass/ -o test/expected/",
-    "gulp-examples": "cd examples/less/gulp && gulp build && cd ../../postcss/gulp && gulp build && cd ../../scss/gulp && gulp build && cd ../../stylus/gulp && gulp build && cd ../../../..",
-    "node-examples": "node examples/less/node/index.js && node examples/postcss/node/index.js && node examples/scss/node/index.js && node examples/stylus/node/index.js"
+    "examples": "npm-run-all --parallel --continue-on-error gulp-examples node-examples",
+    "gulp-examples": "npm-run-all --parallel --continue-on-error gulp-example-*",
+    "gulp-example-less": "gulp --gulpfile=examples/less/gulp/gulpfile.js build",
+    "gulp-example-postcss": "gulp --gulpfile=examples/postcss/gulp/gulpfile.js build",
+    "gulp-example-scss": "gulp --gulpfile=examples/scss/gulp/gulpfile.js build",
+    "gulp-example-stylus": "gulp --gulpfile=examples/stylus/gulp/gulpfile.js build",
+    "node-examples": "npm-run-all --parallel --continue-on-error node-example-*",
+    "node-example-less": "node examples/less/node/index.js",
+    "node-example-postcss": "node examples/postcss/node/index.js",
+    "node-example-scss": "node examples/scss/node/index.js",
+    "node-example-stylus": "node examples/stylus/node/index.js"
   },
   "dependencies": {},
   "devDependencies": {
