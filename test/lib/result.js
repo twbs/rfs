@@ -7,7 +7,7 @@ const prettier = require('prettier');
 const libSass = require('node-sass');
 const dartSass = require('sass');
 const less = require('less');
-const less4 = require('less4');
+const less3 = require('less3');
 const stylus = require('stylus');
 
 // Postcss
@@ -56,8 +56,8 @@ module.exports = {
   },
 
   // Return parsed css
-  less4: id => {
-    return less4.render(getFileContent('less', id, 'less'), {
+  less3: id => {
+    return less3.render(getFileContent('less', id, 'less'), {
       paths: [path.join(__dirname, '../less')],
       syncImport: true
     }).then(result => {
