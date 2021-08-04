@@ -31,5 +31,5 @@ jobs:
       - name: Run examples
         run: npm run examples
 
-      - name: Run tests
-        run: npm test
+      - name: Run mocha tests
+        run: npm run mocha
