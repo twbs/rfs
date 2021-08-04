@@ -101,7 +101,6 @@
         "after"
       ],
       "promise/prefer-await-to-then": "off",
-      "unicorn/no-array-for-each": "off",
       "unicorn/prefer-module": "off",
       "unicorn/prevent-abbreviations": "off"
     }

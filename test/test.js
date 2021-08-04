@@ -17,7 +17,7 @@ const styles = [
 
 function doTest(style) {
   describe(style, () => {
-    tests.forEach(test => {
+    for (const test of tests) {
       it(test.name, done => {
         const generated = result[style.toLowerCase()](test.id);
         const expected = result.expected(test.id);
@@ -34,10 +34,10 @@ function doTest(style) {
           done();
         }
       });
-    });
+    }
   });
 }
 
-styles.forEach(style => {
+for (const style of styles) {
   doTest(style);
-});
+}
