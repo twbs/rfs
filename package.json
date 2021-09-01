@@ -62,7 +62,7 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-less": "^5.0.0",
-    "gulp-postcss": "^9.0.0",
+    "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.0.0",
     "gulp-stylus": "^2.7.0",
     "less": "^4.1.1",
