@@ -73,24 +73,10 @@
     "xo": "^0.24.0"
   },
   "xo": {
+    "space": 2,
     "rules": {
       "ava/no-import-test-files": "off",
-      "indent": [
-        "error",
-        2,
-        {
-          "MemberExpression": "off",
-          "SwitchCase": 1
-        }
-      ],
       "import/extensions": "off",
-      "prefer-destructuring": [
-        "error",
-        {
-          "object": true,
-          "array": false
-        }
-      ],
       "unicorn/prefer-exponentiation-operator": "off"
     }
   }
