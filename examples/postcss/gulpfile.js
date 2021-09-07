@@ -2,7 +2,7 @@
 
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
-const rfs = require('../../postcss');
+const rfs = require('../../postcss.js');
 
 const options = {
   twoDimensional: false,

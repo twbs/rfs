@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const postcss = require('postcss');
-const rfs = require('../../postcss');
+const rfs = require('../../postcss.js');
 
 const css = fs.readFileSync(path.join(__dirname, '/src/main.css'), 'utf8');
 const options = {

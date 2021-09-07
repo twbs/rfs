@@ -12,7 +12,7 @@ const stylus = require('stylus');
 
 // Postcss
 const postcss = require('postcss');
-const rfs = require('../..');
+const rfs = require('../../postcss.js');
 const postcssTests = require('../postcss/tests.js');
 
 // Functions

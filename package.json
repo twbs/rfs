@@ -94,7 +94,6 @@
         "error",
         "never"
       ],
-      "import/extensions": "off",
       "node/prefer-promises/fs": "off",
       "operator-linebreak": [
         "error",
