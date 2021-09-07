@@ -17,7 +17,7 @@ const postcssTests = require('../postcss/tests.js');
 
 // Functions
 function format(css) {
-  return prettier.format(css, {parser: 'css'}).replace(/(\n)(\n)/g, '$1');
+  return prettier.format(css, { parser: 'css' }).replace(/(\n)(\n)/g, '$1');
 }
 
 function getFileContent(folder, id, ext) {
