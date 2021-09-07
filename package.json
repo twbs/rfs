@@ -90,8 +90,7 @@
     "rules": {
       "ava/no-import-test-files": "off",
       "import/extensions": "off",
-      "promise/prefer-await-to-then": "off",
-      "unicorn/prefer-exponentiation-operator": "off"
+      "promise/prefer-await-to-then": "off"
     }
   }
 }
