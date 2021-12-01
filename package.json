@@ -95,10 +95,15 @@
         "never"
       ],
       "node/prefer-promises/fs": "off",
+      "object-curly-spacing": [
+        "error",
+        "always"
+      ],
       "operator-linebreak": [
         "error",
         "after"
       ],
+      "prefer-template": "error",
       "promise/prefer-await-to-then": "off",
       "unicorn/prefer-module": "off",
       "unicorn/prevent-abbreviations": "off"
