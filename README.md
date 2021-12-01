@@ -11,7 +11,6 @@ The mechanism **automatically calculates the appropriate values** based on the d
 [![npm][npm-image]][npm-url]
 [![licence][licence-image]][license-url]
 [![build][build-image]][build-url]
-[![devDeps][devDeps-image]][devDeps-url]
 
 - [Demos](#demos)
 - [Advantages](#advantages)
@@ -609,11 +608,9 @@ RFS is supported by all browsers that support [media queries](https://caniuse.co
 
 Code released under [the MIT license](https://github.com/twbs/rfs/blob/main/LICENSE).
 
-[npm-image]: https://img.shields.io/npm/v/rfs.svg
-[npm-url]: https://npmjs.org/package/rfs
-[licence-image]: https://img.shields.io/npm/l/rfs.svg
+[npm-image]: https://img.shields.io/npm/v/rfs
+[npm-url]: https://www.npmjs.com/package/rfs
+[licence-image]: https://img.shields.io/npm/l/rfs
 [license-url]: https://github.com/twbs/rfs/blob/main/LICENSE
-[build-image]: https://github.com/twbs/rfs/workflows/Tests/badge.svg
-[build-url]: https://github.com/twbs/rfs/actions?workflow=Tests
-[devDeps-image]: https://img.shields.io/david/dev/twbs/rfs.svg
-[devDeps-url]: https://david-dm.org/twbs/rfs?type=dev
+[build-image]: https://img.shields.io/github/workflow/status/twbs/rfs/Tests/main?label=Tests&logo=github
+[build-url]: https://github.com/twbs/rfs/actions?query=workflow%3ATests+branch%3Amain
