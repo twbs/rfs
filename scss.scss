@@ -287,22 +287,22 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
 @mixin rfs($values, $property: font-size) {
   @if $values != null {
     $val: rfs-value($values);
-    $fluidVal: rfs-fluid-value($values);
+    $fluid-val: rfs-fluid-value($values);
 
     // Do not print the media query if responsive & non-responsive values are the same
-    @if $val == $fluidVal {
+    @if $val == $fluid-val {
       #{$property}: $val;
     }
     @else {
       @include _rfs-rule {
-        #{$property}: if($rfs-mode == max-media-query, $val, $fluidVal);
+        #{$property}: if($rfs-mode == max-media-query, $val, $fluid-val);
 
         // Include safari iframe resize fix if needed
         min-width: if($rfs-safari-iframe-resize-bug-fix, (0 * 1vw), null);
       }
 
       @include _rfs-media-query-rule {
-        #{$property}: if($rfs-mode == max-media-query, $fluidVal, $val);
+        #{$property}: if($rfs-mode == max-media-query, $fluid-val, $val);
       }
     }
   }
