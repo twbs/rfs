@@ -14,7 +14,7 @@ const RfsClass = require('./lib/rfs.js');
 const DISABLE_RFS_SELECTOR = '.disable-rfs';
 const ENABLE_RFS_SELECTOR = '.enable-rfs';
 
-module.exports = postcss.plugin('postcss-rfs', opts => {
+module.exports = (opts = {}) => {
   const rfs = new RfsClass(opts);
 
   // Get the options merged with defaults
@@ -25,7 +25,7 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
     css.walkRules(rule => {
       const mediaQueryRules = [];
       const extraBlocks = [];
-      const { parent } = rule;
+      const {parent} = rule;
       let removeRule = false;
       let dcRule;
       let ecRule;
@@ -54,7 +54,7 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
         let ruleSelector = '';
 
         for (const selector of selectors) {
-          ruleSelector += opts.mode === 'max-media-query' ? `${selector},\n` : '';
+          ruleSelector += (opts.mode === 'max-media-query') ? `${selector},\n` : '';
           ruleSelector += `${DISABLE_RFS_SELECTOR} ${selector},\n`;
           ruleSelector += `${selector + DISABLE_RFS_SELECTOR},\n`;
         }
@@ -69,83 +69,77 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
 
       rule.walkDecls(decl => {
         // Check if the selector doesn't contain the disabled selector
-        // and if the value contains the rfs() function
-        const check = !rule.selector.includes(DISABLE_RFS_SELECTOR) &&
-          new RegExp(`${opts.functionName}(.*)`, 'g').test(decl.value);
+        // Check if value contains rfs() function
+        if (!rule.selector.includes(DISABLE_RFS_SELECTOR) && new RegExp(opts.functionName + '(.*)', 'g').test(decl.value)) {
+          const value = rfs.value(decl.value);
+          const fluidValue = rfs.fluidValue(decl.value);
+          decl.value = value;
 
-        if (!check) {
-          return;
-        }
+          if (value !== fluidValue) {
+            const defaultValue = (opts.mode === 'min-media-query') ? ((opts.class === 'enable') ? value : fluidValue) : value;
+            const mediaQueryValue = (opts.mode === 'min-media-query') ? value : fluidValue;
+            decl.value = defaultValue;
 
-        const value = rfs.value(decl.value);
-        const fluidValue = rfs.fluidValue(decl.value);
-        decl.value = value;
+            fluidRule.append(decl.clone({value: mediaQueryValue}));
+            mediaQueryRules.push(fluidRule);
 
-        if (value !== fluidValue) {
-          const defaultValue = opts.mode === 'min-media-query' ? ((opts.class === 'enable') ? value : fluidValue) : value;
-          const mediaQueryValue = opts.mode === 'min-media-query' ? value : fluidValue;
-          decl.value = defaultValue;
+            // Disable classes
+            if (opts.class === 'disable') {
+              const declOpts = (opts.mode === 'max-media-query') ? {} : {value};
+              dcRule.append(decl.clone(declOpts));
+              extraBlocks.push(dcRule);
+            } else if (opts.class === 'enable' && opts.mode === 'min-media-query') {
+              if (ecRule === undefined) {
+                ecRule = postcss.rule({
+                  selector: ruleSelector,
+                  source: parent.source
+                });
+              }
 
-          fluidRule.append(decl.clone({ value: mediaQueryValue }));
-          mediaQueryRules.push(fluidRule);
-
-          // Disable classes
-          if (opts.class === 'disable') {
-            const declOpts = opts.mode === 'max-media-query' ? {} : { value };
-            dcRule.append(decl.clone(declOpts));
-            extraBlocks.push(dcRule);
-          } else if (opts.class === 'enable' && opts.mode === 'min-media-query') {
-            if (ecRule === undefined) {
-              ecRule = postcss.rule({
-                selector: ruleSelector,
-                source: parent.source
-              });
+              ecRule.append(decl.clone({value: fluidValue}));
+              extraBlocks.push(ecRule);
             }
 
-            ecRule.append(decl.clone({ value: fluidValue }));
-            extraBlocks.push(ecRule);
-          }
-
-          // Remove declaration if needed
-          if (opts.class === 'disable' && opts.mode === 'max-media-query') {
-            if (decl.prev() || decl.next()) {
-              decl.remove();
-            } else {
-              removeRule = true;
+            // Remove declaration if needed
+            if (opts.class === 'disable' && opts.mode === 'max-media-query') {
+              if (decl.prev() || decl.next()) {
+                decl.remove();
+              } else {
+                removeRule = true;
+              }
             }
           }
         }
       });
 
-      if (mediaQueryRules.length === 0) {
-        return;
-      }
-
-      // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
-      if (opts.safariIframeResizeBugFix) {
-        rule.append({
-          prop: 'min-width',
-          value: '0vw'
-        });
-      }
-
-      const fluidMediaQuery = mediaQuery.clone();
-
-      for (const mediaQueryRule of mediaQueryRules) {
-        fluidMediaQuery.append(mediaQueryRule);
-      }
-
-      parent.insertAfter(rule, fluidMediaQuery);
-
-      if (extraBlocks.length > 0) {
-        for (const disableBlock of extraBlocks) {
-          parent.insertAfter(rule, disableBlock);
+      if (mediaQueryRules.length !== 0) {
+        // Safari iframe resize bug: https://github.com/twbs/rfs/issues/14
+        if (opts.safariIframeResizeBugFix) {
+          rule.append({
+            prop: 'min-width',
+            value: '0vw'
+          });
         }
-      }
 
-      if (removeRule) {
-        rule.remove();
+        const fluidMediaQuery = mediaQuery.clone();
+
+        mediaQueryRules.forEach(mediaQueryRule => {
+          fluidMediaQuery.append(mediaQueryRule);
+        });
+
+        parent.insertAfter(rule, fluidMediaQuery);
+
+        if (extraBlocks.length > 0) {
+          extraBlocks.forEach(disableBlock => {
+            parent.insertAfter(rule, disableBlock);
+          });
+        }
+
+        if (removeRule) {
+          rule.remove();
+        }
       }
     });
   };
-});
+};
+module.exports.postcss = true;
