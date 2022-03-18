@@ -149,4 +149,5 @@ module.exports = (opts = {}) => {
     });
   };
 };
+
 module.exports.postcss = true;
