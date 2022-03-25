@@ -14,7 +14,7 @@ const RfsClass = require('./lib/rfs.js');
 const DISABLE_RFS_SELECTOR = '.disable-rfs';
 const ENABLE_RFS_SELECTOR = '.enable-rfs';
 
-module.exports = postcss.plugin('postcss-rfs', opts => {
+module.exports = (opts = {}) => {
   const rfs = new RfsClass(opts);
 
   // Get the options merged with defaults
@@ -148,4 +148,6 @@ module.exports = postcss.plugin('postcss-rfs', opts => {
       }
     });
   };
-});
+};
+
+module.exports.postcss = true;
