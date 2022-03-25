@@ -50,9 +50,7 @@ module.exports = {
     return less.render(getFileContent('less', id, 'less'), {
       paths: [path.join(__dirname, '../less')],
       syncImport: true
-    }).then(result => {
-      return format(result.css);
-    });
+    }).then(result => format(result.css));
   },
 
   // Return parsed css
@@ -60,9 +58,7 @@ module.exports = {
     return less3.render(getFileContent('less', id, 'less'), {
       paths: [path.join(__dirname, '../less')],
       syncImport: true
-    }).then(result => {
-      return format(result.css);
-    });
+    }).then(result => format(result.css));
   },
 
   stylus(id) {

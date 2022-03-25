@@ -90,7 +90,6 @@
     "space": true,
     "rules": {
       "arrow-body-style": "off",
-      "ava/no-import-test-files": "off",
       "comma-dangle": [
         "error",
         "never"
@@ -105,7 +104,6 @@
         "after"
       ],
       "prefer-template": "error",
-      "promise/prefer-await-to-then": "off",
       "unicorn/prefer-module": "off",
       "unicorn/prevent-abbreviations": "off"
     }
