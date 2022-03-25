@@ -82,7 +82,7 @@ module.exports = (opts = {}) => {
         decl.value = value;
 
         if (value !== fluidValue) {
-          const defaultValue = opts.mode === 'min-media-query' ? ((opts.class === 'enable') ? value : fluidValue) : value;
+          const defaultValue = opts.mode === 'min-media-query' ? (opts.class === 'enable' ? value : fluidValue) : value;
           const mediaQueryValue = opts.mode === 'min-media-query' ? value : fluidValue;
           decl.value = defaultValue;
 
