@@ -2,7 +2,7 @@
 
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const result = require('./lib/result.js');
 const tests = require('./tests.json');
 
@@ -17,20 +17,20 @@ const styles = [
 
 function doTest(style) {
   describe(style, () => {
-    for (const test of tests) {
-      it(test.name, done => {
-        const generated = result[style.toLowerCase()](test.id);
-        const expected = result.expected(test.id);
+    for (const { id, name } of tests) {
+      it(name, done => {
+        const generated = result[style.toLowerCase()](id);
+        const expected = result.expected(id);
 
         if (generated instanceof Promise) {
           generated.then(generated => {
-            assert.strictEqual(generated, expected);
+            assert.equal(generated, expected);
             done();
           }).catch(error => {
             done(error);
           });
         } else {
-          assert.strictEqual(generated, expected);
+          assert.equal(generated, expected);
           done();
         }
       });
