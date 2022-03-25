@@ -32,21 +32,21 @@ module.exports = {
   expected: id => format(getFileContent('expected', id, 'css')),
 
   // Return parsed css
-  dartsass: id => {
+  dartsass(id) {
     return format(dartSass.renderSync({
       file: path.join(__dirname, `../sass/${id}.scss`)
     }).css.toString('utf8'));
   },
 
   // Return parsed css
-  libsass: id => {
+  libsass(id) {
     return format(libSass.renderSync({
       file: path.join(__dirname, `../sass/${id}.scss`)
     }).css.toString('utf8'));
   },
 
   // Return parsed css
-  less: id => {
+  less(id) {
     return less.render(getFileContent('less', id, 'less'), {
       paths: [path.join(__dirname, '../less')],
       syncImport: true
@@ -56,7 +56,7 @@ module.exports = {
   },
 
   // Return parsed css
-  less3: id => {
+  less3(id) {
     return less3.render(getFileContent('less', id, 'less'), {
       paths: [path.join(__dirname, '../less')],
       syncImport: true
@@ -65,7 +65,7 @@ module.exports = {
     });
   },
 
-  stylus: id => {
+  stylus(id) {
     let formattedCSS = '';
     stylus.render(getFileContent('stylus', id, 'styl'), {
       filename: path.join(__dirname, `../stylus/${id}.styl`)
@@ -79,7 +79,7 @@ module.exports = {
     return formattedCSS;
   },
 
-  postcss: id => {
+  postcss(id) {
     return format(postcss(rfs(postcssTests[id])).process(postcssCss).css);
   }
 };
