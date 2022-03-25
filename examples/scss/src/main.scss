@@ -2,8 +2,8 @@
 
 // font-size property with `px` unit
 .selector-1 {
-  background-color: #f00;
   width: 300px;
+  background-color: #f00;
   @include font-size(32px);
 }
 

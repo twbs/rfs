@@ -1,10 +1,11 @@
 {
   "extends": [
-    "stylelint-config-standard"
+    "stylelint-config-twbs-bootstrap"
   ],
-  "rules": {
-    "at-rule-empty-line-before": null,
-    "at-rule-no-unknown": null,
-    "number-leading-zero": "never"
-  }
+  "overrides": [
+    {
+      "files": "**/*.less",
+      "customSyntax": "postcss-less"
+    }
+  ]
 }
