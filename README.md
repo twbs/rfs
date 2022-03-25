@@ -149,7 +149,7 @@ If you're using Webpack, you can simplify the `@import` using the `~` prefix:
 }
 ```
 
-### Sass (<code>.sass</code> syntax)
+### Sass (`.sass` syntax)
 
 ```text
 project/
