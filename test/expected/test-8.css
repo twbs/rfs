@@ -1,6 +1,6 @@
 .selector-1 {
-  background-color: #f00;
   width: 300px;
+  background-color: #f00;
   font-size: calc(1.325rem + 0.9vmin);
 }
 @media (min-width: 1200px) and (min-height: 1200px) {
