@@ -17,7 +17,7 @@ const ENABLE_RFS_SELECTOR = '.enable-rfs';
 module.exports = (opts = {}) => {
   const rfs = new RfsClass(opts);
 
-  // Get the options merged with defaults
+  // Get the merged options
   opts = rfs.getOptions();
   const mediaQuery = rfs.renderMediaQuery();
 
