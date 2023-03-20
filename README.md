@@ -608,9 +608,9 @@ RFS is supported by all browsers that support [media queries](https://caniuse.co
 
 Code released under [the MIT license](https://github.com/twbs/rfs/blob/main/LICENSE).
 
-[npm-image]: https://img.shields.io/npm/v/rfs
+[npm-image]: https://img.shields.io/npm/v/rfs?logo=npm&logoColor=fff
 [npm-url]: https://www.npmjs.com/package/rfs
 [licence-image]: https://img.shields.io/npm/l/rfs
 [license-url]: https://github.com/twbs/rfs/blob/main/LICENSE
-[build-image]: https://img.shields.io/github/workflow/status/twbs/rfs/Tests/main?label=Tests&logo=github
+[build-image]: https://img.shields.io/github/actions/workflow/status/twbs/rfs/test.yml?branch=main&label=Tests&logo=github
 [build-url]: https://github.com/twbs/rfs/actions?query=workflow%3ATests+branch%3Amain
