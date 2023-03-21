@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "stylelint-config-twbs-bootstrap"
+  ],
+  "overrides": [
+    {
+      "files": "**/*.scss",
+      "rules": {
+        "scss/selector-no-union-class-name": true
+      }
+    },
+    {
+      "files": "**/*.less",
+      "customSyntax": "postcss-less",
+      "rules": {
+        "function-no-unknown": null,
+        "import-notation": null
+      }
+    }
+  ]
+}
