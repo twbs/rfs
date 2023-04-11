@@ -41,5 +41,5 @@ jobs:
       - name: Run examples
         run: npm run examples
 
-      - name: Run mocha tests
-        run: npm run mocha
+      - name: Run uvu tests
+        run: npm run uvu

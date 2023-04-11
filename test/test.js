@@ -1,8 +1,7 @@
-/* eslint-env mocha */
-
 'use strict';
 
-const assert = require('assert').strict;
+const { suite } = require('uvu');
+const assert = require('uvu/assert');
 const result = require('./lib/result.js');
 const tests = require('./tests.json');
 
@@ -16,26 +15,24 @@ const styles = [
 ];
 
 function doTest(style) {
-  describe(style, () => {
-    for (const { id, name } of tests) {
-      it(name, done => {
-        const generated = result[style.toLowerCase()](id);
-        const expected = result.expected(id);
+  const testSuite = suite(style);
 
-        if (generated instanceof Promise) {
-          generated.then(generated => {
-            assert.equal(generated, expected);
-            done();
-          }).catch(error => {
-            done(error);
-          });
-        } else {
-          assert.equal(generated, expected);
-          done();
-        }
-      });
-    }
-  });
+  for (const { id, name } of tests) {
+    testSuite(name, () => {
+      const generated = result[style.toLowerCase()](id);
+      const expected = result.expected(id);
+
+      if (generated instanceof Promise) {
+        generated.then(generated => {
+          assert.is(generated, expected);
+        });
+      } else {
+        assert.is(generated, expected);
+      }
+    });
+  }
+
+  testSuite.run();
 }
 
 for (const style of styles) {
