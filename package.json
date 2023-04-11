@@ -41,6 +41,7 @@
     "mocha": "mocha",
     "stylelint": "stylelint \"**/*.{less,scss}\" --cache --cache-location node_modules/.cache/stylelint --rd",
     "xo": "xo",
+    "fix": "xo --fix",
     "lint": "npm-run-all --parallel --aggregate-output --continue-on-error xo stylelint",
     "test": "npm run lint && npm run mocha",
     "generate-test-results": "node-sass test/sass/ -o test/expected/ && prettier --write test/expected/*.css",
