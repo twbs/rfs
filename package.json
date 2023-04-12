@@ -39,7 +39,7 @@
   },
   "scripts": {
     "uvu": "uvu test test.js",
-    "stylelint": "stylelint \"**/*.{less,scss}\" --cache --cache-location node_modules/.cache/stylelint --rd",
+    "stylelint": "stylelint \"**/*.{less,scss}\" --cache --cache-location .cache/stylelint",
     "xo": "xo",
     "fix": "xo --fix",
     "lint": "npm-run-all --parallel --aggregate-output --continue-on-error xo stylelint",
