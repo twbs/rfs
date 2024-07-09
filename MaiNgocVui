@@ -1,0 +1,444 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm> 
+#include <fstream>  
+#include <cstdlib>  
+#include <ctime>  
+
+using namespace std;
+
+// Node struct for the linked list
+struct Node {
+    string function;
+    Node* next;
+};
+
+// Linked list class
+class LinkedList {
+public:
+    Node* head;
+    
+    LinkedList() : head(nullptr) {}
+    
+    void insert(string function) {
+        Node* newNode = new Node();
+        newNode->function = function;
+        newNode->next = head;
+        head = newNode;
+    }
+    void display() {
+        Node* current = head;
+        while (current != nullptr) {
+            cout << current->function << endl;
+            current = current->next;
+        }
+    }
+    // Linear Search
+    bool linearSearch(string key) {
+        Node* current = head;
+        while (current != nullptr) {
+            if (current->function == key)
+                return true;
+            current = current->next;
+        }
+        return false;
+    }
+    // Convert Linked List to Vector for Binary Search
+    vector<string> toVector() {
+        vector<string> vec;
+        Node* current = head;
+        while (current != nullptr) {
+            vec.push_back(current->function);
+            current = current->next;
+        }
+        return vec;
+    }
+};
+// Insertion Sort
+void insertionSort(Node*& head) {
+    if (!head || !head->next) return;
+    
+    Node* sorted = nullptr;
+    Node* current = head;
+    while (current) {
+        Node* next = current->next;
+        if (!sorted || sorted->function >= current->function) {
+            current->next = sorted;
+            sorted = current;
+        } else {
+            Node* temp = sorted;
+            while (temp->next && temp->next->function < current->function) {
+                temp = temp->next;
+            }
+            current->next = temp->next;
+            temp->next = current;
+        }
+        current = next;
+    }
+    head = sorted;
+}
+
+// Selection Sort
+void selectionSort(Node*& head) {
+    for (Node* temp = head; temp; temp = temp->next) {
+        Node* min = temp;
+        for (Node* r = temp->next; r; r = r->next) {
+            if (r->function < min->function) {
+                min = r;
+            }
+        }
+        swap(temp->function, min->function);
+    }
+}
+
+// Bubble Sort
+void bubbleSort(Node*& head) {
+    if (!head) return;
+    
+    bool swapped;
+    Node* lPtr;
+    Node* rPtr = nullptr;
+    
+    do {
+        swapped = false;
+        lPtr = head;
+        while (lPtr->next != rPtr) {
+            if (lPtr->function > lPtr->next->function) {
+                swap(lPtr->function, lPtr->next->function);
+                swapped = true;
+            }
+            lPtr = lPtr->next;
+        }
+        rPtr = lPtr;
+    } while (swapped);
+}
+
+// Quick Sort
+Node* getTail(Node* head) {
+while (head && head->next) head = head->next;
+    return head;
+}
+
+Node* partition(Node* head, Node* end, Node** newHead, Node** newEnd) {
+    Node* pivot = end;
+    Node* prev = nullptr, * curr = head, * tail = pivot;
+    
+    while (curr != pivot) {
+        if (curr->function < pivot->function) {
+            if (!*newHead) *newHead = curr;
+            prev = curr;
+            curr = curr->next;
+        } else {
+            if (prev) prev->next = curr->next;
+            Node* tmp = curr->next;
+            curr->next = nullptr;
+            tail->next = curr;
+            tail = curr;
+            curr = tmp;
+        }
+    }
+    
+    if (!*newHead) *newHead = pivot;
+    *newEnd = tail;
+    
+    return pivot;
+}
+
+Node* quickSortRecur(Node* head, Node* end) {
+    if (!head || head == end) return head;
+    
+    Node* newHead = nullptr, * newEnd = nullptr;
+    Node* pivot = partition(head, end, &newHead, &newEnd);
+    
+    if (newHead != pivot) {
+        Node* tmp = newHead;
+        while (tmp->next != pivot) tmp = tmp->next;
+        tmp->next = nullptr;
+        
+        newHead = quickSortRecur(newHead, tmp);
+        tmp = getTail(newHead);
+        tmp->next = pivot;
+    }
+    
+    pivot->next = quickSortRecur(pivot->next, newEnd);
+    
+    return newHead;
+}
+
+void quickSort(Node** headRef) {
+    *headRef = quickSortRecur(*headRef, getTail(*headRef));
+}
+
+// Merge Sort
+Node* merge(Node* left, Node* right) {
+    if (!left) return right;
+    if (!right) return left;
+    
+    if (left->function < right->function) {
+        left->next = merge(left->next, right);
+        return left;
+    } else {
+        right->next = merge(left, right->next);
+        return right;
+    }
+}
+
+Node* getMiddle(Node* head) {
+    if (!head) return head;
+    Node* slow = head, * fast = head->next;
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+Node* mergeSort(Node* head) {
+    if (!head || !head->next) return head;
+    
+    Node* middle = getMiddle(head);
+    Node* nextOfMiddle = middle->next;
+    middle->next = nullptr;
+    
+    Node* left = mergeSort(head);
+    Node* right = mergeSort(nextOfMiddle);
+    
+    return merge(left, right);
+}
+
+// Binary Search (needs sorted vector)
+bool binarySearch(vector<string> vec, string key) {
+    return binary_search(vec.begin(), vec.end(), key);
+}
+
+// Binary Search Tree
+struct TreeNode {
+    string function;
+    TreeNode* left;
+    TreeNode* right;
+    
+    TreeNode(string func) : function(func), left(nullptr), right(nullptr) {}
+};
+
+class BST {
+public:
+    TreeNode* root;
+    
+    BST() : root(nullptr) {}
+    
+    void insert(string function) {
+        root = insertRec(root, function);
+    }
+    
+    bool search(string key) {
+        return searchRec(root, key);
+    }
+    
+private:
+    TreeNode* insertRec(TreeNode* node, string function) {
+        if (node == nullptr) return new TreeNode(function);
+        if (function < node->function)
+node->left = insertRec(node->left, function);
+        else
+            node->right = insertRec(node->right, function);
+        return node;
+    }
+    
+    bool searchRec(TreeNode* node, string key) {
+        if (node == nullptr) return false;
+        if (node->function == key) return true;
+        if (key < node->function)
+            return searchRec(node->left, key);
+        else
+            return searchRec(node->right, key);
+    }
+};
+
+// New function to handle customer info input
+void inputCustomerInfo() {
+    string name, address, phone, email;
+    cout << "Nhap ten khach hang: ";
+    cin.ignore();
+    getline(cin, name);
+    cout << "Nhap dia chi: ";
+    getline(cin, address);
+    cout << "Nhap so dien thoai: ";
+    getline(cin, phone);
+    cout << "Nhap email: ";
+    getline(cin, email);
+    
+    cout << "\nThong tin khach hang:\n";
+    cout << "Ten: " << name << endl;
+    cout << "Dia chi: " << address << endl;
+    cout << "So dien thoai: " << phone << endl;
+    cout << "Email: " << email << endl;
+    
+    int exitChoice;
+    cout << "Nhan phim 0 de thoat ve trang chu: ";
+    cin >> exitChoice;
+    while (exitChoice != 0) {
+        cout << "Lua chon khong hop le. Nhan phim 0 de thoat ve trang chu: ";
+        cin >> exitChoice;
+    }
+}
+
+// Function to display content of gioithieu.txt
+void displayIntroduction() {
+    ifstream file("gioithieu.txt");
+    if (file.is_open()) {
+        string line;
+        while (getline(file, line)) {
+            cout << line << endl;
+        }
+        file.close();
+    } else {
+        cout << "Khong the mo file gioithieu.txt" << endl;
+    }
+}
+
+// Function to handle return to main menu
+void returnToMainMenu() {
+    int exitChoice;
+    cout << "Nhan phim 0 de thoat ve trang chu: ";
+    cin >> exitChoice;
+    while (exitChoice != 0) {
+        cout << "Lua chon khong hop le. Nhan phim 0 de thoat ve trang chu: ";
+        cin >> exitChoice;
+    }
+}
+
+int main() {
+    LinkedList ll;
+    srand(time(0));  // Seed the random number generator
+    
+    vector<string> hotelFunctions = {
+        "1. Trang gioi thieu",
+        "2. Dat phong khach san",
+        "3. Tra cuu gia phong",
+        "4. Xem phong",
+        "5. Xem phong chi tiet",
+        "6. Dich vu phong",
+        "7. Chinh sach huy dat phong",
+        "8. Dich vu xe dua don",
+        "9. Hoat dong giai tri",
+        "10. Tien ich và dich vu",
+        "11. Lien he và ho tro khach hang",
+        "12. Ban do và chi dan",
+        "13. Blog và tin tuc",
+        "14. Thoi tiet dia phuong",
+        "15. Tich hop mang xa hoi",
+        "16. Lich su kien",
+        "17. Trang quan tri cho nhân vien",
+        "18. Chung chi và giai thuong",
+        "19. FAQs",
+        "20. Bao mat và thanh toan an toan",
+        "21. Chuong trinh khach hang than thiet",
+        "22. Ho tro dat ve may bay va xe dua don",
+        "23. Dat nha hang va dich vu an uong",
+        "24. Dich vu giat la va ve sinh",
+        "25. Goi y diem tham quan và hoat dong"
+    };
+for (const string& func : hotelFunctions) {
+        ll.insert(func);
+    }
+    
+    cout << "Danh sach chuc nang:" << endl;
+    ll.display();
+    
+    // Chon thuat toán sap xep can su dung
+    // insertionSort(ll.head);
+    // selectionSort(ll.head);
+    // bubbleSort(ll.head);
+    // quickSort(&ll.head);
+    ll.head = mergeSort(ll.head);
+    
+    int choice;
+    int expectedPrice = 0; // Variable to store the expected price
+
+    while (true) {
+        cout << "\nNhap lua chon cua ban (1-25): ";
+        cin >> choice;
+
+        if (choice == 0) break;  // Exit loop to terminate program
+
+        switch(choice) {
+            case 1: 
+                cout << "Ban da chon chuc nang: " << hotelFunctions[choice-1] << endl;
+                displayIntroduction();
+                returnToMainMenu();
+                break;
+            case 2:
+                cout << "Ban da chon chuc nang: " << hotelFunctions[choice-1] << endl;
+                inputCustomerInfo();
+                cout << "Da dat phong thanh cong!" << endl;
+                returnToMainMenu();
+                break;
+            case 3: {
+                cout << "Ban dã chon chuc nang: " << hotelFunctions[choice-1] << endl;
+                cout << "Nhap muc gia mong muon: ";
+                cin >> expectedPrice;
+                int randomRoom = rand() % 20 + 1;
+                cout << "Phong " << randomRoom << " co gia " << expectedPrice << "d.\n";
+                returnToMainMenu();
+                break;
+            }
+            case 5: {
+                cout << "Ban dã chon chuc nang: " << hotelFunctions[choice-1] << endl;
+                int roomNumber;
+                cout << "Nhap so phong (tu 1-20): ";
+                cin >> roomNumber;
+                cout << "Phong " << roomNumber << " co gia " << expectedPrice << "d la 1 phong rat dep co noi that day du va tien ich voi gia uu dai.Phong gom co 2 giuong don\n";
+                returnToMainMenu();
+                break;
+            }
+        case 10:
+            cout << "Liên he voi phòng le tân de có the duoc hô tro" << endl;
+            returnToMainMenu();
+            break;
+        case 6:
+            cout << "Hien dang giam giá 20%" << endl;
+            returnToMainMenu();
+            break;
+        case 14:
+            cout << "Du báo se có mua vua và to trong 3 ngày toi" << endl;
+            returnToMainMenu();
+            break;
+        case 16:
+            cout << "Không có suu kien gì" << endl;
+            returnToMainMenu();
+            break;
+        case 24:
+            cout << "Ban dã dat dich vu thành công" << endl;
+            cout << "Hay cho vai phut se có nguoi lên lay do\n";
+            returnToMainMenu();
+            break;
+            case 4:
+                cout<<"Day la hinh anh cua phong" <<endl;
+                returnToMainMenu();
+            case 7:
+                cout<<"Day la chinh sach huy dat phong "<<endl;
+                returnToMainMenu();
+            case 8:
+cout<<"Dich vu xe dua don"<<endl;
+                returnToMainMenu();
+            case 9: 
+                cout<<"Hoat dong giai tri"<<endl;
+                returnToMainMenu();
+            case 11:
+                cout<<"Lien he va ho tro khach hang"<<endl;
+                returnToMainMenu();
+            case 12: case 13: case 15:  case 17: case 18: case 19: 
+            case 20: case 21: case 22: case 23: case 25:
+                cout << "Ban dã chon chuc nang: " << hotelFunctions[choice-1] << endl;
+                returnToMainMenu();
+                break;
+            default:
+                cout << "Lua chon không hop le!" << endl;
+                returnToMainMenu();
+                break;
+        }
+    }
+
+    return 0;
+}
