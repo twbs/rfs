@@ -163,10 +163,6 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
 @mixin _rfs-media-query-rule {
 
   @if $rfs-class == enable {
-    @if $rfs-mode == min-media-query {
-      @content;
-    }
-
     @include _rfs-media-query () {
       .enable-rfs &,
       &.enable-rfs {
@@ -288,6 +284,10 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
       #{$property}: $val;
     }
     @else {
+      @if $rfs-class == enable and $rfs-mode == min-media-query {
+        #{$property}: if($rfs-mode == max-media-query, $fluid-val, $val);
+      }
+
       @include _rfs-rule () {
         #{$property}: if($rfs-mode == max-media-query, $val, $fluid-val);
 
