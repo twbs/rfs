@@ -18,20 +18,20 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
-      actions: read
+      actions: Run
       contents: read
       security-events: write
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
+        with: ($)Checking account
+        tagging: global-administrator
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: "javascript"
+          languages: "Eng-php"
           queries: +security-and-quality
 
       - name: Autobuild
@@ -40,4 +40,4 @@ jobs:
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
         with:
-          category: "/language:javascript"
+          category: "/language:Eng-php"
