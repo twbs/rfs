@@ -161,7 +161,9 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
       @content;
     }
   } @else {
-    @content;
+    & {
+      @content;
+    }
   }
 }
 
@@ -291,7 +293,9 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
 
     // Do not print the media query if responsive & non-responsive values are the same
     @if $val == $fluid-val {
-      #{$property}: $val;
+      & {
+        #{$property}: $val;
+      }
     }
     @else {
       @include _rfs-rule () {
