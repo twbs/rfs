@@ -507,7 +507,7 @@ The option will prevent the value from becoming too small on smaller screens. If
 - Less: `@rfs-unit`
 - PostCSS: `unit`
 
-The output value will be rendered in this unit. Keep in mind configuring this value to `px` will disable the ability for users to change the the font size in their browser.
+The output value will be rendered in this unit. Keep in mind configuring this value to `px` will disable the ability for users to change the font size in their browser.
 
 *Default value: `rem`*
 
@@ -572,7 +572,7 @@ RFS can be enabled or disabled with a class. There are 3 options:
 - `false`
   No extra classes are generated.
 - `disable`
-  When the the disable classes are generated you can add the `.disable-rfs` class to an element to disable responsive value rescaling for the element and its child elements.
+  When the disable classes are generated you can add the `.disable-rfs` class to an element to disable responsive value rescaling for the element and its child elements.
 - `enable`
   RFS is disabled by default in this case. The `.enable-rfs` class can be added to an element to enable responsive value rescaling for the element and its child elements.
 
