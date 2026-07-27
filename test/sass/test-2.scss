@@ -1,2 +1,3 @@
-$enable-rfs: false;
-@import "main";
+@use "main" with (
+  $enable-rfs: false
+);

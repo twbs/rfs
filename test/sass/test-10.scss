@@ -1,10 +1,12 @@
-$rfs-base-value: 12px;
-$rfs-unit: px;
-$rfs-breakpoint: 800;
-$rfs-breakpoint-unit: rem;
-$rfs-two-dimensional: true;
-$rfs-factor: 5;
-$rfs-class: true;
-$rfs-safari-iframe-resize-bug-fix: true;
-@import "../../scss";
-@import "main";
+// Note: this test was for making sure that RFS could be @imported multiple times after configuring the used variables. This behavior is not exactly compatible with the new @use syntax, so this test is now just a simple test to make sure that RFS can be @used after configuring the used variables.
+@use "main" with (
+  $rfs-base-value: 12px,
+  $rfs-unit: px,
+  $rfs-breakpoint: 800,
+  $rfs-breakpoint-unit: rem,
+  $rfs-two-dimensional: true,
+  $rfs-factor: 5,
+  $rfs-class: true,
+  $rfs-safari-iframe-resize-bug-fix: true
+);
+@use "../../scss";

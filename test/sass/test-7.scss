@@ -1,2 +1,3 @@
-$rfs-unit: px;
-@import "main";
+@use "main" with (
+  $rfs-unit: px
+);

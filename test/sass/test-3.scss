@@ -1,2 +1,3 @@
-$rfs-class: "disable";
-@import "main";
+@use "main" with (
+  $rfs-class: "disable"
+);

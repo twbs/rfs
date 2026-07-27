@@ -1,3 +1,4 @@
-$rfs-mode: max-media-query;
-$rfs-two-dimensional: true;
-@import "main";
+@use "main" with (
+  $rfs-mode: max-media-query,
+  $rfs-two-dimensional: true
+);

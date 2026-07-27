@@ -1,2 +1,3 @@
-$rfs-breakpoint-unit: em;
-@import "main";
+@use "main" with (
+  $rfs-breakpoint-unit: "em"
+);

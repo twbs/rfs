@@ -1,2 +1,3 @@
-$rfs-base-value: 17px;
-@import "main";
+@use "main" with (
+  $rfs-base-value: 17px
+);
