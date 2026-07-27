@@ -26,13 +26,7 @@ $rfs-unit: rem !default;
 $rfs-breakpoint: 1200px !default;
 $rfs-breakpoint-unit: px !default;
 
-@if $rfs-breakpoint-unit !=
-  px and
-  $rfs-breakpoint-unit !=
-  em and
-  $rfs-breakpoint-unit !=
-  rem
-{
+@if $rfs-breakpoint-unit != px and $rfs-breakpoint-unit != em and $rfs-breakpoint-unit != rem {
   @error "`#{$rfs-breakpoint-unit}` is not a valid unit for $rfs-breakpoint-unit. Use `px`, `em` or `rem`.";
 }
 
@@ -66,13 +60,7 @@ $rfs-base-value-unit: math.unit($rfs-base-value);
 
 @function divide($dividend, $divisor, $precision: 10) {
   $sign: 1;
-  @if $dividend >
-    0 and not
-    ($divisor > 0) or
-    $dividend <
-    0 and not
-    ($divisor < 0)
-  {
+  @if $dividend > 0 and not ($divisor > 0) or $dividend < 0 and not ($divisor < 0) {
     $sign: -1;
   }
 
@@ -94,7 +82,7 @@ $rfs-base-value-unit: math.unit($rfs-base-value);
       $quotient: $quotient + 1;
     }
     $result: $result * 10 + $quotient;
-    $factor: $factor * 0.1;
+    $factor: $factor * .1;
     $remainder: $remainder * 10;
     $precision: $precision - 1;
     @if ($precision < 0 and $remainder >= $divisor * 5) {
@@ -134,12 +122,7 @@ $rfs-breakpoint-unit-cache: math.unit($rfs-breakpoint);
 // Remove unit from $rfs-breakpoint for calculations
 @if $rfs-breakpoint-unit-cache == px {
   $rfs-breakpoint: divide($rfs-breakpoint, $rfs-breakpoint * 0 + 1);
-} @else if
-  $rfs-breakpoint-unit-cache ==
-  rem or
-  $rfs-breakpoint-unit-cache ==
-  "em"
-{
+} @else if $rfs-breakpoint-unit-cache == rem or $rfs-breakpoint-unit-cache == "em" {
   $rfs-breakpoint: divide(
     $rfs-breakpoint,
     divide($rfs-breakpoint * 0 + 1, $rfs-rem-value)
@@ -151,10 +134,7 @@ $rfs-mq-value: "";
 @if $rfs-breakpoint-unit == px {
   $rfs-mq-value: #{$rfs-breakpoint}px;
 } @else {
-  $rfs-mq-value: #{divide(
-      $rfs-breakpoint,
-      $rfs-rem-value
-    )}#{$rfs-breakpoint-unit};
+  $rfs-mq-value: #{divide($rfs-breakpoint, $rfs-rem-value)}#{$rfs-breakpoint-unit};
 }
 
 $rfs-mq-property-width: min-width;
@@ -264,10 +244,7 @@ $rfs-mq-property-height: min-height;
         // Convert to px if needed
 
         @if $rfs-unit == px {
-          $val: $val +
-            " " +
-            #{divide($value, $value * 0 + 1) *
-            $rfs-rem-value}px;
+          $val: $val + " " + #{divide($value, $value * 0 + 1) * $rfs-rem-value}px;
         } @else {
           $val: $val + " " + $value;
         }
@@ -323,8 +300,7 @@ $rfs-mq-property-height: min-height;
           }
         } @else {
           // Calculate the minimum value
-          $value-min: $rfs-base-value +
-            divide(math.abs($value) - $rfs-base-value, $rfs-factor);
+          $value-min: $rfs-base-value + divide(math.abs($value) - $rfs-base-value, $rfs-factor);
 
           // Calculate difference between $value and the minimum value
           $value-diff: math.abs($value) - $value-min;
@@ -347,10 +323,7 @@ $rfs-mq-property-height: min-height;
           }
 
           // Calculate the variable width between 0 and $rfs-breakpoint
-          $variable-width: #{divide(
-              $value-diff * 100,
-              $rfs-breakpoint
-            )}#{$variable-unit};
+          $variable-width: #{divide( $value-diff * 100, $rfs-breakpoint)}#{$variable-unit};
 
           $operator: " + ";
           @if $value < 0 {
@@ -358,12 +331,7 @@ $rfs-mq-property-height: min-height;
           }
 
           // Return the calculated value
-          $val: $val +
-            " calc(" +
-            $min-width +
-            $operator +
-            $variable-width +
-            ")";
+          $val: $val + " calc(" + $min-width + $operator + $variable-width + ")";
         }
       }
     }
