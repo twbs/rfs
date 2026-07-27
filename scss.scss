@@ -55,6 +55,9 @@ $rfs-safari-iframe-resize-bug-fix: false !default;
 // Disable RFS by setting $enable-rfs to false
 $enable-rfs: true !default;
 
+// Disable mixed declarations by setting $rfs-no-mixed-decls to true
+$rfs-no-mixed-decls: false !default;
+
 // Cache $rfs-base-value unit
 $rfs-base-value-unit: math.unit($rfs-base-value);
 
@@ -180,7 +183,12 @@ $rfs-mq-property-height: min-height;
       @content;
     }
   } @else {
-    & {
+    @if $rfs-no-mixed-decls == true {
+      // stylelint-disable-next-line scss/selector-no-redundant-nesting-selector
+      & {
+        @content;
+      }
+    } @else {
       @content;
     }
   }
@@ -189,10 +197,6 @@ $rfs-mq-property-height: min-height;
 // Internal mixin that adds enable classes to the selector if needed.
 @mixin _rfs-media-query-rule {
   @if $rfs-class == enable {
-    @if $rfs-mode == min-media-query {
-      @content;
-    }
-
     @include _rfs-media-query() {
       .enable-rfs &,
       &.enable-rfs {
@@ -349,10 +353,27 @@ $rfs-mq-property-height: min-height;
 
     // Do not print the media query if responsive & non-responsive values are the same
     @if $val == $fluid-val {
-      & {
+      @if $rfs-no-mixed-decls == true {
+        // stylelint-disable-next-line scss/selector-no-redundant-nesting-selector
+        & {
+          #{$property}: $val;
+        }
+      } @else {
         #{$property}: $val;
       }
     } @else {
+      // 2026-07-26: The following sequence has been moved up into the rfs mixin due to DartSASS no-longer automatically hoisting mixed declarations
+      @if $rfs-class == enable and $rfs-mode == min-media-query {
+        @if $rfs-no-mixed-decls == true {
+          // stylelint-disable-next-line scss/selector-no-redundant-nesting-selector
+          & {
+            #{$property}: $val;
+          }
+        } @else {
+          #{$property}: $val;
+        }
+      }
+
       @include _rfs-rule() {
         @if $rfs-mode == max-media-query {
           #{$property}: $val;
