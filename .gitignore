@@ -6,3 +6,7 @@ node_modules/
 .cache/
 
 /.idea/
+
+.DS_Store
+
+_test.*

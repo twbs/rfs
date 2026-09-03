@@ -1,0 +1,9 @@
+$rfs-base-value: 12px;
+$rfs-unit: px;
+$rfs-breakpoint: 800;
+$rfs-breakpoint-unit: rem;
+$rfs-two-dimensional: true;
+$rfs-factor: 5;
+$rfs-class: true;
+$rfs-safari-iframe-resize-bug-fix: true;
+@import "main";

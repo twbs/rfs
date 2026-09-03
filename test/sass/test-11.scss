@@ -1,2 +1,3 @@
-$rfs-mode: max-media-query;
-@import "main";
+@use "main" with (
+  $rfs-mode: max-media-query
+);

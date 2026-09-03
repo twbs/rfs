@@ -33,15 +33,15 @@ module.exports = {
 
   // Return parsed css
   dartsass(id) {
-    return format(dartSass.renderSync({
-      file: path.join(__dirname, `../sass/${id}.scss`)
-    }).css.toString('utf8'));
+    return format(dartSass.compile(
+      path.join(__dirname, `../sass/${id}.scss`)
+    ).css.toString('utf8'));
   },
 
   // Return parsed css
   libsass(id) {
     return format(libSass.renderSync({
-      file: path.join(__dirname, `../sass/${id}.scss`)
+      file: path.join(__dirname, `../libsass/${id}.scss`)
     }).css.toString('utf8'));
   },
 
