@@ -38,3 +38,9 @@ function doTest(style) {
 for (const style of styles) {
   doTest(style);
 }
+
+// Regression suite: ensure the SCSS sources do not emit any
+// "mixed-decls" deprecation warnings under Dart Sass >= 1.77.7.
+// See https://github.com/twbs/rfs/issues/474.
+// eslint-disable-next-line import/no-unassigned-import
+require('./sass-no-deprecation-warnings.js');

@@ -163,9 +163,11 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
 @mixin _rfs-media-query-rule {
 
   @if $rfs-class == enable {
-    @if $rfs-mode == min-media-query {
-      @content;
-    }
+    // Note: when `$rfs-mode == min-media-query`, the static
+    // (`$rfs-value`) declaration is emitted directly by `rfs()` rather
+    // than here, so that it appears before the nested rules below in
+    // source order. This avoids the Dart Sass "mixed-decls" deprecation
+    // warning (issue #474) without changing the rendered CSS.
 
     @include _rfs-media-query () {
       .enable-rfs &,
@@ -288,6 +290,21 @@ $rfs-mq-property-height: if($rfs-mode == max-media-query, max-height, min-height
       #{$property}: $val;
     }
     @else {
+      // When `$rfs-class` is `"enable"` together with the default
+      // `min-media-query` mode, the inner mixins `_rfs-rule` and
+      // `_rfs-media-query-rule` both emit `.enable-rfs &, &.enable-rfs { … }`
+      // nested rules at the parent selector scope. Writing the static
+      // (`$val`) property declaration after them used to trigger Dart
+      // Sass's "mixed-decls" deprecation warning
+      // (https://sass-lang.com/d/mixed-decls, issue #474). Declaring the
+      // static value here, before the nested rules, keeps the rendered
+      // CSS byte-identical to the pre-Sass-1.77 output and silences the
+      // warning because declarations precede the nested rules in source
+      // order.
+      @if $rfs-class == enable and $rfs-mode == min-media-query {
+        #{$property}: $val;
+      }
+
       @include _rfs-rule () {
         #{$property}: if($rfs-mode == max-media-query, $val, $fluid-val);
 
